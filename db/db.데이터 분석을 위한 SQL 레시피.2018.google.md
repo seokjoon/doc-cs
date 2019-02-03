@@ -17,7 +17,7 @@
 
 ## 6. 여러 개의 값에 대한 조작
 * 두 값의 거리 계산하기: 78p: abs, power, sqrt, point 자료형, - 연산자
-	* 유클리드 거리 계산하기: psql point 자료형 사용: ``` select sqrt(power(x1 - x2, 2) + power(y1 - y2, 2)) as dist from loc; ```
+	* 유클리드 거리 계산하기: psql point 자료형 사용
 
 ## 7. 하나의 테이블에 대한 조작
 
