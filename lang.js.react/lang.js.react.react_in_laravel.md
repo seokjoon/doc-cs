@@ -19,16 +19,16 @@
 * 화살표 함수 등 사용
 	* npm install --save-dev babel-plugin-transform-class-properties
 	* .babelrc 파일 생성
-		```
-	    {
-	    	"presets": [
-	    		"@babel/preset-react"
-	    	],
-	    	"plugins": [
-	    		"babel-plugin-transform-class-properties"
-	    	]
-	    }
-	    ```
+	```
+    {
+    	"presets": [
+    		"@babel/preset-react"
+    	],
+    	"plugins": [
+    		"babel-plugin-transform-class-properties"
+    	]
+    }
+    ```
 	    
 ## laravel view 연계
 * views/bar.blade.php 생성
