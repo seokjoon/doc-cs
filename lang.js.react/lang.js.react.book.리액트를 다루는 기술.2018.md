@@ -41,7 +41,7 @@
 
 ## 3. 컴포넌트
 * props: 컴포넌트 자신에게는 읽기 전용
-	* <Foo bar="value" />, <Foo bar={value}>
+	* ```<Foo bar="value" />, <Foo bar={value}>```
 	* { this.props.bar }
 	* static defaultProps = { bar: value, };
 	* 검증: static propTypes = { bar: PropTypes.number.isRequired, };
@@ -50,7 +50,7 @@
 	* 항상 기본값 설정: constructor(props) { super(props); this.state = { foo: value, ... } }
 		{ this.state.foo }
 	* 항상 this.setState() 로만 값 변경
-		* <button onClick={() => { this.setState({ foo: this.state.foo + 1 }) } }>add</button>
+		* ```<button onClick={() => { this.setState({ foo: this.state.foo + 1 }) } }>add</button>```
 
 ## 4. 이벤트 핸들링
 * 이벤트 이름은 camelCase, 이벤트에 코드가 아닌 함수 형태 값 전달, DOM 요소에만 이벤터 설정 가능
