@@ -18,13 +18,14 @@
 ## 기타
 * 화살표 함수 등 사용
 	* npm install --save-dev babel-plugin-transform-class-properties
-```
-{
-  "presets": [
-    "react"
-  ],
-  "plugins": [
-    "babel-plugin-transform-class-properties"
-  ]
-}
-```
+	* .babelrc 파일 생성
+		```
+		{
+		  "presets": [
+		    "react"
+		  ],
+		  "plugins": [
+		    "babel-plugin-transform-class-properties"
+		  ]
+		}
+		```
