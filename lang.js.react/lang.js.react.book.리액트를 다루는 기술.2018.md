@@ -1,6 +1,4 @@
 * https://github.com/velopert/learning-react
-* https://github.com/seokjoon/react-test-r1
-* https://github.com/seokjoon/react-test-r2
 
 ## 목차
 ```
