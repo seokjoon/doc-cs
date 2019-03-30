@@ -9,3 +9,10 @@ Host *
 Protocol 2
 ServerAliveInterval 240
 ```
+
+## ssh key: GCP 사례
+* ssh-keygen -t rsa -C "root"
+	* 결과를 .ssh/root-gcp-key 등으로 저장
+* gcp => compute engine => 메타데이터 => ssh키
+	* '수정' 후 root-gcp-key.pub 내용 붙여넣기
+* ssh -i .ssh/root-gcp-key root@ec15.ecfirm.net
