@@ -77,23 +77,30 @@
 * 121 정규표현식으로 문자열 변환하기: 일치값 배열로 반환, 없으면 null 반환: foo = regex.exec(bar)
 * 122 정규표현식으로 문자열 치환하기: foo = bar.replace(교체 대상 문자열 혹은 정규식, 대체될 문자열 또는 함수)
 * 123 반복 가능한 객체와 반복자 이해하기
-* 124 문자열 순환하기(for-of)
-* 125 배열 순환하기(for-of)
-* 126 Map 객체에 요소 추가/삭제/확인하기(set, get, delete, has)
-* 127 Map 객체의 크기 확인하기(size)
-* 128 Map 객체 요소 나열하기(keys, values, entries)
-* 129 Map 객체 순환하기 ①(for-of, foreach)
-* 130 Map 객체 순환하기 ②
-* 131 Set 객체의 값 추가/삭제/확인하기(add, delete, has)
-* 132 Set 객체의 크기 확인하기(size)
-* 133 Set 객체로 Array 중복 요소 없애기
-* 134 Set 객체 값 나열하기(keys, values, entries)
-* 135 Set 객체 순환하기(for-of, foreach)
-* 136 일정 시간 후에 코드 실행하기(setTimeout)
-* 137 일정 시간마다 코드 실행하기(setInterval)
+* 124 문자열 순환하기: for-of: for(const foo of bar) {}
+* 125 배열 순환하기: for-of: for(const foo of bar) {}
+* 126 Map 객체에 요소 추가/삭제/확인하기: new Map().set(foo, bar), get(foo), delete(foo), has(foo)
+* 127 Map 객체의 크기 확인하기: 함수가 아닌 속성: new Map().size
+* 128 Map 객체 요소 나열하기: new Map().keys(), values(), entries(): 
+* 129 Map 객체 순환하기 1: for-of, foreach: for(let [k,v] of foo.entries()) {}, foo.forEach((v,k) => {})
+* 130 Map 객체 순환하기 2: for(let [func,v] of map) { func(v) }
+* 131 Set 객체의 값 추가/삭제/확인하기: new Set().add(foo), delete(foo), has(foo)
+* 132 Set 객체의 크기 확인하기: new Set().size
+* 133 Set 객체로 Array 중복 요소 없애기: const foo = new Set(bar); console.log([...foo])
+* 134 Set 객체 값 나열하기: new Set().keys(), values(), entries()
+* 135 Set 객체 순환하기: for-of, foreach: for(let k of foo.keys()) {}; for(let v of foo.values()) {}; for(let [k,v] of foo.entries()) {}; foo.forEach(v,k) => {}
+* 136 일정 시간 후에 코드 실행하기: setTimeout(function() {}, 1000)
+* 137 일정 시간마다 코드 실행하기: setInterval(() => {}, 1000)
 * 138 Promise 이해하기
+	* pm = new Promise((resolve, reject) => { ...; resolve({ foo: bar }); reject(new Error(foo) });
+	* pm.then(res => {}).catch(err => {});
 * 139 Promise 조합하기
+	* function foo(bar) { return new Promise(resolve, reject) { setTimeout(() => {}); }); };
+	* foo(a, b).then().then().then().catch();
 * 140 Async 이해하기
+	* function foo(a,b) { return new Promise(() => {}); }; 
+	* const bar = async function() { try { let v = await foo(a,b); } catch(e){} }
+	* bar();
 
 
 ## PART 4 자바스크립트 응용 다지기
