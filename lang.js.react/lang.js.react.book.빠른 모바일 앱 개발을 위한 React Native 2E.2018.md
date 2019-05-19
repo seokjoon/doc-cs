@@ -3,28 +3,26 @@
 	* 3.2.1 create-react-native-app
 3.3 개발 환경 설정: 전형적인 방법
 	* 3.3.1 react-native
-3.4 샘플 코드 살펴보기
 3.5 날씨 앱 만들기
-　3.5.1 사용자 입력 다루기
+　3.5.1 사용자 입력 다루기: <TextInput />
 　3.5.2 데이터 표시하기
-　3.5.3 웹에서 데이터 가져오기
-　3.5.4 배경 이미지 추가하기
-　3.5.5 모두 합쳐서 완성하기
+　3.5.3 웹에서 데이터 가져오기: fetch().then().then().catch()
+　3.5.4 배경 이미지 추가하기: <Image />
 3.6 요약
 
 ## 4장 모바일 컴포넌트
-4.1 HTML 엘리먼트와 네이티브 컴포넌트의 유사성
-　4.1.1 [Text] 컴포넌트
-　4.1.2 [Image] 컴포넌트
+4.1 HTML 엘리먼트와 네이티브 컴포넌트의 유사성: <View>, <Image>, <Text>, <FlatList>
+　4.1.1 <Text> 컴포넌트
+　4.1.2 <Image> 컴포넌트
 4.2 터치와 제스처(Gestures) 다루기
-　4.2.1 [Button]을 이용한 기본 인터렉션 만들기
-　4.2.2 [TouchableHighlight] 컴포넌트 사용하기
+　4.2.1 <Button>을 이용한 기본 인터렉션 만들기
+　4.2.2 <TouchableHighlight> 컴포넌트 사용하기
 　4.2.3 PanResponder 클래스 사용하기
 4.3 리스트 관련 컴포넌트
-　4.3.1 기본 [FlatList] 컴포넌트 사용하기
-　4.3.2 [FlatList] 내용 갱신하기
+　4.3.1 기본 <FlatList> 컴포넌트 사용하기
+　4.3.2 <FlatList> 내용 갱신하기
 　4.3.3 실제 데이터 연결하기
-　4.3.4 [SectionList] 사용하기
+　4.3.4 <SectionList> 사용하기
 4.4 내비게이션
 4.5 짜임새를 위한 컴포넌트
 4.6 요약
@@ -60,11 +58,11 @@
 　6.2.4 사진을 서버에 올리기
 6.3 AsyncStore를 이용한 영속적 데이터 저장하기
 6.4 SmarterWeather 앱
-　6.4.1 [WeatherProject] 컴포넌트
-　6.4.2 [Forecast] 컴포넌트
-　6.4.3 [Button] 컴포넌트
-　6.4.4 [LocationButton] 컴포넌트
-　6.4.5 [PhotoBackdrop] 컴포넌트
+　6.4.1 <WeatherProject> 컴포넌트
+　6.4.2 <Forecast> 컴포넌트
+　6.4.3 <Button> 컴포넌트
+　6.4.4 <LocationButton> 컴포넌트
+　6.4.5 <PhotoBackdrop> 컴포넌트
 6.5 요약
 
 ## 7장 모듈과 네이티브 코드
