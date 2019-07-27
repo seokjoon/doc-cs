@@ -1,14 +1,6 @@
 ## PART 1 입문 Nodejs 프로그램 걸음마 배우기
-* 001 Nodejs 설치하기
-* 002 웹스톰 설치 및 hello 출력
-* 003 ECMAScript6(ES6)란?
-* 004 consolelog( hello );로 hello 출력하기
 * 005 포맷팅(Formatting)해서 출력하기
 * 006 `${변수}` 백틱을 이용한 포맷팅
-* 007 주석 comment
-* 008 변수 선언하기 let
-* 009 변수와 상수
-* 010 문자와 숫자
 * 011 숫자인지 판단하기 isNaN()
 * 012 더하기, 빼기, 곱하기, 나누기
 * 013 나머지 구하기 ? 홀수, 짝수 판단
@@ -17,7 +9,6 @@
 * 016 배열(array) 선언하기
 * 017 배열(array)에 값 넣기
 * 018 배열(array) 출력하기
-* 019 JSON이란?
 * 020 JSON에서 값 뽑기, 필드 추가하기
 * 021 typeof로 변수의 타입(형) 알아보기
 * 022 true, false Boolean(불리언)
@@ -26,9 +17,8 @@
 * 025 논리연산자(Logical Operator)
 * 026 삼항연산자
 
+
 ## PART 2 초급 Nodejs 프로그램 기본기 연마하기
-* 027 조건문 if
-* 028 조건문 if else
 * 029 조건문 if else if else
 * 030 조건문 Switch
 * 031 반복문 for
@@ -41,7 +31,6 @@
 * 038 날짜 시간 출력하기
 * 039 yyyy-MM-dd 형식으로 날짜 출력하기
 * 040 Timestamp(타임스탬프)
-* 041 예외처리 try catch
 * 042 예외처리 try catch final
 * 043 전역 객체(Global Object)
 * 044 함수(function) 선언하기
@@ -50,9 +39,7 @@
 * 047 A, B, C, F 등급을 구하는 함수 만들기
 * 048 여러 가지 함수(function) 선언 방법
 * 049 자바스크립트 함수의 성질(일급 객체)
-* 050 화살표(arrow) 함수
 * 051 화살표(arrow) 함수, {} 이용하기
-* 052 화살표 함수 예제
 * 053 콜백함수 callback()
 * 054 함수의 유효 범위(Scope)
 * 055 난수 생성(random)
@@ -88,14 +75,13 @@
 * 085 정렬하기 여러 조건 sort()
 * 086 JSON 오브젝트 정렬
 * 087 배열에서 필요한 부분만 뽑기 slice()
-* 088 배열에서 필요한 부분만 뽑기 예제
 * 089 배열 합치기 concat()
 * 090 배열 shift(), unshift()
 * 091 배열 pop()
 * 092 배열 조회하기
 
+
 ## PART 3 중급 Nodejs 함수형 프로그램과 실전 예제
-* 093 함수형 프로그래밍, 명령형 프로그래밍
 * 094 함수를 return하기
 * 095 재귀함수 countdown
 * 096 재귀함수 1~n까지 더하기
@@ -111,11 +97,8 @@
 * 106 프리디케이트 predicate
 * 107 프리디케이트로 정렬 sort(predicate)
 * 108 filter() 함수 사용하기
-* 109 filter() 함수 예제
 * 110 map() 함수 사용하기
-* 111 map() 함수 예제
 * 112 reduce() 함수 사용하기
-* 113 reduce() 함수 예제
 * 114 filter, map(), reduce() 함수 예제
 * 115 filter, map(), reduce() 함수 예제 - 합계구하기
 * 116 filter, map(), reduce() 함수 예제 - 평균구하기
@@ -123,6 +106,7 @@
 * 118 Promiseall()을 이용해 후처리하기
 * 119 exports
 * 120 require
+
 
 ## PART 4 활용 Nodejs 라이브러리를 활용할 실전 응용
 * 121 API 읽는 법
@@ -155,14 +139,10 @@
 * 148 request로 구글 크롤링하기
 * 149 request로 파라미터 추가해 호출하기
 * 150 한글 깨지는 문제 해결하기
-* 151 cheerio란?
 * 152 cheerio 이용해서 필요한 부분 추출하기
 * 153 request 실행 결과 파일로 저장하기
 * 154 ejs 모듈 ①
-* 155 ejs 모듈 ②
 * 156 pug 모듈 ①
-* 157 pug 모듈 ②
-* 158 pug 모듈 ③
 * 159 winston 모듈(로그 파일)
 * 160 express 모듈 ① - overview
 * 161 express 모듈 ② - response
@@ -176,7 +156,6 @@
 * 169 express 모듈 ⑩ - connect-multiparty 미들웨어
 * 170 express 모듈 ⑪ - express-session 미들웨어
 * 171 node-schedule 모듈 ①
-* 172 node-schedule 모듈 ②
 * 173 Nodemailer 모듈 ① - 메일 보내기(TEXT)
 * 174 Nodemailer 모듈 ② - 메일 보내기(HTML)
 * 175 Nodemailer 모듈 ③ - 메일 보내기(첨부파일)
@@ -191,19 +170,10 @@
 * 184 socketio ② - 서버
 * 185 socketio ③ - 이벤트
 
+
 ## PART 5 실무 Nodejs로 간단한 프로그램 만들기
 * 186 크롤러를 활용한 뉴스 속보 이메일 발송 시스템 ①
-* 187 크롤러를 활용한 뉴스 속보 이메일 발송 시스템 ②
-* 188 크롤러를 활용한 뉴스 속보 이메일 발송 시스템 ③
-* 189 크롤러를 활용한 뉴스 속보 이메일 발송 시스템 ④
 * 190 MySQL 모듈을 활용한 게시판 구현 ① - 모듈 소개
-* 191 MySQL 모듈을 활용한 게시판 구현 ② - Overview
-* 192 MySQL 모듈을 활용한 게시판 구현 ③ - 조회 페이지
-* 193 MySQL 모듈을 활용한 게시판 구현 ④ - 데이터 추가
-* 194 MySQL 모듈을 활용한 게시판 구현 ⑤ - 데이터 수정
-* 195 MySQL 모듈을 활용한 게시판 구현 ⑥ - 데이터 삭제
-* 196 MySQL 모듈을 활용한 게시판 구현 ⑦ - 전체 코드
-* 197 텔레그램 설치하기
 * 198 텔레그램 봇 만들기
 * 199 텔레그램 봇 라이브러리 설치하기
-* 200 텔레그램 봇 애플리케이션 띄우기 
+* 200 텔레그램 봇 애플리케이션 띄우기
