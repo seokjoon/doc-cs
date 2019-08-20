@@ -63,4 +63,5 @@ if (document.getElementById('bar_react')) {
 }
 ```
 * resources/js/app.js 편집: ``` require('./components/Bar/Bar'); ```
+* resources/scss/app.scss 존재 확인 
 * js require 파일 설정: public/mix-manifest.json
