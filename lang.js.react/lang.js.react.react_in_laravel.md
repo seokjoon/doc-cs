@@ -41,7 +41,7 @@
 	<body> <div id="bar_react"></div> </body>
 </html>
 ```
-* resources/assets/js/Components/Bar/Bar.js 생성
+* resources/js/components/Bar/Bar.js 생성
 ``` 
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
@@ -58,7 +58,9 @@ class Bar extends Component {
 
 export default Bar;
 
-ReactDOM.render(<Bar/>, document.getElementById('bar_react'));
+if (document.getElementById('bar_react')) {
+    ReactDOM.render(<Bar/>, document.getElementById('bar_react'));
+}
 ```
-* resources/assets/js/app.js 편집: ``` require('./components/Bar/Bar'); ```
+* resources/js/app.js 편집: ``` require('./components/Bar/Bar'); ```
 * js require 파일 설정: public/mix-manifest.json
