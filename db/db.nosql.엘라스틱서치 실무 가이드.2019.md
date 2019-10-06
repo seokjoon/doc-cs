@@ -13,6 +13,22 @@
         * put /foo { "mappings": { "_doc": { "bar": { "type": "text" } } } }
         * delete /foo
     * 2.2.2 문서 관리 API
+        * single: index, get, delete, update
+            * post /foo/_doc/1 { "bar": "test" }
+                * post /foo/_doc { "bar": "test" }: _id 자동 지정: 관리 어려움으로 RDB pk와 맞춤이 유리
+            * get /foo/_doc/1
+            * delete /foo/_doc/1
+            * 검색 방식 2개: uri 파라미터를 uri에 추가, 혹은 restful/queryDSL/request body에 질의 포함
+                * 혼합: get /foo/_doc/_search?q=bar:test&pretty=true { "sort": { "bar": { "order": "asc" } } }
+                * uri
+                    * uri(키 질의): get /foo/_doc/1?pretty=true
+                    * 일치 질의
+                        * time_out 설정 가능, 결과에 _score 포함
+                        * 모든 필드: post /foo/_search?q=test
+                        * 특정 필드: post /foo/_search?q=bar:test
+                * request body
+                    
+        * multi: get, bulk, delete, update, reindex
     * 2.2.3 검색 API
     * 2.2.4 집계 API
 
