@@ -8,7 +8,7 @@
 * 2.1 엘라스틱서치를 구성하는 개념
     * 2.1.3 클러스터, 노드, 샤드
 * 2.2 엘라스틱서치에서 제공하는 주요 API
-    * 스키마리스 단점
+    * 스키마리스 단점: 동적 매핑 사용하지 말고 명시적 매핑 설정 사용
     * 2.2.1 인덱스 관리 API: 매핑 변경 불가
         * put /foo { "mappings": { "_doc": { "bar": { "type": "text" } } } }
         * delete /foo
@@ -37,7 +37,13 @@
                 * query: 검색될 조건 정의 
                 * filter: 결과 내 재검색
     * 2.2.4 집계 API
-        * 
+        * post /foo/_search?size=0 { "aggs": { "out": { "terms": { "field": "bar" } } } }
+        * 중첩: post /foo/_search?size=0 { "aggs": { "out": { "terms": { "field": "bar" }, { "aggs": { "outSub": { "terms": { "field": "..." } } } } } } }
+        * 타입 4가지: 조합 가능
+            * 버킷: 문서 필드 기준
+            * 매트릭: 문서 추출 값 Sum, Max, Min, Avg
+            * 매트릭스: 행렬값 곱, 합
+            * 파이프라인: 집계 결과를 다시 집계
 
 ## 03장 데이터 모델링
 * 3.1 매핑 API 이해하기
