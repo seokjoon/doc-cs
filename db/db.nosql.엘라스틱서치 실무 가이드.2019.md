@@ -63,24 +63,31 @@
         * index: 필드값 색인 여부, 기본값 true
         * fields: multi_field 설정 옵션, 필드안에 또 다른 필드 정보 추가 가능
             * ... "foo": { "type": "text". "fields": { "bar": { "type": "keyword" } } }
-        * norms
-        
-        
+        * norms: 문서 _score 값 계산에 필요한 정규화 인수 사용 여부, 기본값 true, 단순 필터 등 필요없을 경우 false
+        * null_value: 색인시 문서값 null 이더라도 필드 생성
+        * position_increment_gap: 배열 데이터 검색시 단어 사이 간격(slop) 허용
+        * properties: object 혹은 nested 타입 스키마 정의시 사용
+        * search_analyzer: 색인시 분석기와 다른 분석기를 검색시 사용
+        * similaity: 유사도 측정 알고리즘 지정, 기본 BM25, classic(tf/idf), boolean
+        * store: 필드 값 저장해서 검색 결과에 값 포함(디스크 더 사용)
+        * term_vector: 루씬 분석 용어 정보 포함 여부: no, yes, ...
 * 3.2 메타 필드
-    * 3.2.1 _index 메타 필드
-    * 3.2.2 _type 메타 필드
-    * 3.2.3 _id 메타 필드
-    * 3.2.4 _uid 메타 필드
-    * 3.2.5 _source 메타 필드
+    * 3.2.1 _index 메타 필드: 해당 문서가 속한 인덱스 이름 정보
+        * post foo/_search { "size": 0, "aggs": { "indices": { "terms": { "field": "_index", "size": 10 } } } }: 인덱스별 카운트 정보
+    * 3.2.2 _type 메타 필드: 해당 문서가 속한 매핑의 타입 정보
+    * 3.2.3 _id 메타 필드: 문서를 식별하는 유일한 키 값
+        * post foo/_search { "size": 0, "aggs": { "indices": { "terms": { "field": "_id", "size": 10 } } } }: 키 값 대응 모든 문서 표시
+    * 3.2.4 _uid 메타 필드: 특수 목적 식별키("#" 태그 사용해 _type 와 _id 값 조합)
+    * 3.2.5 _source 메타 필드: 문서 원본 데이터 제공
     * 3.2.6 _all 메타 필드
-    * 3.2.7 _routing 메타 필드
+    * 3.2.7 _routing 메타 필드: 특정 문서를 특정 샤드에 저장
 * 3.3 필드 데이터 타입
-    * 3.3.1 Keyword 데이터 타입
-    * 3.3.2 Text 데이터 타입
-    * 3.3.3 Array 데이터 타입
-    * 3.3.4 Numeric 데이터 타입
+    * 3.3.1 Keyword 데이터 타입: 분석기 거치지 않고 원문대로 색인, 필터링/정렬/집계 항목
+    * 3.3.2 Text 데이터 타입: 분석기가 문자열 데이터로 인식/분석, 전문 검색 가능, 전체 텍스트 토큰화되어 특정 단어 검색 가능, 정렬/집계 필요시 text 타입과 keyword 타입의 멀티 필드로 설정
+    * 3.3.3 Array 데이터 타입: 모두 같은 타입으로 구성, 객체 배열 가능: 매핑 설정시 Array 로 명시 정의하지 않음
+    * 3.3.4 Numeric 데이터 타입: long, integer, ...
     * 3.3.5 Date 데이터 타입
-    * 3.3.6 Range 데이터 타입
+    * 3.3.6 Range 데이터 타입: 숫자/IP 범위 
     * 3.3.7 Boolean 데이터 타입
     * 3.3.8 Geo-Point 데이터 타입
     * 3.3.9 IP 데이터 타입
