@@ -48,8 +48,24 @@
 ## 03장 데이터 모델링
 * 3.1 매핑 API 이해하기
     * 3.1.1 매핑 인덱스 만들기
+        * put foo { "settings": { ... }, "mappings": { "_doc": { "properties": { "bar": "type": "text", "analyzer": "standard" } } } }
     * 3.1.2 매핑 확인
+        * get foo/_mappings
     * 3.1.3 매핑 매개변수
+        * analyzer: 형태소 분석, text 타입은 기본적으로 사용해야, 기본값 standard analyzer
+        * normalizer: term query 분석, 예를 들어 keyword 타입, asciifolding 필터로 대소문자/언어별 차이 정규화 등
+        * boost: 필터에 가중치 부여: 최신 버전에서 색인시 boost 설정 불가로 변경
+        * coerce: 자동(타입)변환 허용여부
+        * copy_to: 지정된 필드로 복사, 예를 들어 keyword 타입을 text 타입 필드로 복사해서 개별 처리
+        * format: 날짜/시간 문자열 변경시 포맷 지정: basic_date, basic_date_time, ...
+        * ignore_above: 문자열 지정 크기 초과하면 (해당 크기만큼이 아닌)빈 값으로 저장
+        * ignore-malformed: 잘못된 데이터 타입 색인시 해당 필드만 무시하고 문서는 색인 가능하게
+        * index: 필드값 색인 여부, 기본값 true
+        * fields: multi_field 설정 옵션, 필드안에 또 다른 필드 정보 추가 가능
+            * ... "foo": { "type": "text". "fields": { "bar": { "type": "keyword" } } }
+        * norms
+        
+        
 * 3.2 메타 필드
     * 3.2.1 _index 메타 필드
     * 3.2.2 _type 메타 필드
