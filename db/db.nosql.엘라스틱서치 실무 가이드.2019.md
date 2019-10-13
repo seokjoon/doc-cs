@@ -86,23 +86,26 @@
     * 3.3.2 Text 데이터 타입: 분석기가 문자열 데이터로 인식/분석, 전문 검색 가능, 전체 텍스트 토큰화되어 특정 단어 검색 가능, 정렬/집계 필요시 text 타입과 keyword 타입의 멀티 필드로 설정
     * 3.3.3 Array 데이터 타입: 모두 같은 타입으로 구성, 객체 배열 가능: 매핑 설정시 Array 로 명시 정의하지 않음
     * 3.3.4 Numeric 데이터 타입: long, integer, ...
-    * 3.3.5 Date 데이터 타입
+    * 3.3.5 Date 데이터 타입: "type": "date", "format": "yyyy-MM-dd HH:mm:ss"
     * 3.3.6 Range 데이터 타입: 숫자/IP 범위 
     * 3.3.7 Boolean 데이터 타입
-    * 3.3.8 Geo-Point 데이터 타입
+    * 3.3.8 Geo-Point 데이터 타입: { "lat": 12.34..., "lon": 56.78... }
     * 3.3.9 IP 데이터 타입
-    * 3.3.10 Object 데이터 타입
-    * 3.3.11 Nested 데이터 타입
+    * 3.3.10 Object 데이터 타입: 타입 정의시 키워드 이용하지 않고 구조 입력: "properties": { "foo": { "properties": ... } }
+    * 3.3.11 Nested 데이터 타입: 예를 들어 배열 타입은 OR 연산되는데 nested 타입은 일치하는 문서만 검색 가능
 * 3.4 엘라스틱서치 분석기
-    * 3.4.1 텍스트 분석 개요
-    * 3.4.2 역색인 구조
-    * 3.4.3 분석기의 구조
-    * 3.4.4 전처리 필터
-    * 3.4.5 토크나이저 필터
-    * 3.4.6 토큰 필터
-    * 3.4.7 동의어 사전
+    * 3.4.1 텍스트 분석 개요: post _analyze { "analyzer": "standard", "text": "..." }
+    * 3.4.2 역색인 구조: 단어 목록, 단어의 문서 소속, 전체/개별 문서 내 단어 개수/출현 빈도 
+    * 3.4.3 분석기의 구조: 문장 수정, 토큰 분리, 토큰 변경
+        * post foo/_analyze { "field": "bar", "text": "test" }
+        * index analyzer, search analyzer
+        * 분석기 타입: standard, whitespace, keyword(토큰화 작없 없음)
+    * 3.4.4 전처리 필터: html strip char
+    * 3.4.5 토크나이저 필터: standard, whitespace, ngram/edge(자르기), keyword(텍스트를 단일 토큰으로)
+    * 3.4.6 토큰 필터: ascii folding, lowercase, uppercase, stop(불용어), stemmer(단어 원형), synonym(동의어), trim
+    * 3.4.7 동의어 사전: /config/analysis/synonym.txt: 동의어 추가/치환
 * 3.5 Document API 이해하기
-    * 3.5.1 문서 매개변수
+    * 3.5.1 문서 매개변수: id 미지정시 자동생성(UUID), 버전관리(문서변경시), op_type(동일 id 색인시 update or fail 설정), timeout, 동적 매핑 비활성
     * 3.5.2 Index API
     * 3.5.3 Get API
     * 3.5.4 Delete API
