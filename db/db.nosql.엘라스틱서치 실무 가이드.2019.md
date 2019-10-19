@@ -10,26 +10,26 @@
 * 2.2 엘라스틱서치에서 제공하는 주요 API
     * 스키마리스 단점: 동적 매핑 사용하지 말고 명시적 매핑 설정 사용
     * 2.2.1 인덱스 관리 API: 매핑 변경 불가
-        * put /foo { "mappings": { "_doc": { "bar": { "type": "text" } } } }
-        * delete /foo
+        * PUT /foo { "mappings": { "_doc": { "bar": { "type": "text" } } } }
+        * DELETE /foo
     * 2.2.2 문서 관리 API
         * single: index, get, delete, update
-            * post /foo/_doc/1 { "bar": "test" }
-                * post /foo/_doc { "bar": "test" }: _id 자동 지정: 관리 어려움으로 RDB pk와 맞춤이 유리
-            * get /foo/_doc/1
-            * delete /foo/_doc/1
+            * POST /foo/_doc/1 { "bar": "test" }
+                * POST /foo/_doc { "bar": "test" }: _id 자동 지정: 관리 어려움으로 RDB pk와 맞춤이 유리
+            * GET /foo/_doc/1
+            * DELETE /foo/_doc/1
         * multi: get, bulk, delete, update, reindex
     * 2.2.3 검색 API
         * 2개 방식: uri 파라미터를 uri에 추가, 혹은 restful/queryDSL/request body에 질의 포함 
-        * 혼합: get /foo/_doc/_search?q=bar:test&pretty=true { "sort": { "bar": { "order": "asc" } } } 
+        * 혼합: GET /foo/_doc/_search?q=bar:test&pretty=true { "sort": { "bar": { "order": "asc" } } } 
         * uri 
-            * 키 질의: get /foo/_doc/1?pretty=true 
+            * 키 질의: GET /foo/_doc/1?pretty=true 
             * 일치 질의 
                 * time_out 설정 가능, 결과에 _score 포함 
-                * 모든 필드: post /foo/_search?q=test 
-                * 특정 필드: post /foo/_search?q=bar:test
+                * 모든 필드: POST /foo/_search?q=test 
+                * 특정 필드: POST /foo/_search?q=bar:test
         * request body 
-            * post /foo/_search { "query": { "bar": "test" } } 
+            * POST /foo/_search { "query": { "bar": "test" } } 
                 * size: 기본값 10 
                 * from: 기본값 0 
                 * _source: 특정 필드만 반환 
@@ -37,8 +37,8 @@
                 * query: 검색될 조건 정의 
                 * filter: 결과 내 재검색
     * 2.2.4 집계 API
-        * post /foo/_search?size=0 { "aggs": { "out": { "terms": { "field": "bar" } } } }
-        * 중첩: post /foo/_search?size=0 { "aggs": { "out": { "terms": { "field": "bar" }, { "aggs": { "outSub": { "terms": { "field": "..." } } } } } } }
+        * POST /foo/_search?size=0 { "aggs": { "out": { "terms": { "field": "bar" } } } }
+        * 중첩: POST /foo/_search?size=0 { "aggs": { "out": { "terms": { "field": "bar" }, { "aggs": { "outSub": { "terms": { "field": "..." } } } } } } }
         * 타입 4가지: 조합 가능
             * 버킷: 문서 필드 기준
             * 매트릭: 문서 추출 값 Sum, Max, Min, Avg
@@ -48,9 +48,9 @@
 ## 03장 데이터 모델링
 * 3.1 매핑 API 이해하기
     * 3.1.1 매핑 인덱스 만들기
-        * put foo { "settings": { ... }, "mappings": { "_doc": { "properties": { "bar": "type": "text", "analyzer": "standard" } } } }
+        * PUT /foo { "settings": { ... }, "mappings": { "_doc": { "properties": { "bar": "type": "text", "analyzer": "standard" } } } }
     * 3.1.2 매핑 확인
-        * get foo/_mappings
+        * GET /foo/_mappings
     * 3.1.3 매핑 매개변수
         * analyzer: 형태소 분석, text 타입은 기본적으로 사용해야, 기본값 standard analyzer
         * normalizer: term query 분석, 예를 들어 keyword 타입, asciifolding 필터로 대소문자/언어별 차이 정규화 등
@@ -73,10 +73,10 @@
         * term_vector: 루씬 분석 용어 정보 포함 여부: no, yes, ...
 * 3.2 메타 필드
     * 3.2.1 _index 메타 필드: 해당 문서가 속한 인덱스 이름 정보
-        * post foo/_search { "size": 0, "aggs": { "indices": { "terms": { "field": "_index", "size": 10 } } } }: 인덱스별 카운트 정보
+        * POST /foo/_search { "size": 0, "aggs": { "indices": { "terms": { "field": "_index", "size": 10 } } } }: 인덱스별 카운트 정보
     * 3.2.2 _type 메타 필드: 해당 문서가 속한 매핑의 타입 정보
     * 3.2.3 _id 메타 필드: 문서를 식별하는 유일한 키 값
-        * post foo/_search { "size": 0, "aggs": { "indices": { "terms": { "field": "_id", "size": 10 } } } }: 키 값 대응 모든 문서 표시
+        * POST /foo/_search { "size": 0, "aggs": { "indices": { "terms": { "field": "_id", "size": 10 } } } }: 키 값 대응 모든 문서 표시
     * 3.2.4 _uid 메타 필드: 특수 목적 식별키("#" 태그 사용해 _type 와 _id 값 조합)
     * 3.2.5 _source 메타 필드: 문서 원본 데이터 제공
     * 3.2.6 _all 메타 필드
@@ -94,10 +94,10 @@
     * 3.3.10 Object 데이터 타입: 타입 정의시 키워드 이용하지 않고 구조 입력: "properties": { "foo": { "properties": ... } }
     * 3.3.11 Nested 데이터 타입: 예를 들어 배열 타입은 OR 연산되는데 nested 타입은 일치하는 문서만 검색 가능
 * 3.4 엘라스틱서치 분석기
-    * 3.4.1 텍스트 분석 개요: post _analyze { "analyzer": "standard", "text": "..." }
+    * 3.4.1 텍스트 분석 개요: POST /_analyze { "analyzer": "standard", "text": "..." }
     * 3.4.2 역색인 구조: 단어 목록, 단어의 문서 소속, 전체/개별 문서 내 단어 개수/출현 빈도 
     * 3.4.3 분석기의 구조: 문장 수정, 토큰 분리, 토큰 변경
-        * post foo/_analyze { "field": "bar", "text": "test" }
+        * POST /foo/_analyze { "field": "bar", "text": "test" }
         * index analyzer, search analyzer
         * 분석기 타입: standard, whitespace, keyword(토큰화 작없 없음)
     * 3.4.4 전처리 필터: html strip char
@@ -105,14 +105,18 @@
     * 3.4.6 토큰 필터: ascii folding, lowercase, uppercase, stop(불용어), stemmer(단어 원형), synonym(동의어), trim
     * 3.4.7 동의어 사전: /config/analysis/synonym.txt: 동의어 추가/치환
 * 3.5 Document API 이해하기
-    * 3.5.1 문서 매개변수: id 미지정시 자동생성(UUID), 버전관리(문서변경시), op_type(동일 id 색인시 update or fail 설정), timeout, 동적 매핑 비활성
-    * 3.5.2 Index API
-    * 3.5.3 Get API
-    * 3.5.4 Delete API
-    * 3.5.5 Delete By Query API
-    * 3.5.6 Update API
-    * 3.5.7 Bulk API
-    * 3.5.8 Reindex API
+    * 3.5.1 문서 파라미터: id 미지정시 자동생성(UUID), 버전관리(문서변경시), op_type(동일 id 색인시 update or fail 설정), timeout, 동적 매핑 비활성
+    * 3.5.2 Index API: 문서 생성: PUT /foo/_doc/1 { "key": "value" }
+    * 3.5.3 Get API: 문서 조회: GET /foo/_doc/1 
+        * GET /foo/_doc/2?_source_exclude=key
+    * 3.5.4 Delete API: 문서 삭제: DELETE /foo/_doc/1
+        * DELETE /foo
+    * 3.5.5 Delete By Query API: 검색 결과만 삭제: POST /foo/_delete_by_query { "query": { "term": { "foo": "bar" } } }
+    * 3.5.6 Update API: 문서 수정: PUT /foo/_doc/1/_update { "script": { "source": "ctx._source.bar += params.var", "lang": "painless", "params": { "var": 1 } } }
+    * 3.5.7 Bulk API: 대량 문서 처리(실패시 롤백 없음): POST /_bulk { { "index": { ... } } } { "title": { ... } } { "delete": { ... } } { "update": { ... } } { "doc": { ... } }
+    * 3.5.8 Reindex API: 문서 복사: POST /_reindex { "source": { "index": "foo" }, "dest": { "index": "bar" } }
+        * 검색 후 복사: POST /_reindex { "source": { "index": "foo", "type": "_doc", "query": { "term": { "title.keyword": "test" } } }, { "dest": { "index": "bar" } } }
+        * 정렬 후 복사: POST /_reindex { "size": 10000, "source": { "index": "foo", "sort": { "test": "desc" } }, "dest": { "index": "bar" } }
 
 ## 04장 데이터 검색
 * 4.1 검색 API
