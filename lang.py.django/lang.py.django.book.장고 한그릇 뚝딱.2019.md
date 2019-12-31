@@ -12,11 +12,7 @@
         * 슬라이싱: [n:m]
         * if, for, while
         * def, class
-    * 2.2. 실전 예제 해결하기 (1)
-    * 2.3. Django
-3. 시작하기
-    * 3.1. 환경 구성하기
-    * 3.2. github 이용하기
+        	* self, __init__
 
 
 # Chapter 2 ToDoList 만들기
