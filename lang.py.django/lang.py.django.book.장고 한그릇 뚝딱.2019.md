@@ -18,15 +18,33 @@
 # Chapter 2 ToDoList 만들기
 1. Do
 1.1. 프로젝트 구성하기
+    * django-admin startproject foo
 1.2. Application 구성하기
+    * python manage.py startapp bar
+    * vi foo/foo/settings.py
+        ``` INSTALLED_APPS = [ ..., 'bar', ... ] ```
 1.3. URL 설정하기
+    * python manage.py runserver 0.0.0.0:8000
+        * foo/settings.py: ``` ALLOWED_HOSTS = ['*'] ```
+    * foo/urls.py, bar/urls.py, bar/views.py
 1.4. HTML 템플릿 사용하기
+    * bar/templates/bar
 1.5. MVC 따라 하기
+    * models.py
+    * python manage.py makemigrations
+    * python manage.py migrate
+    * python manage.py dbshell
+        * .tables
+        * pragma table_info(todo_todo)
+    * bar/urls.py, bar/views.py
 1.6. CRUD 따라 하기
-
+    * views.py
+        * Bar.objects
+            * get(), all(), save(), delete()
+        * render(), HttpResponseRedirect(), reverse()
 2. Learn
-2.1. App은 왜 나누고, 어떻게 나눌까?
 2.2. MVC가 뭔데?
+    * Field: CharField, DateField, EmailField, FileField, TextField, IntegerField. BooleanField, 
 2.3. CRUD가 뭔데?
 2.4. 실전 예제 해결하기 (2)
 
