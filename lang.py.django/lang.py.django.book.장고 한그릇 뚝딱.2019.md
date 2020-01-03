@@ -16,7 +16,6 @@
 
 
 # Chapter 2 ToDoList 만들기
-1. Do
 1.1. 프로젝트 구성하기
     * django-admin startproject foo
 1.2. Application 구성하기
@@ -42,13 +41,8 @@
         * Bar.objects
             * get(), all(), save(), delete()
         * render(), HttpResponseRedirect(), reverse()
-2. Learn
 2.2. MVC가 뭔데?
     * Field: CharField, DateField, EmailField, FileField, TextField, IntegerField. BooleanField, 
-2.3. CRUD가 뭔데?
-2.4. 실전 예제 해결하기 (2)
-
-3. Ask
 
 
 # Chapter 3 맛집 공유 사이트 만들기
