@@ -49,6 +49,7 @@
 1. Do
 1.1. 프로젝트 및 app 구성하기
 1.2. URL 및 템플릿 설정하기
+    * comment block: {% comment %} ... {% endcomment %}
 1.3. CRUD 구성하기
 1.4. 이메일 보내기
 1.5. PythonAnyWhere로 배포하기
