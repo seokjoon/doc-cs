@@ -19,6 +19,12 @@
 * nvidia-smi
 
 
+## unity, ml-agents
+* unity hub
+    * https://unity3d.com/kr/get-unity/update
+    * https://moordev.tistory.com/299
+
+
 ## 미분류: TODO
 * apt-get install python3-pip python3-dev
 
@@ -31,6 +37,14 @@
 * 케라스 모델 시각화: 필수 아님
     * apt-get graphviz
     * pip install pydot-ng
+* apt-get install python3-opencv
+
+* GPU
+    * CUDA: https://developer.nvidia.com/cuda-downloads
+    * cuDNN: https://developer.nvidia.com/cudnn
+    
+* 케라스
+    * pip3 install keras
 
 
 
