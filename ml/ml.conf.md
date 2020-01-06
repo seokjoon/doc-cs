@@ -45,6 +45,10 @@
     
 * 케라스
     * pip3 install keras
+    
+* scikit-learn
+* pandas
 
+* 파이토치: https://pytorch.org
 
 
