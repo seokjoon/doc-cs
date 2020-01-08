@@ -18,6 +18,13 @@
     ```
 * nvidia-smi
 
+* https://devtalk.nvidia.com/default/topic/1003810/linux/adjust-nvidia-gpu-fan-speed-multiple-gpus-one-monitor-/
+    * The following two lines of code would make it possible to adjust fan speed of multiple GPUs.
+    ```
+    nvidia-xconfig --enable-all-gpus
+    nvidia-xconfig --cool-bits=4
+    ```
+
 
 ## unity, ml-agents
 * unity hub
