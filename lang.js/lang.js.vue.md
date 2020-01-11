@@ -9,3 +9,10 @@
         * vue add vuex
     * build
         * npm run build
+
+
+##
+* console: vi package.json
+    ```
+    "eslintConfig": { ..., "rules": { "no-console": "off" }, ... }
+    ```
