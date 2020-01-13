@@ -13,41 +13,68 @@
 * 2.6 템플릿 문법
     * 텍스트 전개 {{}}, 속성값 전개 v-bind:attr
 * 2.7 필터
-    * filters: { foo: () => {} }
+    * filters: { foo: function() {}, }
     * {{ val | foo }}, {{ val | foo | bar }}
-* 2.8 계산 프로퍼티: 함수로 구현, 참조는 프로퍼티처럼, 인스턴스 내부에서는 this로 자신을 참조
-    * computed: { foo: function() => { return this.items... } }, data: { items: ... }
+* 2.8 계산 프로퍼티: 함수로 구현, 참조는 프로퍼티처럼, 인스턴스 내부에서는 this로 자신을 참조, 의존 데이터가 동일하다면 계산 결과를 캐시
+    * computed: { foo: function() { return this.items... }, }, data: { items: ... }
 * 2.9 디렉티브
-    * 2.9.1 조건에 따른 렌더링(v-if, v-show)
-    * 2.9.2 클래스와 스타일 연결하기
-    * 2.9.3 리스트 렌더링하기(v-for)
-    * 2.9.4 이벤트 핸들링(v-on)
-    * 2.9.5 폼 입력 바인딩(v-model)
+    * v-if: dom 추가/제거(변경 적을때), v-show: display 속성값 변경(변경 많을때)
+    * v-bind:class={foo: bool, bar: !(bool)}, v-bind:style={color: (bool ? 'green' : 'yellow'')}: 클래스와 스타일 연결
+    * v-for="v in [...]" v-bind:key="v", v-for="(v, k) in [...]" v-bind:key="v": 리스트 렌더링
+    * v-on:이벤트명="값 평가 표현식 혹은 메소드"
+        * v-on:input="item.value = $event.target.value" v-bind:value="item.value" 
+        * v-on:change="item.value = $event.target.value" v-bind:value="item.value"
+        * 생략 표기: v-on:click => @click
+        * 디렉티브 수정자: v-on:click.prevent
+    * v-model: 폼 입력 바인딩
+        * v-model="item.value"
 * 2.10 생애주기 훅
-    * 2.10.1 생애주기 훅의 종류와 호출 시점
-    * 2.10.2 created 훅
-    * 2.10.3 mounted 훅
-    * 2.10.4 beforeDestroy 훅
+    * beforeCreate, created, beforeMount, mounted, beforeUpdate, updated, beforeDestroy, destroyed
+    * created: vuex 미사용시 api, 타이머 등, mounted: dom 조작 및 이벤트 리스너, beforeDestroy: mounted 에서 등록한 것들 뒷정리
 * 2.11 메서드
-    * 2.11.1 이벤트 객체
-    * 2.11.2 예제에 메서드 호출 적용하기
+    * methods: { foo: function($e) {}, }
 
 
 ## 03장: 컴포넌트의 기초
 * 3.1 컴포넌트란 무엇인가?
-    * 3.1.1 모든 것은 UI 컴포넌트로
-    * 3.1.2 컴포넌트의 장점과 주의할 점
-    * 3.1.3 Vue.js의 컴포넌트 시스템
+    ```
+    <div id="bar"><foo></foo></div>
+    Vue.component('foo', { data: function() { return { ... } }, template: ... }); // component의 data는 function 이어야 함
+    new Vue({ el: '#bar', }); // el 은 최상위 Vue 인스턴스만 추가 가능
+    ```
 * 3.2 Vue 컴포넌트 정의하기
-    * 3.2.1 전역 컴포넌트 정의하기
-    * 3.2.2 생성자를 사용해서 컴포넌트 정의하기
-    * 3.2.3 지역 컴포넌트 정의하기
-    * 3.2.4 템플릿을 만드는 그 외의 방법
-    * 3.2.5 컴포넌트 생애주기
-    * 3.2.6 컴포넌트 데이터
+    * 전역/지역 컴포넌트, 커스텀태그/하위생성자 방식
+    * 분리(부모/자식), 재사용, 반복
+    * 생성자 사용 컴포넌트 정의
+        ```
+        var foo = Vue.extend({ template: '<span>foo</span>' });
+        Vue.component('foo', foo);
+        ```
+    * 전역 컴포넌트
+        * Vue.component(tagName, options)
+            * options: data, filters, methods, computed, template, props, created, ...
+    * 지역 컴포넌트: 컴포넌트를 특정 Vue 인스턴스 내부에서만 사용하도록 등록, 하위생성자 컴포넌트 사용 가능
+        * components: { foo: { ... } },
+    * 템플릿을 만드는 그 외의 방법: text/x-template, render 함수, 단일 파일 컴포넌트, 인라인 템플릿, JSX
+        * text/x-template: html 쪽으로 템플릿 분할
+            ```
+            <script type="text/x-template" id="foo"> ... </script>
+            <div id="bar"></div>
+            Vue.component('foo', { template: '#foo' });
+            new Vue('#bar', { el: '#bar', template: '<foo></foo>', });
+            ``` 
+        * render
+            * render: function(createElement) { return createElement( ... ) }
+    * 컴포넌트 생애주기: Vue 인스턴스 생애주기와 유사
+    * 컴포넌트 데이터: 컴포넌트의 data 속성은 함수
+        * 모든 인스턴스가 공유하므로 인스턴스 간 서로 다른 데이터를 가지기 위해; data 속성에 객체로 값 지정시 경고
+        * data: function() { return { foo: [ ... ], bar: { ... }, } }
 * 3.3 컴포넌트 간 통신
-    * 3.3.1 부모 컴포넌트에서 자식 컴포넌트로 데이터 전달하기
-    * 3.3.2 자식 컴포넌트에서 부모 컴포넌트로 데이터 전달하기
+    * 부모에서 자식으로
+        ```
+        <parent foo
+        ```
+    * 자식에서 부모로
 * 3.4 컴포넌트 설계
     * 3.4.1 컴포넌트를 분할하는 원칙
     * 3.4.2 컴포넌트 설계하기
