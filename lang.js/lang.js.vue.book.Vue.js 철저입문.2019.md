@@ -72,14 +72,36 @@
 * 3.3 컴포넌트 간 통신
     * 부모에서 자식으로
         ```
-        <parent foo
+        <div id="comParent"><com-child v-bind:itme="item"></com-child></div>
+        Vue.component('comChild', { props: { item: { ... } }, template: '<span>{{ item }}</span>', });
+        new Vue({ data: { item: 'foo', }, el: '#comParent', });
         ```
-    * 자식에서 부모로
-* 3.4 컴포넌트 설계
-    * 3.4.1 컴포넌트를 분할하는 원칙
-    * 3.4.2 컴포넌트 설계하기
-    * 3.4.3 슬롯 콘텐츠를 살린 헤더 컴포넌트 구현하기
-    * 3.4.4 로그인폼 컴포넌트 구현하기
+        ```
+        <div id="comPlural"><com-singular v-for="item in items" :key="item.title" :item="item"></com-singular>
+        Vue.component('comSingular', { props: { item: { ... } }, template: '<span>{{ item.id }} | {{ item.title }}</span>', });
+        new Vue({ data: { items: [ { id: 1, title: 'title 1' }, { id: 2, title: 'title 2' } ] }, el: '#comPlural', });
+        ```
+    * 자식에서 부모로: 커스텀 이벤트: 이벤트 리스닝 $on(eventName), $emit(eventName), v-on
+        ```
+   		<component-props-event-btn v-on:increment="increment()"></component-props-event-btn>
+        var componentPropsEventBtn = Vue.extend({
+            ...,
+        	methods: { add: function () { this.counter += 1; this.$emit('increment'); }, },
+        	template: '<span>{{ counter }} <button v-on:click="add">add</button></span>',
+        });
+        new Vue({ ..., methods: { increment: function() { this.total += 1; }, }, });
+        ```
+    * this.$parent, this.$children: 권고하지 않음
+    * ref
+    	```
+    	<div id="parent"><child ref="foo"></child></div>
+        var parent = new Vue({ el: '#parent' });
+        var child = parent.$refs.foo;
+    	```
+    * 부모 네이티브 이벤트를 자식에게 전달: native 수정자
+        * <foo v-on:click.native="bar"></foo>
+    * 부모가 자식 이벤트를 구독: sync 수정자
+* 3.4 컴포넌트 설계: slot, 단위테스트
 
 
 ## 04장: Vue Router를 활용한 애플리케이션 개발
