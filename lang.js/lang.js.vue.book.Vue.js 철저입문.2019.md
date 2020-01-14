@@ -106,10 +106,14 @@
 
 ## 04장: Vue Router를 활용한 애플리케이션 개발
 * 4.1 Vue Router를 이용한 단일 페이지 애플리케이션
-    * 4.1.1 Vue Router란 무엇인가
 * 4.2 기초 라우팅
-    * 4.2.1 라우터 설치하기
+    * 4.2.1 라우터 설치하기: npm install vue-router
     * 4.2.2 라우팅 설정
+        ```
+        <div id=app><router-link to="/bar">bar</router-link><router-view></router-view></div>
+        var router = new VueRouter({ routes: [ { path: '/foo', component: { ... } }, ] });
+        new Vue({ router: router }).$mount('#app');
+        ```
 * 4.3 실용적인 라우팅을 구현하기 위한 기능
     * 4.3.1 URL 파라미터를 처리하는 방법과 패턴 매칭
     * 4.3.2 이름을 가진 라우트
