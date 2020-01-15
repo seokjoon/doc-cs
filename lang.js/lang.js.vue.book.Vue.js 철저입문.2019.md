@@ -110,15 +110,22 @@
     * 4.2.1 라우터 설치하기: npm install vue-router
     * 4.2.2 라우팅 설정
         ```
-        <div id=app><router-link to="/bar">bar</router-link><router-view></router-view></div>
+        <div id=app><router-link to="/foo">foo</router-link><router-view></router-view></div>
         var router = new VueRouter({ routes: [ { path: '/foo', component: { ... } }, ] });
         new Vue({ router: router }).$mount('#app');
         ```
 * 4.3 실용적인 라우팅을 구현하기 위한 기능
-    * 4.3.1 URL 파라미터를 처리하는 방법과 패턴 매칭
-    * 4.3.2 이름을 가진 라우트
+    * URL 파라미터, 패턴 매칭
+    	* <router-link to="/foo/2">foo</router-link>
+        * routes: [ { path: '/foo/:id', component: { template: '<div>foo id {{ $route.params.id }}</div>' } } ],
+    * 이름 가진 라우트
+   		* <router-link :to="{ name: 'foo', params: { id: 3 } }">foo</router-link>
+        * routes: [ { path: '/foo/:id', name: 'foo', component: { template: '<div>foo id {{ $route.params.id }}</div>' } } ],
     * 4.3.4 router.push를 사용한 페이지 이동
-    * 4.3.4 훅 함수
+    * 4.3.4 훅 함수: 전역, 라우트 단위, 컴포넌트 내
+        * 전역: router.beforeEach(function(to, from, next) { if(to.path === '/foo') next('/bar'); else next(); });
+        * 라우트 단위: routes: [{ path: '/foo', beforeEnter: function(to, from, next) { if(to.query.bar === '1') next('/bar'); else next() }, ..., }]
+        * 컴포넌트 내: beforeRouteEnter, beforeRouteLeave 
 * 4.4 예제 애플리케이션 구현하기
     * 4.4.1 리스트 페이지 구현하기
     * 4.4.2 API와 통신하기
