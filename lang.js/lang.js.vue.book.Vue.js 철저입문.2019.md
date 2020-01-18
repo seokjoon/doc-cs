@@ -127,12 +127,8 @@
         * 라우트 단위: routes: [{ path: '/foo', beforeEnter: function(to, from, next) { if(to.query.bar === '1') next('/bar'); else next() }, ..., }]
         * 컴포넌트 내: beforeRouteEnter, beforeRouteLeave 
 * 4.4 예제 애플리케이션 구현하기
-    * 4.4.1 리스트 페이지 구현하기
-    * 4.4.2 API와 통신하기
-    * 4.4.3 상세 정보 페이지 구현하기
-    * 4.4.4 사용자 등록 페이지 구현하기
-    * 4.4.5 로그인/로그아웃 구현하기
-    * 4.4.6 예제 애플리케이션 전체 코드
+    * created, watch
+    * callback, bind, localStorage, 
 * 4.5 Vue Router의 고급 기능
     * 4.5.1 Router 인스턴스와 Route 객체
     * 4.5.2 중첩 라우팅
