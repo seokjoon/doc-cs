@@ -130,31 +130,29 @@
     * created, watch
     * callback, bind, localStorage, 
 * 4.5 Vue Router의 고급 기능
-    * 4.5.1 Router 인스턴스와 Route 객체
-    * 4.5.2 중첩 라우팅
-    * 4.5.3 리다이렉션과 앨리어싱
-    * 4.5.4 히스토리 관리
+    * $router 인스턴스: app, mode, currentRoute, push, replace, go, back, forward, addRoutes
+    * $route 객체: path, params, query, hash, fullPath, name
+    * 중첩 라우팅: [{ path: 'foo', ... children: [{ path: 'bar', ... }, { path: 'fee', ... }], }]
+    * 리다이렉션: [{ path: '/foo', redirect: '/bar''}]
+    * 앨리어싱: [{path: '/foo', component: bar, alias: '/fee''}]
+    * 히스토리: url 해시, history api
 
 
 ## 05장: Vue.js의 고급 기능
 * 5.1 트랜지션 애니메이션
-    * 5.1.1 transition 래퍼 컴포넌트
-    * 5.1.2 트랜지션 클래스
-    * 5.1.3 fade 트랜지션 구현하기
-    * 5.1.4 자바스크립트 훅
+    * 래퍼 컴포넌트: <transition></transition>
+    * 클래스: v-enter, v-enter-to, v-enter-active, v-leave, v-leave-to, v-leave-active
+    * 훅: v-on: before-enter, enter, after-enter, enter-cancelled, before-leave, leave, after-leave, leave-cancelled
 * 5.2 슬롯
-    * 5.2.1 단일 슬롯
-    * 5.2.2 이름을 갖는 슬롯
-    * 5.2.3 슬롯의 범위
+    * 단일 슬롯: var foo = { template: `<span><slot>bar default</slot></span>` }, <foo>bar insert</foo>
+    * 이름을 갖는 슬롯: var foo = { <div><slot name="bar"></slot><slot></slot><slot name="fee"></fee></div> }, <foo><h2 slot="bar">bar insert</h2><p>slot default insert</slot><p slot="fee">fee insert</slot></foo>
+    * 슬롯의 범위: 부모 범위에 속하므로 자식 컴포넌트 데이터에 접근하려면 v-bind 로 전달
 * 5.3 사용자 정의 디렉티브
-    * 5.3.1 사용자 정의 디렉티브 정의하기
-    * 5.3.2 디렉티브 정의 객체
-    * 5.3.3 훅 함수의 인자
-    * 5.3.4 image-fallback 디렉티브에 기능 추가하기
+    * Vue.directive('img-fail', { bind: function(el) { el.addEventListener('error', () => { el.src = '...'; }); } }); <img v-img-fail src="./foo.png" />
+    * 훅: bind, inserted, update, componentUpdated, unbind
+        * 인자: el, binding(name, value, expression, arg, modifiers)
 * 5.4 렌더링 함수
-    * 5.4.1 렌더링 함수 없이는 구현이 까다로운 사례
-    * 5.4.2 렌더링 함수의 효율성
-    * 5.4.3 createElement 함수
+    * jsx: babel-plugin-transform-vue-jsx
 * 5.5 믹스인
     * 5.5.1 믹스인으로 기능 재사용하기
     * 5.5.2 전역 믹스인
