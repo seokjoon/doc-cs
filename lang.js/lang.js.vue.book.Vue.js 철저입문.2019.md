@@ -154,26 +154,15 @@
 * 5.4 렌더링 함수
     * jsx: babel-plugin-transform-vue-jsx
 * 5.5 믹스인
-    * 5.5.1 믹스인으로 기능 재사용하기
-    * 5.5.2 전역 믹스인
+    * TODO
 
 
 ## 06장: 단일 파일 컴포넌트를 활용한 개발
-* 6.1 필요한 도구 설치하기
-    * 6.1.1 Vue CLI
-* 6.2 단일 파일 컴포넌트란?
-* 6.3 단일 파일 컴포넌트의 형식
-    * 6.3.1 [template] 블록
-    * 6.3.2 [script] 블록
-    * 6.3.3 [style] 블록
-* 6.4 단일 파일 컴포넌트 빌드하기
-* 6.5 단일 파일 컴포넌트 사용해 보기
-    * 6.5.1 단일 파일 컴포넌트의 동작 과정
-* 6.6 단일 파일 컴포넌트의 기능
-    * 6.6.1 외부 파일 임포트
-    * 6.6.2 범위를 갖는 CSS
-    * 6.6.3 CSS 모듈
-    * 6.6.4 다른 언어로 된 구현 지원
+* 필요 패키지: @vue/cli, @vue/cli-service-global
+* 블록: <template></template><script> import Foo from 'foo'; export default { ... }; </script><style></style>
+* 테스트: vue serve foo.vue
+* css 범위: 지역 <style scoped></style>, 전역 <style></style>
+* css 모듈: <style module> .foo { ... } </style>, <p :class="$style.foo"></p>
 
 
 ## 07장: Vuex를 이용한 데이터플로 설계 및 상태 관리
