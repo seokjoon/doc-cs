@@ -158,7 +158,7 @@
 
 
 ## 06장: 단일 파일 컴포넌트를 활용한 개발
-* 필요 패키지: @vue/cli, @vue/cli-service-global
+* 필요 패키지(글로벌): @vue/cli, @vue/cli-service-global
 * 블록: <template></template><script> import Foo from 'foo'; export default { ... }; </script><style></style>
 * 테스트: vue serve foo.vue
 * css 범위: 지역 <style scoped></style>, 전역 <style></style>
