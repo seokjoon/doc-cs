@@ -166,33 +166,24 @@
 
 
 ## 07장: Vuex를 이용한 데이터플로 설계 및 상태 관리
-* 7.1 복잡한 상태 관리
-* 7.2 데이터플로 설계
-    * 7.2.1 신뢰할 수 있는 유일 정보원
-    * 7.2.2 ‘상태 읽고 쓰기’를 캡슐화
-    * 7.2.3 단방향 데이터플로
-* 7.3 Vuex를 이용한 상태 관리
-    * 7.3.1 Vuex 설치하기
-* 7.4 Vuex의 주요 개념
-    * 7.4.1 스토어
-    * 7.4.2 스테이트
-    * 7.4.3 게터
-    * 7.4.4 뮤테이션
-    * 7.4.5 액션
+* 신뢰 유일 정보원, 상태 읽고 쓰기 캡슐화, 단방향 데이터플로
+* const store = new Vuex.Store({ actions: {}, getters: {}, mutations: {}, state: {}, });
+    * getters: 획득, 캐시: store.getters.foo
+    * mutations: 갱신, 동기 처리: store.commit('foo', 2)
+    * actions: 소통, 비동기 처리: store.dispatch('foo')
 * 7.5 태스크 관리 애플리케이션의 상태 관리
-    * 7.5.1 애플리케이션 요구 사항 및 준비
-    * 7.5.2 태스크 목록 표시하기
-    * 7.5.3 새로운 태스크 생성 및 완료 처리
-    * 7.5.4 레이블 기능 구현
-    * 7.5.5 레이블로 필터링하기
-    * 7.5.6 로컬 스토리지에서 저장 및 복원하기
-    * 7.5.7 Vuex를 사용한 애플리케이션
+    * TODO
 * 7.6 스토어를 모듈 단위로 분할하기
-    * 7.6.1 namespaced 옵션을 이용한 네임스페이스 분할
+    * modules, namespaced
+    * const store = new Vuex.Store({ getters: { bar: ... }, modules: { foo: foo }, state: { ... } });
+        * export default { getters: { bar: ... }, namespaced: true, state: { ... } };
+        * store.state.Foo.title, store.getters['foo/bar'], store.commit('foo/bar'), store.dispatch('foo/bar')
 * 7.7 Vuex 스토어와 Vue 컴포넌트 간의 통신
-    * 7.7.1 컴포넌트에서 스토어 접근하기
-    * 7.7.2 스토어에 접근하는 컴포넌트를 최대한 적게 유지하라
+    * this.$store
+    * helper: mapState, mapMutations, mapGetters, mapActions 
+    * 스토어에 접근하는 컴포넌트를 최대한 적게 유지: 컨테이너 컴포넌트/프레젠테이션 컴포넌트, 아토믹 디자인 분류
 * 7.8 Vuex와 Vue Router 연동하기
+    * vuex-router-sync
 
 
 ## 08장: 중규모 및 대규모 애플리케이션 개발 1 - 개발 환경 갖추기
