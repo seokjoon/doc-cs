@@ -1,9 +1,13 @@
 # 라라벨 백엔드 가이드
 
-## 설치/설정
-* 라라벨 실행환경 초기화: https://github.com/seokjoon/doc-cs/tree/master/lang.php.laravel/lang.php.laravel.init.md
+## 목차
+* 구성요소
+* 
 
-* mysql 서버/DB/사용자 준비, .env 파일에 DB 연결 설정
+
+## 구성요소
+* 
+
 
 
 ## MVC
