@@ -41,7 +41,7 @@
     * php artisan make:migration create_quests_table --create=quests
     * php artisan make:migration create_client_player_table --create=client_player
     * php artisan migrate 
-        * php artisan migrate:rollback
+        * 제거: php artisan migrate:rollback
 * 샘플 테이터 생성
     * php artisan make:factory PlayerFactory --model=Models/Player/Player
     * php artisan make:factory ClientFactory --model=Models/Client/Client
