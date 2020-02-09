@@ -1,7 +1,7 @@
 # 라라벨 백엔드 가이드
 
 ## 목차
-* 설정
+* 개요
 * Controller, Model, Resource  
 * DB Factory/Migration/Seeder
 * Eloquent ORM/Relationship, Query Builder
@@ -10,7 +10,7 @@
 * Middleware, Provider
 
 
-## 설정
+## 개요
 * 엔티티: player(플레이어), client(의뢰자), quest(퀘스트)
     * quest-player: 다대일
     * client-player: 다대다
