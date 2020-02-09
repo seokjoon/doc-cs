@@ -5,9 +5,9 @@
 * Controller, Model, Resource  
 * DB Factory/Migration/Seeder
 * Eloquent ORM/Relationship, Query Builder
-* Event, Listener, Notification, Observer, Queue
-* Policy
-* Middleware, Provider
+* ~~Event, Listener, Notification, Observer, Queue~~
+* ~~Policy~~
+* ~~Middleware, Provider~~
 
 
 ## 개요
