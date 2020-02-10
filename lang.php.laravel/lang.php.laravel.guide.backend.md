@@ -82,6 +82,7 @@
     * api/v1/clients
     * api/v1/players/2
 * 참고
+    * create, update: sync()
     * eloquent relationship: https://laravel.kr/docs/6.x/eloquent-relationships
     * 세부 질의: 쿼리 빌더
         * https://laravel.kr/docs/6.x/queries
