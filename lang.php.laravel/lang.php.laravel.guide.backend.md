@@ -133,4 +133,5 @@
         * .env 혹은 config/queue.php 파일 편집
             * QUEUE_CONNECTION 값을 sync 에서 database 로
         * php artisan queue:table && php artisan migrate
+    * listener 에 ShouldQueue 구현
     * php artisan queue:work --sleep=3 --tries=3
