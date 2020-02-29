@@ -9,7 +9,8 @@
 
 
 ## npm install
-* npm install --save react-native-webview && react-native link react-native-webview
+* ~~npm install --save react-native-webview && react-native link react-native-webview~~
+* npm install --save react-native-webview
 
 
 ## build: device: ios
