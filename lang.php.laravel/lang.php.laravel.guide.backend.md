@@ -5,8 +5,8 @@
 * Controller, Model, Resource  
 * DB Factory/Migration/Seeder
 * Eloquent ORM/Relationship, Query Builder
-* Event, Listener, Observer
-* ~~Queue, Notification~~
+* Event, Listener, Observer, Queue, ~~Notification~~
+* Command
 * ~~Policy~~
 * ~~Middleware, Provider~~
 
@@ -89,7 +89,7 @@
         * https://laravel.kr/docs/6.x/queries
         * https://github.com/seokjoon/doc-cs/tree/master/lang.php.laravel/lang.php.laravel.db.queryBuilder.md
 
-## Event, Listener, Observer
+## Event, Listener, Observer, Queue
 * 스캐폴드 생성
     * app/Providers/EventServiceProvider.php
     	* projected $listen = [ 
@@ -127,7 +127,6 @@
     * deleted : after a record has been deleted or soft-deleted.
     * restoring : before a soft-deleted record is going to be restored.
     * restored : after a soft-deleted record has been restored. 
-
 * queue(데이터베이스)
     * 설정
         * .env 혹은 config/queue.php 파일 편집
@@ -135,3 +134,12 @@
         * php artisan queue:table && php artisan migrate
     * listener 에 ShouldQueue 구현
     * php artisan queue:work --sleep=3 --tries=3
+
+
+## Command
+* php artisan make:command CareCdkReceive
+    * app/Console/Commands/CareCdkReceive.php
+        * $signature: 커맨드 편집
+        * handle(): 실행 내용 작성
+* php artisan cardCdk:receive
+
