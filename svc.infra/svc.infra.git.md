@@ -8,3 +8,16 @@
 ## remote 변경
 * git remote remove origin
 * git remote add origin 저장소
+
+
+
+
+## svn
+* svn commit
+* svn cp
+* svn delete
+* svn ignore
+* svn info
+* svn ls
+* svn switch
+* svn update
