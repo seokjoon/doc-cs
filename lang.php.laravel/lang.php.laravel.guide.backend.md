@@ -5,7 +5,8 @@
 * Controller, Model, Resource  
 * DB Factory/Migration/Seeder
 * Eloquent ORM/Relationship, Query Builder
-* ~~Event, Listener, Notification, Observer, Queue~~
+* Event, Listener, Observer, Queue, ~~Notification~~
+* Command
 * ~~Policy~~
 * ~~Middleware, Provider~~
 
@@ -87,3 +88,58 @@
     * 세부 질의: 쿼리 빌더
         * https://laravel.kr/docs/6.x/queries
         * https://github.com/seokjoon/doc-cs/tree/master/lang.php.laravel/lang.php.laravel.db.queryBuilder.md
+
+## Event, Listener, Observer, Queue
+* 스캐폴드 생성
+    * app/Providers/EventServiceProvider.php
+    	* projected $listen = [ 
+            ...,
+            'App\Events\Subsc\SubscCreatedEvent' => [ 'App\Listeners\Subsc\SubscCreatedEventListener', ],
+            ...
+        ];
+	* php artisan event:generate
+		* 이벤트와 리스너를 생성
+* app/Events/Subsc/SubscCreatedEvent.php
+	* public function __construct(Subsc $subsc)
+		* $this->subsc = $subsc;
+			* 이벤트 호출자에게서 subsc 인스턴스를 전달받아 보관
+* app/Listeners/Subsc/SubscCreatedEventListener.php
+	* public function handle(SubscCreatedEvent $event)
+		* 내부에 subsc 인스턴스를 포함한 이벤트를 수신
+* 옵서버 생성
+    * php artisan make:observer Subsc/SubscObserver --model=Models/Subsc/Subsc
+    * app/Observers/Subsc/SubscObserver.php
+        * public function created(Subsc $subsc)
+            * event(new SubscCreatedEvent($subsc));
+* 옵서버 등록
+    * app/Providers/AppServiceProvider.php
+        * public boot()
+            * \App\Models\Subsc\Subsc::observe(\App\Observers\Subsc\SubscObserver::class);
+* 참고: 옵서버 메소드: https://www.larashout.com/how-to-use-laravel-model-observers
+    * retrieved : after a record has been retrieved.
+    * creating : before a record has been created.
+    * created : after a record has been created.
+    * updating : before a record is updated.
+    * updated : after a record has been updated.
+    * saving : before a record is saved (either created or updated).
+    * saved : after a record has been saved (either created or updated).
+    * deleting : before a record is deleted or soft-deleted.
+    * deleted : after a record has been deleted or soft-deleted.
+    * restoring : before a soft-deleted record is going to be restored.
+    * restored : after a soft-deleted record has been restored. 
+* queue(데이터베이스)
+    * 설정
+        * .env 혹은 config/queue.php 파일 편집
+            * QUEUE_CONNECTION 값을 sync 에서 database 로
+        * php artisan queue:table && php artisan migrate
+    * listener 에 ShouldQueue 구현
+    * php artisan queue:work --sleep=3 --tries=3
+
+
+## Command
+* php artisan make:command CareCdkReceive
+    * app/Console/Commands/CareCdkReceive.php
+        * $signature: 커맨드 편집
+        * handle(): 실행 내용 작성
+* php artisan cardCdk:receive
+
