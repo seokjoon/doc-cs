@@ -10,12 +10,14 @@
     * auto import
     * vetur
 * php, laravel
-    * laravel snippets, 
+    * laravel model snippets
+    * laravel snippets
+    * php import checker
     * php intelephense
     * php namespace resolver
 
 ## key
-* goto: alt click
+* goto: ctrl click
 * reformat(vetur): shift option f
 
 ## setting
