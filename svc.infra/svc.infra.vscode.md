@@ -15,6 +15,7 @@
     * php import checker
     * php intelephense
     * php namespace resolver
+    * php snippets
 
 ## key
 * goto: ctrl click
