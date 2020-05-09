@@ -7,7 +7,7 @@
     * vim
     * vscode-icons
 * js, vue
-    * auto import
+    * ~~auto import~~ auto import-es6,ts,jsx,tsx
     * vetur
     * vue vscode snippets
 * php, laravel
