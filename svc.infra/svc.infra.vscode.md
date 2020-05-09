@@ -9,6 +9,7 @@
 * js, vue
     * auto import
     * vetur
+    * vue vscode snippets
 * php, laravel
     * laravel model snippets
     * laravel snippets
