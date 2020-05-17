@@ -28,6 +28,7 @@
 * terminal.integrated.shell.windows
     * "C:\\WINDOWS\\System32\\wsl.exe"
 * start
+* vim.useCtrlKeys
 
 ## setting etc
 * windows defender
