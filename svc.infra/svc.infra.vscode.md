@@ -30,6 +30,7 @@
     * "C:\\WINDOWS\\System32\\wsl.exe"
 * start
 * vim.useCtrlKeys
+* workbench.editor.enablePreview
 
 ## setting etc
 * windows defender
