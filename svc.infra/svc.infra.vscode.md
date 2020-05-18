@@ -33,4 +33,11 @@
 * workbench.editor.enablePreview
 
 ## setting etc
-* windows defender
+* ~~windows defender~~
+
+## remote - wsl
+* apt-get update && apt-get upgrade
+* apt install subversion
+* apt install php-cli php-mbstring php-xml php-mysql php-bcmath php-gd php-zi
+* apt install composer
+* apt install npm

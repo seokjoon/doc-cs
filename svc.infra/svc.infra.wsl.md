@@ -9,8 +9,8 @@
     * store 에서 Ubuntu 설치
     * ~~wsl --set-version Ubuntu 2~~
     * wsl -l -v
-* ~~https://docs.microsoft.com/ko-kr/windows/wsl/wsl2-kernel~~
-    * ~~https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi~~
+* https://docs.microsoft.com/ko-kr/windows/wsl/wsl2-kernel
+    * https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
 * ~~https://docs.docker.com/docker-for-windows/wsl-tech-preview/~~
     * ~~https://download.docker.com/win/edge/Docker%20Desktop%20Installer.exe~~
 
