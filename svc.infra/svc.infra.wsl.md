@@ -1,18 +1,15 @@
 ## requirement WSL 2
-* win10 20h1, docker stable, ~~hyper-v~~, ~~docker edge~~
+* win10 20h1, docker stable
 
 ## install
 * https://docs.microsoft.com/ko-kr/windows/wsl/wsl2-install
     * dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
     * dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
-    * wsl --set-default-version 2
     * store 에서 Ubuntu 설치
-    * ~~wsl --set-version Ubuntu 2~~
     * wsl -l -v
+    * wsl --set-default-version 2
 * https://docs.microsoft.com/ko-kr/windows/wsl/wsl2-kernel
     * https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
-* ~~https://docs.docker.com/docker-for-windows/wsl-tech-preview/~~
-    * ~~https://download.docker.com/win/edge/Docker%20Desktop%20Installer.exe~~
 
 ## config
 * sudo passwd
