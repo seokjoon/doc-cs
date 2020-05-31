@@ -8,8 +8,8 @@
     * store 에서 Ubuntu 설치
     * wsl -l -v
     * wsl --set-default-version 2
-* https://docs.microsoft.com/ko-kr/windows/wsl/wsl2-kernel
-    * https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
+* ~~https://docs.microsoft.com/ko-kr/windows/wsl/wsl2-kernel~~
+    * ~~https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi~~
 
 ## config
 * sudo passwd
