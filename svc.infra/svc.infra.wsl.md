@@ -97,5 +97,7 @@ ChallengeResponseAuthentication no
 X11Forwarding yes
 UseDNS no
 ```
-* service ssh --full-restart
-* service ssh restart
+* ~~service ssh --full-restart~~
+* ~~service ssh restart~~
+* STARTUP_DIR=$(ls -d /mnt/c/Users/*/AppData/Roaming/Microsoft/Windows/Start\ Menu/Programs/Startup)
+* echo 'wsl sudo /etc/init.d/ssh start' > "$STARTUP_DIR"/startup_ssh.bat
