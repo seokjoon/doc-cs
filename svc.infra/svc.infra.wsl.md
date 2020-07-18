@@ -81,3 +81,21 @@ for( $i = 0; $i -lt $ports.length; $i++ ){
   iex "netsh interface portproxy add v4tov4 listenport=$port listenaddress=$addr connectport=$port connectaddress=$remoteport";
 }
 ```
+
+## sshd
+* dpkg --purge ssh openssh-server
+* apt-get update && apt-get install openssh-server
+* 주석 해제 /etc/ssh/sshd_config
+```
+Port 22
+Protocol 2
+PermitRootLogin yes
+AuthorizedKeysFile  .ssh/authorized_keys
+PasswordAuthentication yes
+PubkeyAuthentication yes
+ChallengeResponseAuthentication no
+X11Forwarding yes
+UseDNS no
+```
+* service ssh --full-restart
+* service ssh restart
