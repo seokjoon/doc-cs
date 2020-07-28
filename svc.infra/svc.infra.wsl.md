@@ -1,5 +1,6 @@
 ## requirement WSL 2
 * win10 20h1, docker stable
+* 필요시 재부팅
 
 ## install
 * https://docs.microsoft.com/ko-kr/windows/wsl/wsl2-install
