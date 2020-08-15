@@ -3,8 +3,13 @@
 ## Chapter 02 개발 흐름 체험해보기
 * 2-1 Node.js 설치하기
 * 2-2 애플리케이션 만들 준비하기
+    * mkdir electron-test-react && cd electron-test-react
+    * npm init
+    * npm install electron --save-dev
+    * renderer(chromium), main(node), IPC
 * 2-3 Electron 애플리케이션 구성
 * 2-4 첫 애플리케이션 만들기
+    * ./node_modules/.bin/electron .
 
 ## Chapter 03 채팅 애플리케이션 만들기
 * 3-1 Electron으로 구현한 채팅 애플리케이션
