@@ -17,6 +17,8 @@
     * php intelephense
     * php namespace resolver
     * php snippets
+* python
+    * python
 
 ## key
 * goto: ctrl click
