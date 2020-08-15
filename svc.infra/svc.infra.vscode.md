@@ -32,6 +32,7 @@
 * vim.useCtrlKeys
 * workbench.editor.enablePreview
 * minimap
+* default focus
 
 ## setting etc
 * ~~windows defender~~
