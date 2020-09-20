@@ -20,41 +20,63 @@
 * 3.5.2 path: sep, delimiter, dirname(), extname(), basename(), parse(), format(), normalize(), isAbsolute(), relative(), join(), resolve(),
 * 3.5.3 url: parse(), format()
     * searchParams: getAll(), get(), has()m keys(), values(), append(), set()m delete(), toString()
-    * querystring: parse()m stringify()
+    * querystring: parse(), stringify()
 * 3.5.4 querystring
 * 3.5.5 crypto
-* 3.5.6 util
+    * createHash().update().digest()
+    * createCipher(), createDecipher(), update(), final() 
+* 3.5.6 util: deprecated(), promisify()
 * 3.5.7 worker_threads
 * 3.5.8 child_process
 * 3.5.9 기타 모듈들
 ## 3.6 파일 시스템 접근하기
 * 3.6.1 동기 메서드와 비동기 메서드
+    * readFile(), readFileSync(), toString()
 * 3.6.2 버퍼와 스트림 이해하기
+    * Buffer: from(), length(), concat(), toString(), alloc(),
+    * createReadStream()
+        * on(): data, end, error
+        * pipe(), zlib.createGzip()
+    * createWriteStream(), write(), end()
+        * on(): finish
 * 3.6.3 기타 fs 메서드 알아보기
+    * access(), mkdir(), open(), rename(), 
+    * readdir(), unlink(), rmdir(),
+    * copyFile(), const foo = require('fs').promises;
 * 3.6.4 스레드풀 알아보기
 ## 3.7 이벤트 이해하기
+    * require('events'): addListener(), on(), emit(), removeAllListeners(), removeListener(), listenerCount(), once(), off()
 ## 3.8 예외 처리하기
-* 3.8.1 자주 발생하는 에러들
 
 
 # 4장 http 모듈로 서버 만들기
 ## 4.1 요청과 응답 이해하기
+    * require('http'): createServer().listen(), on(),
 ## 4.2 REST와 라우팅 사용하기
 ## 4.3 쿠키와 세션 이해하기
 ## 4.4 https와 http2
 ## 4.5 cluster
+    * require('cluster'): isMaster, fork(), on()
+    * pm2 모듈
 
 
 # 5장 패키지 매니저
 ## 5.1 npm 알아보기
 ## 5.2 package.json으로 패키지 관리하기
+    * init, run test, start, install, 
+        * --global rimraf: 윈도용 rm -rf
+    * npm install github_addr
 ## 5.3 패키지 버전 이해하기
 ## 5.4 기타 npm 명령어
+    * outdate, uninstall, search, info, adduser, whoami, logout, version, deprecated, publish, unpublish
 ## 5.5 패키지 배포하기
 
 
 # 6장 익스프레스 웹 서버 만들기
 ## 6.1 익스프레스 프로젝트 시작하기
+    * npm i -g express-generator
+    * express learn-express --view=pug, --view=ejs
+    * npm i, npm start
 ## 6.2 자주 사용하는 미들웨어
 * 6.2.1 morgan
 * 6.2.2 static
