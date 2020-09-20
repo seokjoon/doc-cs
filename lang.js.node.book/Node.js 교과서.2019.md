@@ -94,52 +94,32 @@
 
 
 # 7장 MySQL
-## 7.1 데이터베이스란?
-## 7.2 MySQL 설치하기
-* 7.2.1 윈도
-* 7.2.2 맥
-* 7.2.3 리눅스(우분투)
-## 7.3 워크벤치 설치하기
-* 7.3.1 윈도
-* 7.3.2 맥
-* 7.3.3 리눅스(우분투)
-* 7.3.4 커넥션 생성하기
-## 7.4 데이터베이스 및 테이블 생성하기
-* 7.4.1 데이터베이스 생성하기
-* 7.4.2 테이블 생성하기
-## 7.5 CRUD 작업하기
-* 7.5.1 Create(생성)
-* 7.5.2 Read(조회)
-* 7.5.3 Update(수정)
-* 7.5.4 Delete(삭제)
 ## 7.6 시퀄라이즈 사용하기
 * 7.6.1 MySQL 연결하기
+    * ORM
+    * npm i sequelize mysql2, npm i -g sequelize-cli, sequelize init
+    * var foo = require('./models').sequelize; foo.sync();
 * 7.6.2 모델 정의하기
+    * module.exports = (sequelize, DateTypes) => { return sequelize.define('foo', { col1: {} ) }
 * 7.6.3 관계 정의하기
+    * db.Foo.hasMany(); db.Bar.belongsTo(); db.Foo.hasOne(); db.Foo.belongsToMany();
 * 7.6.4 쿼리 알아보기
+    * Foo.create({ col1: 1, }).then().catch();
+    * Foo.findAll({}); Foo.find({}), Foo.findAll({ attributes: ['col1'], where: { col1: 1, col2: { [Op.gt]: 2 }, } });
 * 7.6.5 쿼리 수행하기
 
 
 # 8장 몽고디비
-## 8.1 NoSQL vs. SQL
-## 8.2 몽고디비 설치하기
-* 8.2.1 윈도
-* 8.2.2 맥
-* 8.2.3 리눅스(우분투)
 ## 8.3 컴퍼스 설치하기
-* 8.3.1 윈도
-* 8.3.2 맥
-* 8.3.3 리눅스(우분투)
 * 8.3.4 커넥션 생성하기
 ## 8.4 데이터베이스 및 컬렉션 생성하기
 ## 8.5 CRUD 작업하기
-* 8.5.1 Create(생성)
-* 8.5.2 Read(조회)
-* 8.5.3 Update(수정)
-* 8.5.4 Delete(삭제)
 ## 8.6 몽구스 사용하기
 * 8.6.1 몽고디비 연결하기
+    * ODM(object document mapping): 스키마, populate(조인), 쿼리빌더
+    * npm i mongoose
 * 8.6.2 스키마 정의하기
+    * const foo = require('mongoose'); const { Schema } = foo; const bar = new Schema({ col1: {}, }); module.exports = foo.model('Bar', bar);
 * 8.6.3 쿼리 수행하기
 
 
@@ -187,6 +167,9 @@
 
 # 14장 CLI 프로그램 만들기
 ## 14.1 간단한 콘솔 명령어 만들기
+    * package.json: ..., "bin": { "cli": "./index.js" }, ...
+    * require('readline'): createInterface(), question(), console.clear();
+    * npm i -g, npm rm -g foo
 ## 14.2 commander, inquirer 사용하기
 
 
