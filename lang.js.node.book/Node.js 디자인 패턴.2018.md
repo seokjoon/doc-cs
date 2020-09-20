@@ -1,13 +1,14 @@
 # 1장. Node.js 플랫폼에 오신 것을 환영합니다
 
+## 1.2
+* 글래스 구문
+    * class Foo { constructor() {} f1() {} static f2() {} }
+    * class FooChild extends Foo {}
+
+
 ## 1.3 Reactor 패턴
-* I/O는 속도가 느리다.
-* 블로킹 I/O
-* 논 블로킹 I/O
-* 이벤트 디멀티플렉싱
-* Reactor 패턴 소개
-* Node.js의 논 블로킹 엔진 libuv
-* Node.js를 위한 구조
+* 논 블로킹 I/O, 이벤트 디멀티플렉싱, Reactor 패턴 소개
+* Node.js의 논 블로킹 엔진 libuv, Node.js를 위한 구조
 
 
 # 2장. Node.js 필수 패턴
