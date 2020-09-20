@@ -1,50 +1,26 @@
-# 1장 노드 시작하기
-## 1.1 핵심 개념 이해하기
-* 1.1.1 서버
-* 1.1.2 자바스크립트 런타임
-* 1.1.3 이벤트 기반
-* 1.1.4 논 블로킹 I/O
-* 1.1.5 싱글 스레드
-## 1.2 서버로서의 노드
-## 1.3 서버 외의 노드
-## 1.4 개발 환경 설정하기
-* 1.4.1 노드 설치하기
-* 1.4.2 npm 버전 업데이트하기
-* 1.4.3 비주얼 스튜디오 코드 설치하기
-
-
-# 2장 알아두어야 할 자바스크립트
-## 2.1 ES2015+
-* 2.1.1 const, let
-* 2.1.2 템플릿 문자열
-* 2.1.3 객체 리터럴
-* 2.1.4 화살표 함수
-* 2.1.5 구조분해 할당
-* 2.1.6 클래스
-* 2.1.7 프로미스
-* 2.1.8 async/await
-## 2.2 프런트엔드 자바스크립트
-* 2.2.1 AJAX
-* 2.2.2 FormData
-* 2.2.3 encodeURIComponent, decodeURIComponent
-* 2.2.4 데이터 속성과 dataset
-
-
 # 3장 노드 기능 알아보기
 ## 3.1 REPL 사용하기
+    * Read, Eval, Pring, Loop: node 콘솔
 ## 3.2 JS 파일 실행하기
+    * node foo.js
 ## 3.3 모듈로 만들기
+    * const foo = 'foo'; module.exports = { foo, };
+    * const { foo, } = require('./foo.js'); function bar() {}; module.exports = bar;
+    * es6 스타일(node와 별개)
+        * import { foo, } from './foo'; function bar() {}; export default bar;
 ## 3.4 노드 내장 객체 알아보기
 * 3.4.1 global
-* 3.4.2 console
-* 3.4.3 타이머
+* 3.4.2 console: time(), timeEnd(), log(), error(), dir(), trace(), 
+* 3.4.3 타이머: setTimeout(), setInterval(), setImmediate()
 * 3.4.4 __filename, __dirname
 * 3.4.5 module, exports, require
-* 3.4.6 process
+* 3.4.6 process: pid, uptime(), cwd(), env, nextTick(), exit(), 
 ## 3.5 노드 내장 모듈 사용하기
-* 3.5.1 os
-* 3.5.2 path
-* 3.5.3 url
+* 3.5.1 os: arch(), platform(), type(), uptime(), hostname(), release(), homedir(), tmpdir(), release(), cpus().length, freemem()m totalmem(), constants
+* 3.5.2 path: sep, delimiter, dirname(), extname(), basename(), parse(), format(), normalize(), isAbsolute(), relative(), join(), resolve(),
+* 3.5.3 url: parse(), format()
+    * searchParams: getAll(), get(), has()m keys(), values(), append(), set()m delete(), toString()
+    * querystring: parse()m stringify()
 * 3.5.4 querystring
 * 3.5.5 crypto
 * 3.5.6 util
