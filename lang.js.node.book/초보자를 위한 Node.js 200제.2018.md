@@ -88,37 +88,48 @@
 * 159 winston 모듈(로그 파일): const log = new (requre('winston').Logger) ({ transports: [], exceptionHandlers: [], }); log.info(foo);
 * 160 express 모듈 ① - overview
     * const express = require('express'); const app = express();
-        * app.get('/', (req, res) => { res.send(foo) });
-        * app.listen(port, () => {});
+    * app.get('/', (req, res) => { res.send(foo) });
+    * app.listen(port, () => {});
 * 161 express 모듈 ② - response
     * res.send(foo); res.status(404).send(foo); 
     * res.download(), res.end(), res.json(), res.jsonp(), res.redirect(), res.render(), res.sendFile(), res.sendStatus()
 * 162 express 모듈 ③ - request
     * app.use((req, res) => { res... });
-        * req.header(), req.headers, req.query.*, req.body, req.params
+    * req.header(), req.headers, req.query.*, req.body, req.params
 * 163 express 모듈 ④ - 미들웨어: app.use((req, res, next) => { ... next(); });
 * 164 express 모듈 ⑤ - static 미들웨어: app.use(express.static(path)); app.use((req, res) => { ... });
 * 165 express 모듈 ⑥ - body parser 미들웨어: POST 데이터 추출: const bp = require('body-parser'); app.use(bp.urlencoded({})); app.use(dp.json());
 * 166 express 모듈 ⑦ - router 미들웨어: app.get('/foo/:bar', (req, res) => { console.log(req.params.bar) });
-* 167 express 모듈 ⑧ - morgan 미들웨어
-* 168 express 모듈 ⑨ - cookie parser 미들웨어
-* 169 express 모듈 ⑩ - connect-multiparty 미들웨어
-* 170 express 모듈 ⑪ - express-session 미들웨어
-* 171 node-schedule 모듈 ①
-* 173 Nodemailer 모듈 ① - 메일 보내기(TEXT)
+    * get(), post(), all(), put(), delete()
+    * ... copy, lock, move, purge, report, mkactivity, checkout, merge, notify subscribe, patch, search, connect
+* 167 express 모듈 ⑧ - morgan 미들웨어: 로그: app.use(require('morgan')('combined'));
+* 168 express 모듈 ⑨ - cookie parser 미들웨어: 쿠키 추출: app.use(require('cookie-parser')); app.get('/set', (req, res) => { res.cookie('foo', {}); }); app.get('/get', (req, res) => { res.send(req.cookies) });
+* 169 express 모듈 ⑩ - connect-multiparty 미들웨어: multipart form data 파일 업로드
+    * app.use(require('connect-multiparty')({ uploadDir: `${__dirname}/upload` }));
+    * app.get('/', (req, res) => { fs.readFile(path, (err, data) => { res.send(data.toString()); }); });
+    * app.post('/', (req, res) => { fs.rename(req.files.foo.path, path, () => {}) });
+* 170 express 모듈 ⑪ - express-session 미들웨어: 세션
+    * app.use(require('express-session')({ secret: 'foo', resave: false, saveUninitialized: true, }));
+    * app.use((req, res, next) => { if(!(req.session.views)) req.session.views = {}; });
+* 171 node-schedule 모듈 ①: 스케줄링
+    * const sc = require('node-schedule');
+    * const foo = sc.scheduleJob(date, () => {}); foo.cancel();
+    * const foo = new sc.RecurrenceRule(); foo.minute = 10; const bar = sc.scheduleJob(foo, () => {}); bar.cancel();
+    * cron 스타일 스케줄링
+    * node-cron 모듈: 스크립트 실행여부와 독립적
+* 173 Nodemailer 모듈 ① - 메일 보내기(TEXT): const foo = require('nodemailer').createTransport({ ... }); foo.sendMail(options, (err, info) => { ... foo.close(); });
 * 174 Nodemailer 모듈 ② - 메일 보내기(HTML)
 * 175 Nodemailer 모듈 ③ - 메일 보내기(첨부파일)
-* 176 MySQL ① - 설치
-* 177 MySQL ② - 데이터베이스 생성
-* 178 MySQL ③ - 테이블 생성
+* 178 MySQL ③ - 테이블 생성: const conn = require('mysql').createConnection({ ... }); conn.connect(); conn.query(sql, (err, res, fields) => {}); conn.end();
 * 179 MySQL ④ - 데이터 삽입
 * 180 MySQL ⑤ - 데이터 조회&기본적인 WHERE 절
 * 181 MySQL ⑥ - 데이터 수정
 * 182 MySQL ⑦ - 데이터 삭제
-* 183 socketio ① - 클라이언트
-* 184 socketio ② - 서버
-* 185 socketio ③ - 이벤트
-
+* 183 socketio ① - 클라이언트: const socket = io(); window.onload = function() { ... socket.emit('clientmsg', 'foo'); ... socket.emit('status'); socket.on('foo', function(data) {}); }; socket.on('bar', function(data) {}); 
+* 184 socketio ② - 서버: require('socket.io')(require('http').createServer(require('express'))).on('connection', (client) => {client.on('disconnect', () => {})});
+* 185 socketio ③ - 이벤트: ... client.on('clientmsg', (data) => { client.emit('foo', data) }); client.on('status', () => { client.emit('bar', 'hmmm'); });
+    * 이벤트: connection(), disconnection()
+    * 메소드: on(), emit()
 
 ## PART 5 실무 Nodejs로 간단한 프로그램 만들기
 * 186 크롤러를 활용한 뉴스 속보 이메일 발송 시스템 ①
