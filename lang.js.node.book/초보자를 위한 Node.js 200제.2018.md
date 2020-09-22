@@ -1,156 +1,105 @@
 ## PART 1 입문 Nodejs 프로그램 걸음마 배우기
-* 005 포맷팅(Formatting)해서 출력하기
 * 006 `${변수}` 백틱을 이용한 포맷팅
-* 011 숫자인지 판단하기 isNaN()
-* 012 더하기, 빼기, 곱하기, 나누기
-* 013 나머지 구하기 ? 홀수, 짝수 판단
+* 011 숫자인지 판단하기 isNaN(): is not a number: isNaN(foo)
 * 014 문자열 개수 세기 length
-* 015 해당 문자열 찾기 indexOf()
-* 016 배열(array) 선언하기
-* 017 배열(array)에 값 넣기
-* 018 배열(array) 출력하기
-* 020 JSON에서 값 뽑기, 필드 추가하기
-* 021 typeof로 변수의 타입(형) 알아보기
-* 022 true, false Boolean(불리언)
-* 023 증감연산자
-* 024 비교연산자(Comparison Operator)
-* 025 논리연산자(Logical Operator)
-* 026 삼항연산자
+* 015 해당 문자열 찾기 indexOf(): foo.indexOf(bar)
+* 017 배열(array)에 값 넣기: foo.push(bar); foo.push(1,2,3)
+* 021 typeof로 변수의 타입(형) 알아보기: typeof foo
+* 023 증감연산자: +=, -=
 
 
 ## PART 2 초급 Nodejs 프로그램 기본기 연마하기
-* 029 조건문 if else if else
-* 030 조건문 Switch
-* 031 반복문 for
-* 032 중첩 for문을 이용해 구구단 출력하기
-* 033 for문 끝내기 break
-* 034 자주 쓰는 반복문 for of
-* 035 forEach() 포 이치
-* 036 반복문 while
-* 037 날짜 시간 생성하기 Date()
-* 038 날짜 시간 출력하기
+* 031 반복문 for: for(let foo = 0; foo < 3; foo++) {}
+* 033 for문 끝내기 break: for() { ... break; }
+* 034 자주 쓰는 반복문 for of: for(const n of ['foo', 'bar']) {}
+* 035 forEach() 포 이치: [2,3,4].forEach(n => console.log(n));
+* 036 반복문 while: while(foo < bar) {}
+* 037 날짜 시간 생성하기 Date(): new Date(2020, 1, 2).toLocaleString()
+* 038 날짜 시간 출력하기: toLocaleDateString(), toLocaleTimeString(), getFullYear(), (getMonth() + 1), getDate(), getHours(), getMinutes(), getSeconds()
 * 039 yyyy-MM-dd 형식으로 날짜 출력하기
-* 040 Timestamp(타임스탬프)
-* 042 예외처리 try catch final
-* 043 전역 객체(Global Object)
-* 044 함수(function) 선언하기
-* 045 매개변수(parameter)와 인자(argument)
-* 046 함수(function)의 값 반환, return
-* 047 A, B, C, F 등급을 구하는 함수 만들기
-* 048 여러 가지 함수(function) 선언 방법
-* 049 자바스크립트 함수의 성질(일급 객체)
-* 051 화살표(arrow) 함수, {} 이용하기
-* 053 콜백함수 callback()
-* 054 함수의 유효 범위(Scope)
-* 055 난수 생성(random)
-* 056 반올림 round(number)
-* 057 최대값 max(), 최소값 min()
-* 058 절대값 abs()
-* 059 거듭제곱 pow()
-* 060 제곱근 함수, 세제곱근 함수 sqrt(), cbrt()
-* 061 부호 함수 sign()
-* 062 로그함수 log(), log10(), log2(), log1p()
-* 063 바닥함수, 천장함수 floor(), ceil()
-* 064 버림함수 trunc()
-* 065 밑이 자연상수(e)인 지수함수 exp(), expm1()
-* 066 삼각함수 sin(), cos(), tan()
-* 067 역삼각함수 asin(), acos(), atan()
-* 068 쌍곡함수 sinh(), cosh(), tanh()
-* 069 역쌍곡함수 asinh(), acosh(), atanh()
-* 070 특정 문자열 바꾸기 replace()
-* 071 문자열 나누기 split()
-* 072 문자열 추출하기 substring()
+* 040 Timestamp(타임스탬프): unixtime: new Date().getTime()
+* 042 예외처리 try catch final: try {} catch(e) {} finally {}
+* 043 전역 객체(Global Object): process, console, buffer, require(), __filename, __dirname, module, exports, Timeout
+    * process: env, argv, exit()
+* 055 난수 생성(random): Math.floor(Math.random() * (10 * range))
+* Math:반올림 round(number), 최대값 max(), 최소값 min(), 절대값 abs(), 거듭제곱 pow(), 제곱근 함수, 세제곱근 함수 sqrt(), cbrt(), 부호 함수 sign(), 로그함수 log(), log10(), log2(), log1p(), 바닥함수, 천장함수 floor(), ceil(), 버림함수 trunc(), 밑이 자연상수(e)인 지수함수 exp(), expm1(), 삼각함수 sin(), cos(), tan(), 역삼각함수 asin(), acos(), atan(), 쌍곡함수 sinh(), cosh(), tanh(), 역쌍곡함수 asinh(), acosh(), atanh()
+* 070 특정 문자열 바꾸기 replace(): foo.replace(from, to);
+* 071 문자열 나누기 split(): foo.split(delimiter)
+* 072 문자열 추출하기 substring(): foo.substring(start, stop)
 * 073 숫자로 바꾸기 Number()
-* 074 정규 표현식(regexp) \ 이스케이프
-* 075 정규 표현식(regexp) 점
-* 076 정규 표현식(regexp) {0, 1} 중괄호
-* 077 정규 표현식(regexp) []
-* 078 정규 표현식 match()
+* 074 정규 표현식(regexp) \ 이스케이프, 정규 표현식(regexp) 점, 정규 표현식(regexp) {0, 1} 중괄호, 정규 표현식(regexp) [], 정규 표현식 match()
 * 079 정기적으로 실행하기 setInterval(fn, milsec)
 * 080 몇 초 후에 실행하기 setTimeout(fn, milsec)
 * 081 정기적으로 실행 취소하기 clearInterval(fn)
-* 082 리스트(list)
 * 083 배열 뒤집기 reverse()
 * 084 정렬하기 오름차순 sort()
-* 085 정렬하기 여러 조건 sort()
-* 086 JSON 오브젝트 정렬
-* 087 배열에서 필요한 부분만 뽑기 slice()
-* 089 배열 합치기 concat()
-* 090 배열 shift(), unshift()
-* 091 배열 pop()
-* 092 배열 조회하기
+* 085 정렬하기 여러 조건 sort(): foo.sort((prev, next) => { if(prev.col1 > next.col1) return 1; else if(prev.col1 < next.col1) return -1; else if(prev.col2 > next.col2) return 1; return 0; });
+* 086 JSON 오브젝트 정렬: foo.sort((prev, next) => prev.col1 - next.col1);
+* 087 배열에서 필요한 부분만 뽑기 slice(): [1,2,3,4].slice(start, stop)
+* 089 배열 합치기 concat(): [1,2].concat([3,4])
+* 090 배열 shift(), unshift(): foo.shift(); foo.unshift(bar);
+* 091 배열 pop(): [1,2,3].pop();
 
 
 ## PART 3 중급 Nodejs 함수형 프로그램과 실전 예제
-* 094 함수를 return하기
-* 095 재귀함수 countdown
-* 096 재귀함수 1~n까지 더하기
-* 097 재귀함수 factorial
 * 098 재귀함수, 피보나치 수열
-* 099 재귀함수로 합계 구하기
-* 100 재귀함수로 평균 구하기
 * 101 클로저 closer
-* 102 합성함수
-* 103 커링 curring
-* 104 커링 curring 예제 ①
-* 105 커링 curring 예제 ②
+* 102 합성함수: func1(func1())
+* 103 커링 curring: 화살표 개수보다 인수값이 적으면 함수를 반환: const foo = x => y => x + y; const bar = foo(1); bar(2);
 * 106 프리디케이트 predicate
 * 107 프리디케이트로 정렬 sort(predicate)
-* 108 filter() 함수 사용하기
-* 110 map() 함수 사용하기
-* 112 reduce() 함수 사용하기
-* 114 filter, map(), reduce() 함수 예제
-* 115 filter, map(), reduce() 함수 예제 - 합계구하기
-* 116 filter, map(), reduce() 함수 예제 - 평균구하기
-* 117 프로미스 promise
-* 118 Promiseall()을 이용해 후처리하기
-* 119 exports
-* 120 require
+* 108 filter() 함수 사용하기: [1,2,3].filter(n => n > 1);
+* 110 map() 함수 사용하기: [1,2,3].map(n => n * 10);
+* 112 reduce() 함수 사용하기: [1,2,3].reduce((a,b) => (a + b)); reduce(prev, next, index, array)
+* 117 프로미스 promise: const pm = new Promise(resolve => resolve(1)).then(res => res);
+* 118 Promiseall()을 이용해 후처리하기: Promise.all([pm1, pm2]).then(res => res);
+* 119 exports: exports.func = func; exports.func = () => {}
+* 120 require: const foo = require(path);
 
 
 ## PART 4 활용 Nodejs 라이브러리를 활용할 실전 응용
-* 121 API 읽는 법
-* 122 비동기(Async)와 동기(Sync)
-* 123 파일로 출력하기 fswrite()
-* 124 동기로 파일 열기 fsreadFileSync()
-* 125 비동기로 파일 열기 fsreadfile()
-* 126 파일 내용 수정하기
-* 127 파일에 내용 추가하기 fsappendFile()
-* 128 디렉토리 만들기 fsmkdirSync()
-* 129 파일 리스트 출력하기
-* 130 list를 json 형식으로 파일에 저장하기, JSONstringify()
-* 131 파일을 json 형식으로 불러오기, JSONparse()
-* 132 파일 이름 바꾸기
-* 133 http 모듈
-* 134 http 모듈 - event
-* 135 http 모듈 - response 객체
-* 136 http 모듈 - response 객체, fs 모듈 활용①
-* 137 http 모듈 - response 객체, fs 모듈 활용②
+* 123 파일로 출력하기 fswrite(): fs.writeFile(path, contents);
+* 124 동기로 파일 열기 fsreadFileSync(): fs.readFileSync(path).toString();
+* 125 비동기로 파일 열기 fsreadfile(): fs.readFile(path, (err, data) => { if(err) throw err; console.log(data.toString()); });
+* 126 파일 내용 수정하기: fs.readFile(path, (err, data) => { fs.writeFile(path, outs); });
+* 127 파일에 내용 추가하기 fsappendFile(): [1,2,3].forEach(n => fs.appendFile(path, n));
+* 128 디렉토리 만들기 fsmkdirSync(): fs.mkdirSync(path);
+* 129 파일 리스트 출력하기: fs.readdirSync(path);
+* 130 list를 json 형식으로 파일에 저장하기, JSONstringify(): fs.writeFile(path, JSON.stringify(foo));
+* 131 파일을 json 형식으로 불러오기, JSONparse(): fs.readFile(path, (err, data) => { console.log(JSON.parse(data.toString())) });
+* 132 파일 이름 바꾸기: fs.rename(from, to, (err) => {})
+* 133 http 모듈: const server = reqquire('http').createServer(); server.listen(port, () => {}); server.close();
+* 134 http 모듈 - event: server.on(event, () => {});
+    * request, connection, close, clientError, checkContinue,
+* 135 http 모듈 - response 객체: require('http').createServer((req, res) => { res.writeHead(); res.end(); }).listen(port), () => {});
+* 137 http 모듈 - response 객체, fs 모듈 활용②: ... fs.readFile(path, (err, data) => { res.writeHead(); res.end(data) }); ...
 * 138 http 모듈 - request 객체, url 속성 활용
 * 139 http 모듈 - request 객체, method 속성 GET
 * 140 http 모듈 - request 객체, method 속성 POST
-* 141 쿠키(Cookie) 생성
-* 142 쿠키(Cookie) 추출
-* 143 Nodejs 프로젝트 만들기(build하기)
-* 144 프로젝트 초기화 하기-npm init
-* 145 패키지 설치 - npm install
-* 146 패키지 지우기 - npm uninstall
-* 147 필요한 module 설치하기
+* 141 쿠키(Cookie) 생성: ... res.writeHead(200, { ... 'Set-Cookie': '[foo=bar]', }); ...
+* 142 쿠키(Cookie) 추출: ... req.headers.cookie.split(';').map(n => {})
+* 144 프로젝트 초기화 하기-npm init, npm install, npm uninstall
 * 148 request로 구글 크롤링하기
-* 149 request로 파라미터 추가해 호출하기
-* 150 한글 깨지는 문제 해결하기
-* 152 cheerio 이용해서 필요한 부분 추출하기
-* 153 request 실행 결과 파일로 저장하기
-* 154 ejs 모듈 ①
-* 156 pug 모듈 ①
-* 159 winston 모듈(로그 파일)
+* 149 request로 파라미터 추가해 호출하기: require('request')({ url: url, method: 'GET', qs: { q: foo }}, (err, res, body) => console.log(body));
+* 150 한글 깨지는 문제 해결하기: encoding: null, iconv.decode(body, 'utf-8')
+* 152 cheerio 이용해서 필요한 부분 추출하기: jquery 문법
+* 153 request 실행 결과 파일로 저장하기: fs.appendFile(path, outs);
+* 154 ejs 모듈, pug 모듈: 템플릿(웹 페이지)
+* 159 winston 모듈(로그 파일): const log = new (requre('winston').Logger) ({ transports: [], exceptionHandlers: [], }); log.info(foo);
 * 160 express 모듈 ① - overview
+    * const express = require('express'); const app = express();
+        * app.get('/', (req, res) => { res.send(foo) });
+        * app.listen(port, () => {});
 * 161 express 모듈 ② - response
+    * res.send(foo); res.status(404).send(foo); 
+    * res.download(), res.end(), res.json(), res.jsonp(), res.redirect(), res.render(), res.sendFile(), res.sendStatus()
 * 162 express 모듈 ③ - request
-* 163 express 모듈 ④ - 미들웨어
-* 164 express 모듈 ⑤ - static 미들웨어
-* 165 express 모듈 ⑥ - body parser 미들웨어
-* 166 express 모듈 ⑦ - router 미들웨어
+    * app.use((req, res) => { res... });
+        * req.header(), req.headers, req.query.*, req.body, req.params
+* 163 express 모듈 ④ - 미들웨어: app.use((req, res, next) => { ... next(); });
+* 164 express 모듈 ⑤ - static 미들웨어: app.use(express.static(path)); app.use((req, res) => { ... });
+* 165 express 모듈 ⑥ - body parser 미들웨어: POST 데이터 추출: const bp = require('body-parser'); app.use(bp.urlencoded({})); app.use(dp.json());
+* 166 express 모듈 ⑦ - router 미들웨어: app.get('/foo/:bar', (req, res) => { console.log(req.params.bar) });
 * 167 express 모듈 ⑧ - morgan 미들웨어
 * 168 express 모듈 ⑨ - cookie parser 미들웨어
 * 169 express 모듈 ⑩ - connect-multiparty 미들웨어
