@@ -10,6 +10,16 @@ Protocol 2
 ServerAliveInterval 240
 ```
 
+## ssh key
+```
+$ ssh-keygen -t rsa
+명령으로 key 생성한 뒤에
+~/.ssh/id_rsa.pub 파일의 내용을
+접속하려는 server의
+~/.ssh/authorized_keys
+파일에 넣으면 접속 가능
+```
+
 ## ssh key: GCP 사례
 * ssh-keygen -t rsa -C "root"
 	* 결과를 .ssh/root-gcp-key 등으로 저장
