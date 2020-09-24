@@ -14,21 +14,45 @@
 # 2장. Node.js 필수 패턴
 
 ## 2.1 콜백 패턴
-* 연속 전달 방식
-* 동기냐? 비동기냐?
-* Node.js 콜백 규칙
+* 연속 전달 방식, 동기냐? 비동기냐?
+    * 지연 실행: 비동기
+        * process.nextTick(() => callback);
+        * setImmediate()
+    * Node.js 콜백 규칙: 인수의 처음은 오류/마지막은 콜백, 오류 전파는 호출 체인의 다음에서 콜백으로
+    * 동기와 비동기를 (if로) 섞지 않음
 
 ## 2.2 모듈 시스템과 그 패턴
-* 노출식 모듈 패턴
+* 노출식 모듈 패턴: const mod = (() => { const foo = []; const bar = { getFoo: () => {}, }; return bar; })();
 * Node.js 모듈 설명
+
 * 모듈 정의 패턴
+    * exports 지정하기: exports.foo = () => {};
+        * 사용: 모듈의 속성처럼: const foo = require('./foo'); foo.bar();
+    * 함수 내보내기: module.exports = () => {}; module.exports.foo = () => {};
+        * 사용: const foo = require('./foo'); foo();
+    * 생성자 내보내기
+        * function foo() {}; module.exports = foo;
+        * class foo {}; module.exports = foo;
+            * 사용: const foo = require('./foo'); const bar = new Foo(); bar.test();
+        * function Foo(bar) { if(!(this instanceof Foo)) return new Foo(bar); this.bar = bar; };
+        * function Foo(bar) { if(!(new.target)) return new FooConstructor(bar); this.bar = bar; }
+            * 사용: 팩토리로: const Foo = require('./foo'); const bar = Foo('hmm'); bar.test();
+    * 인스턴스 내보내기: function foo(bar) {}; module.exports = new Foo('test');
+        * 사용: const foo = require('./foo'); foo.bar();
 
 ## 2.3 관찰자 패턴
-* EventEmitter 클래스
+* EventEmitter 클래스: 패턴은 이미 코어에 내장, 1개 이상 함수를 리스너로 등록 가능
+    * const ee = require('events').EventEmitter; const ei = new ee();
+    * on(), once(), removeListener(): params: event, listener
+    * emit(): params: event, [arg1], [...]
 * EventEmitter 생성 및 사용
-* 오류 전파
+    * function foo() { const bar = new ee(); bar.emit('e1', p1); bar.emit('e2', p2); return bar; }
+    * foo().on('e1', 'test').on('e2', 'test');
+* 오류 전파: 비동기 발생 오류를 에러 이벤트 리스너로
 * 관찰 가능한 객체 만들기
-* 동기 및 비동기 이벤트
+    * class Foo extends ee { bar() { this.emit('e1', p1); } }
+    * const foo = new Foo(); foo.bar().on('e1', 'test');
+* 동기 및 비동기 이벤트: 두 가지를 섞으면 안됨, 동기시 이벤트 방출 전 모든 리스너 등록, 비동기시 초기화 이후에도 새 리스너 등록 가능
 * EventEmitter vs 콜백
 * 콜백과 EventEmitter의 결합
 
