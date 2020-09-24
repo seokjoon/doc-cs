@@ -61,19 +61,18 @@
  
 ## 3.1 비동기 프로그래밍의 어려움
 * 간단한 웹 스파이더 만들기
-* 콜백 헬
+* 콜백 헬: asyncA(err => { asyncB(err => { asyncC(err) => { ... } }) });
  
 ## 3.2 일반 JavaScript의 사용
-* 콜백 규칙
-* 콜백 규칙 적용
+* 콜백 규칙: 함부로 클로저를 사용하지 않음, 빨리 종료(return, ccontinue, break), 콜백은 클로저 외부에 배치되고 명명된 함수 & 중간 결과를 인자로 전달, 함수들로 모듈화
 * 순차 실행
-* 병렬 실행
-* 제한된 병렬 실행
+* 병렬 실행: 논 블로킹: 순차 재귀를 한번에 생성으로 변경, 모든(혹은 일정 개수) 작업 완료시 최종 콜백 호출
+* 제한된 병렬 실행: 동시실행 개수 제한: 큐
  
 ## 3.3 비동기 라이브러리
-* 순차 실행
-* 병렬 실행
-* 제한된 병렬 실행
+* 순차 실행: eachSeries(), mapSeries(), filterSeries(), rejectSeries(), reduct(), reduceRight(), detectSeries(), concatSeries(), series(), whilst(), odWhilst(), until(), doUntil(), forever(), waterfall(), compose(), seq(), applyEachSeries(), iterator(), timesSeries()
+* 병렬 실행: each(), map(), filter(), reject(), detect(), some(), every(), concat(), parallel(), applyEach(), time(),
+* 제한된 병렬 실행: eachLimit(), mapLimit(), parallelLimit(), queue(), cargo(),
  
  
 # 4장. ES2015 이후 비동기식 프로그램의 제어 흐름 패턴
