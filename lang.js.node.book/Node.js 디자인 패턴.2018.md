@@ -75,17 +75,30 @@
 * 제한된 병렬 실행: eachLimit(), mapLimit(), parallelLimit(), queue(), cargo(),
  
  
-# 4장. ES2015 이후 비동기식 프로그램의 제어 흐름 패턴
+# 4장. ES2015 이후 비동기식 프로그램의 제어 흐름 패턴: promise, generator, async await
  
 ## 4.1 프라미스(Promise)
-* 프라미스란 무엇인가?
+* 프라미스란 무엇인가?: 함수가 Promise 객체 반환하는 추상화, 비동기 작업 결과
+    * 대기중(pending)
+    * 처리(settled): 이행(fullfilled), 거부(rejected)
+        * promise.then(onFullfilled, onRejected): foo().then(res => {}, err => {});
+        * catch 될때까지 오류 자동 전파: foo.then().then().then(bar, err => {});
 * Promises/A+ 구현
+    * 생성자: new Promise(function(resolve, reject) {})
+    * 정적 메소드: resolve(obj), reject(err), all(iterable), race(iterable)
+    * 인스턴스 메소드: then(), catch()
 * Node.js 스타일 함수 프라미스화하기
+    * module.exports.promisify = function(foo) { return function promisified() { return new Promise(() => { ... foo.apply(); }); } };
 * 순차 실행
-* 병렬 실행
+    * let pm = Promise.resolve(); [...].forEach(foo => pm = pm.then(() => { return foo(); }); ); pm.then(() => {});
+    * let pm = [...].reduce((prev, foo) => { return foo.then(() => { return foo(); }); }, Promise.resolve()); pm.then(() => {});
+* 병렬 실행: const pms = [...].map(foo => bar()); return Promise.all(pms);
 * 제한된 병렬 실행
 * 공개 API로 콜백과 프라미스 노출하기
- 
+    * module.exports = function foo(a,b,cb) { return new Promise(resolve, reject) => { process.nextTick() => { resolve(); } }; };
+    * 콜백: foo(1,2,(err, res) => {});
+    * 프라미스: foo(1,2).then(res => {}).catch(err => {})
+
 ## 4.2 제너레이터(Generator)
 * 제너레이터의 기본
 * 제너레이터를 사용한 비동기 제어 흐름
