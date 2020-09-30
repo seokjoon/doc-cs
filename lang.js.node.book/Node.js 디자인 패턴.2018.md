@@ -115,23 +115,36 @@
 * Babel의 설치 및 실행
  
 ## 4.4 비교
- 
+* async, promise, generator, async await
+
  
 # 5장. 스트림 코딩
  
 ## 5.1 스트림의 중요성
-* 버퍼링 대 스트리밍
-* 공간 효율성
-* 시간 효율성
-* 결합성
+* 버퍼링 대 스트리밍: 공간 효율성, 시간 효율성, 결합성
+    * fs.readFile(file, (err, bf) => { zlib.gzip(bf, (err, bf) => { fs.writeFile(file, bf, err => {}); }); });
+    * fs.createReadStream(file).pipe(zlib.createGzip()).pipe(fs.createWriteStream(file)).on('finish', () => {});
+    * req.pipe(zlib.createGunzip()).pipe(fs.createWriteSteam()).on('finish', () => {});
  
 ## 5.2 스트림 시작하기
-* 스트림의 구조
+* 스트림의 구조: EventEmitter의 인스턴스, 바이너리 모드, 객체 모드
 * Readable 스트림
+    * readable.read([size])
+    * 읽기
+        * non-flowing 모드: process.stdin.on('readable', () => {}).on('end', () => {});
+        * flowing 모드(legacy): process.stdin.on('data', chunk => {}).on('end', () => {});
+    * 구현: push() 사용하는 _read() 메소드
+        * class Foo extends require('stream').Readable { _read(size) { ... this.push(chunk) } }; module.exports = Foo;
+            * foo.on('readable', () => { let chunk; while((chunk = foo.read()) !== null) { ... } });
 * Writable 스트림
-* 양방향(Duplex) 스트림
-* Transform 스트림
-* Transform 스트림 구현
+    * writable.write(chunk, [encoding], [callback]); writable.end([chunk], [encoding], [callback]);
+    * ... foo.write(bar); ... foo.end(bar); res.on('finish', () => {});
+    * 백프레셔: write() 메소드가 false 반환시 병목 판정으로 중단, 버퍼가 비워지면 drain 이벤트 발생
+        * let bool = foo.write(); if(!(bool)) return foo.once('drain', self);
+    * 구현: _write(), 인자 형식은 { path: <path>, content: <string or buffer> }
+        * class Foo extends ('stream').Writable { _write(chunk, encoding, callback) {} }; module.exports = Foo;
+* 양방향(Duplex) 스트림: readable/writable 모두 가능(모두 상속), 소켓 유사, _read() 와 _write() 구현
+* Transform 스트림: transform() 과 _flush() 구현
  
 ## 5.3 스트림을 사용한 비동기 제어 흐름
 * 순차 실행
