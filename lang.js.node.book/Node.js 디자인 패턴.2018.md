@@ -100,13 +100,18 @@
     * 프라미스: foo(1,2).then(res => {}).catch(err => {})
 
 ## 4.2 제너레이터(Generator)
-* 제너레이터의 기본
-* 제너레이터를 사용한 비동기 제어 흐름
-* 순차 실행
-* 병렬 실행
-* 제한된 병렬 실행
+* 제너레이터의 기본: function* foo() { yield 'foo'; yield 'bar'; return 'foo'; } const bar = foo(); bar.next();
+    * 세미 코루틴, 호출시 이외에도 진입점이 존재
+    * next()가 반환하는 객체의 속성: value(yield 리턴값), done(종료 여부)
+    * function* foo(arr) { for(let i = 0; i < arr.length; i++) { yield arr[i]; } };
+        * const bar = foo([1,2,3]); let current = bar.next(); while(!(current.done)) { current = bar.next(); }
+    * 값을 제너레이터로 전달: next() 메소드에 전달된 인자는 yield 반환값이 됨: foo.next('bar'); foo.next(new Error());
+* 제너레이터를 사용한 비동기 제어 흐름: 제너레이터를 입력받아 인자로 콜백을 주고 인스턴스화 하는 함수, 비동기 작업이 완료되면 제너레이터 실행 재개
+* 순차 실행, 병렬 실행: co/thunkify
+* 제한된 병렬 실행: 생산자-소비자 패턴(queue-worker)
  
 ## 4.3 Babel을 사용한 비동기 await
+* function foo() { return new Promise(function(resolve, reject) { resolve(); }) }; async function bar() { const foo = await foo(); }
 * Babel의 설치 및 실행
  
 ## 4.4 비교
