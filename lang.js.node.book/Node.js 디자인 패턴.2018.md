@@ -190,12 +190,16 @@
 * 추상 의사 클래스 정의
  
 ## 6.9 미들웨어(Middleware)
-* 미들웨어로서의 Express
+* 미들웨어로서의 Express: function(req, res, next) {}
 * 패턴으로서의 미들웨어
 * ØMQ용 미들웨어 프레임워크 만들기
+    * module.exports = class Foo { constructor() {}; send() {}; use() {}; exec() { function iterator() {} }; }
+    * module.exports.bar = () => { return { inbound: function() {}, outbound: function() {} } }
+    * const reply = require('zmp').socker('rep'); reply.bind('tcp://127.0.0.1:5000'); const foo = new Foo(reply); foo.use(Bar.bar());
 * Koa에서 제너레이터를 사용한 미들웨어
  
 ## 6.10 커맨드(Command)
+* 나중에 수행할 동작에 필요한 모든 정보 캡슐화, 메소드/함수 호출 대신 목적을 나타내는 객체를 생성
 * 유연한 패턴
 * 보다 복잡한 명령
  
@@ -205,19 +209,22 @@
 ## 7.1 모듈과 의존성
 * Node.js의 가장 일반적인 종속성
 * 응집력과 결합력
-* 상태 저장 모듈
+* 상태 저장 모듈: 싱글톤(현재 패키지 내에서만): require()가 첫번째 호출 이후 모듈을 캐시
  
 ## 7.2 모듈 연결 패턴
-* 하드코드된 종속성
-* 의존성 주입
-* 서비스 로케이터
+* 하드코드된 종속성: require()
+    * ex) entry point - controller - service - db, 상향식 코딩
+* 의존성 주입: 컴포넌트들의 종속성을 외부 개체로 입력, 팩토리
+    * 생성자 인젝션: const service = new Service(depA, depB);
+    * 속성 인젝션: const service = new Service(); service.depA = anInstOfDepA;
+* 서비스 로케이터: 중앙 레지스트리에 종속성 요청
 * 의존성 주입 컨테이너
  
 ## 7.3 연결(Wiring)을 위한 플러그인
 * 패키지로서의 플러그인
 * 확장 포인트
 * 플러그인 제어와 어플리케이션 제어 확장
-* 로그아웃 플러그인 구현하기
+* 로그아웃 플러그인 구현하기: 서비스 로케이터로 서비스 노출, DI로 서비스 공개, DI 컨테이너로 서비스 노출
  
  
 # 8장. 웹 어플리케이션을 위한 범용 JavaScript
@@ -227,14 +234,27 @@
 * ES2015 모듈
  
 ## 8.2 Webpack 소개
-* Webpack의 마력 탐구
-* Webpack 사용의 이점
+* 웹팩: node 모듈 규칙으로 모듈 작성 후 컴파일시 브라우저 작업에 필요한 종속성을 포함하는 번들(단일 js 파일) 작성
+* npm i -g webpack; ...module.exports.foo = function() { return ... }; require('foo').foo; webpack main.js
+    * main 모듈을 컴파일하여 dist 폴더에 main.js 번들 생성(모든 종속성 묶음)
+    * --watch 옵션
 * Webpack과 함께 ES2015 사용하기
+    * webpack.config.js: module.exports = { ... module: { loaders: [ { ... loader: 'babel-loader', query: { presets: ['es2015'] } } ] } }
+    * npm install babel-core babel-loader babel-preset-es2015
+    * webpack
+    * 진입점에서 dist/boundle.js 참조
  
 ## 8.3 크로스 플랫폼 개발의 기본
 * 런타임 코드 분기
 * 빌드 타임 코드 분기
+    * webpack.config.js
+        * const defindPlugin = new webpack.DefinePlugin({ "foo": "bar" }); //코드의 foo를 bar로 변경
+        * const uglifyJsPlugin = new webpack.optimize.UglifyJsPlugin({ beautify: false, dead_code: true }); //난독화, 최소화
+        * module.exports = { ... plugins: [ definePlugin, uglifyJsPlugin ] };
 * 모듈 교환
+    * webpack.config.js
+        * const modReplacePlugin = new webpack.NormalModuleReplacementPlugin(/Foo.js$/,'./Bar.js');
+        * module.exports = { ... plugins: [ modReplacePlugin ] };
 * 크로스 플랫폼 개발을 위한 디자인 패턴
  
 ## 8.4 리액트(React) 소개
