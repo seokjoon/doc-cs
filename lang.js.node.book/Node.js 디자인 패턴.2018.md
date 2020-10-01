@@ -259,10 +259,17 @@
  
 ## 8.4 리액트(React) 소개
 * 첫 번째 React 컴포넌트
-* JSX가 뭐지?!
+    * npm i webpack babel-core babel-loader babel-preset-es2015
+    * npm install react react-dom babel-preset-react
 * JSX 변환을 위한 Webpack 설정
-* 브라우저에서 렌더링하기
+    * module.exports = { ... module: { loaders: [ { ... query: { cacheDirectory: 'babel_cache', presets: ['es2015', 'react'] } } ] } }
+* 브라우저에서 렌더링하기: window.onload = () => { ReactDOM.render(<Foo/>, document.getElementById('foo')); };
 * React Router 라이브러리
+    * npm install react-router
+    * const Link = require('react-router').Link; const uris = [{id: 1, slug: 'foo'}]; 
+        * <Link to={`/foo/${uris.slug}`}>foo</Li>
+    * const ReactRouter = require('react-router'); const Router = ReactRouter.Router; const Route = ReactRouter.Route; cons hashHistory = ReactRouter.hashHistory;
+    * <Router history={hashHistory}><Route path="/foo" component={Foo}><Route path="*" component={Bar}></Router>
  
 ## 8.5 범용 JavaScript 앱 만들기
 * 재사용 가능한 컴포넌트 만들기
@@ -287,20 +294,20 @@
 ## 9.3 CPU 바운딩 작업 실행
 * 부분 집합의 합 문제 해결
 * setImmediate를 사용한 인터리빙
-* 멀티 프로세스 사용
+* 멀티 프로세스 사용: 프로세스 풀 구현, 자식/부모 프로세스와 통신, 
 
  
 # 10장. 확장성과 구조적 패턴
  
 ## 10.1 어플리케이션 확장에 대한 소개
 * Node.js 응용 프로그램 확장
-* 확장성의 세 가지 차원
+* 확장성의 세 가지 차원: 복제, 분해(서비스/기능별), 분할(데이터 파티션)
  
 ## 10.2 복제 및 로드 밸런싱
 * 클러스터 모듈
 * 상태 저장 통신 다루기
 * 역방향 프록시를 사용하여 확장
-* 서비스 레지스트리 사용
+* 서비스 레지스트리 사용: http-proxy와 Consul을 사용한 동적 로드 밸런싱 구현
 * 피어-투-피어 로드 밸런싱
  
 ## 10.3 복잡한 어플리케이션 분해
