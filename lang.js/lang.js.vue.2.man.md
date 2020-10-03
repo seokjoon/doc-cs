@@ -34,6 +34,12 @@
 * method
     * methods: { bar: function($event, foo) { console.log($event); console.log(foo); } }
         * <button @click="bar($event, 'foo')" >bar</button>
+* watch
+    * watch: { 'foo': function(next, prev) { console.log(this.$data.foo, prev, next); } }
+    * watch: { 'bar': 'getBar' }
+        * methods: { getBar: function() { console.log(this.$data.bar); }, }
+    * watch: { '$route': function(next, prev) { console.log(this.$route.path, prev, next); } }
+        * <router-link to="/component/watch/foo">foo</router-link>
 
 ## display 
 * template
