@@ -116,11 +116,11 @@
         ```
 * 4.3 실용적인 라우팅을 구현하기 위한 기능
     * URL 파라미터, 패턴 매칭
-    	* <router-link to="/foo/2">foo</router-link>
-        * routes: [ { path: '/foo/:id', component: { template: '<div>foo id {{ $route.params.id }}</div>' } } ],
+    	* ```<router-link to="/foo/2">foo</router-link>```
+        * ```routes: [ { path: '/foo/:id', component: { template: '<div>foo id {{ $route.params.id }}</div>' } } ],```
     * 이름 가진 라우트
-   		* <router-link :to="{ name: 'foo', params: { id: 3 } }">foo</router-link>
-        * routes: [ { path: '/foo/:id', name: 'foo', component: { template: '<div>foo id {{ $route.params.id }}</div>' } } ],
+   		* ```<router-link :to="{ name: 'foo', params: { id: 3 } }">foo</router-link>```
+        * ```routes: [ { path: '/foo/:id', name: 'foo', component: { template: '<div>foo id {{ $route.params.id }}</div>' } } ],```
     * 4.3.4 router.push를 사용한 페이지 이동
     * 4.3.4 훅 함수: 전역, 라우트 단위, 컴포넌트 내
         * 전역: router.beforeEach(function(to, from, next) { if(to.path === '/foo') next('/bar'); else next(); });
@@ -140,15 +140,15 @@
 
 ## 05장: Vue.js의 고급 기능
 * 5.1 트랜지션 애니메이션
-    * 래퍼 컴포넌트: <transition></transition>
+    * 래퍼 컴포넌트: ```<transition></transition>```
     * 클래스: v-enter, v-enter-to, v-enter-active, v-leave, v-leave-to, v-leave-active
     * 훅: v-on: before-enter, enter, after-enter, enter-cancelled, before-leave, leave, after-leave, leave-cancelled
 * 5.2 슬롯
-    * 단일 슬롯: var foo = { template: `<span><slot>bar default</slot></span>` }, <foo>bar insert</foo>
-    * 이름을 갖는 슬롯: var foo = { <div><slot name="bar"></slot><slot></slot><slot name="fee"></fee></div> }, <foo><h2 slot="bar">bar insert</h2><p>slot default insert</slot><p slot="fee">fee insert</slot></foo>
+    * 단일 슬롯: ```var foo = { template: `<span><slot>bar default</slot></span>` }, <foo>bar insert</foo>```
+    * 이름을 갖는 슬롯: ```var foo = { <div><slot name="bar"></slot><slot></slot><slot name="fee"></fee></div> }, <foo><h2 slot="bar">bar insert</h2><p>slot default insert</slot><p slot="fee">fee insert</slot></foo>```
     * 슬롯의 범위: 부모 범위에 속하므로 자식 컴포넌트 데이터에 접근하려면 v-bind 로 전달
 * 5.3 사용자 정의 디렉티브
-    * Vue.directive('img-fail', { bind: function(el) { el.addEventListener('error', () => { el.src = '...'; }); } }); <img v-img-fail src="./foo.png" />
+    * ```Vue.directive('img-fail', { bind: function(el) { el.addEventListener('error', () => { el.src = '...'; }); } }); <img v-img-fail src="./foo.png" />```
     * 훅: bind, inserted, update, componentUpdated, unbind
         * 인자: el, binding(name, value, expression, arg, modifiers)
 * 5.4 렌더링 함수
@@ -159,10 +159,10 @@
 
 ## 06장: 단일 파일 컴포넌트를 활용한 개발
 * 필요 패키지(글로벌): @vue/cli, @vue/cli-service-global
-* 블록: <template></template><script> import Foo from 'foo'; export default { ... }; </script><style></style>
+* 블록: ```<template></template><script> import Foo from 'foo'; export default { ... }; </script><style></style>```
 * 테스트: vue serve foo.vue
-* css 범위: 지역 <style scoped></style>, 전역 <style></style>
-* css 모듈: <style module> .foo { ... } </style>, <p :class="$style.foo"></p>
+* css 범위: 지역 ```<style scoped></style>, 전역 <style></style>```
+* css 모듈: ```<style module> .foo { ... } </style>, <p :class="$style.foo"></p>```
 
 
 ## 07장: Vuex를 이용한 데이터플로 설계 및 상태 관리
