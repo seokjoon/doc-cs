@@ -26,6 +26,9 @@
 * computed: 함수로 구현, 참조는 속성처럼, this로 참조, 캐시
     * computed: { foo: function() { return this.v1 + this.v2; } }
         * data: () => ({ v1: 1, v2: 2, });
+* method
+    * methods: { bar: function($event, foo) { console.log($event); console.log(foo); } }
+        * <button @click="bar($event, 'foo')" >bar</button>
 
 ## display 
 * template
@@ -47,6 +50,7 @@
         * <p v-bind:style="{border: (isBar ? '1px solid red' : ''), color: 'red'}">foo</p>
         * <p v-bind:style="foo">foo</p>
             * computed: { foo: function() { return { border: (this.isBar) ? '1px solid green' : '', color: 'green' } } }
+        * 생략표기: 'v-bind:' 를 ':'로: <button :disabled="isBar">foo</button>
     * 반복
         * <ul> <li v-for="(v) in ['foo', 'bar']" v-bind:key="v">{{v}}</li> </ul>
         * <ul> <li v-for="(v, k) in ['foo', 'bar']" v-bind:key="k">{{k}} | {{v}}</li> </ul>
@@ -54,13 +58,20 @@
     * 이벤트: v-on
         * <input type="number" v-on:input="foo.ctr = $event.target.value" v-bind:value="foo.ctr" /> <span>{{ foo.ctr }}</span>
         * <input type="number" v-on:change="foo.ctr = $event.target.value" v-bind:value="foo.ctr" /> <span>{{ foo.ctr }}</span>
-        * 생략표기: 'v-on:'을 '@'으로: <button @click="foo.ctr++" :disabled="isBar">foo</button>
+        * 생략표기: 'v-on:'을 '@'으로: <button @click="foo.ctr++">foo</button>
     * 폼 입력 바인딩: v-model: 양방향 데이터 바인딩
-        * 
+        * <input type="number" v-model="foo.ctr" min="0" />
+        * <ul> <li v-for="(v) in foo.items" v-bind:key="v.k"> <input type="text" v-model="v.k" /> | {{ v.k }} </li> </ul>
+            * data: () => ({ foo: { items: [{'k':'v1'}, {'k':'v2'}] } });
+
+## hook(lifecycle)
+    * beforeCreate() {}, created() {}, beforeMount() {}, mounted() {}, beforeUpdate() {}, updated() {}, beforeDestroy() {}, destroyed() {}
+    * created: dom 미연결, vuex 미사용시 api, 타이머 등
+    * mounted: dom 조작 및 이벤트 리스너
+    * beforeDestroy: mounted 에서 등록한 것들 뒷정리
 
 ## component
 
-## hook(lifecycle)
 
 ## event
 
