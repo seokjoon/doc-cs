@@ -133,8 +133,8 @@
     * $router 인스턴스: app, mode, currentRoute, push, replace, go, back, forward, addRoutes
     * $route 객체: path, params, query, hash, fullPath, name
     * 중첩 라우팅: [{ path: 'foo', ... children: [{ path: 'bar', ... }, { path: 'fee', ... }], }]
-    * 리다이렉션: [{ path: '/foo', redirect: '/bar''}]
-    * 앨리어싱: [{path: '/foo', component: bar, alias: '/fee''}]
+    * 리다이렉션: [{ path: '/foo', redirect: '/bar'}]
+    * 앨리어싱: [{path: '/foo', component: bar, alias: '/fee'}]
     * 히스토리: url 해시, history api
 
 

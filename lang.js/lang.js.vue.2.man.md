@@ -76,10 +76,10 @@
             * data: () => ({ foo: { items: [{'k':'v1'}, {'k':'v2'}] } });
 
 ## hook(lifecycle)
-    * beforeCreate() {}, created() {}, beforeMount() {}, mounted() {}, beforeUpdate() {}, updated() {}, beforeDestroy() {}, destroyed() {}
-    * created: dom 미연결, vuex 미사용시 api, 타이머 등
-    * mounted: dom 조작 및 이벤트 리스너
-    * beforeDestroy: mounted 에서 등록한 것들 뒷정리
+* beforeCreate() {}, created() {}, beforeMount() {}, mounted() {}, beforeUpdate() {}, updated() {}, beforeDestroy() {}, destroyed() {}
+* created: dom 미연결, vuex 미사용시 api, 타이머 등
+* mounted: dom 조작 및 이벤트 리스너
+* beforeDestroy: mounted 에서 등록한 것들 뒷정리
 
 ## component
 * event
@@ -108,6 +108,17 @@
         * beforeRouteEnter: (to, from, next) => { console.log(to, from); next(vm => { vm.foo(); }); }, methods: { foo() {}; }
         * beforeRouteLeave: (to, from, next) => { next(); }
         * beforeRouteUpdate: (to, from, next) => { next(); }
+* $router 인스턴스
+    * app, mode, currentRoute
+    * push(), replace(), go(), back(), forward(), addRoutes()
+* $route 객체: path, params, query, hash, fullPath, name
+* 중첩 라우팅: [{ path: '/foo', ... children: [{ path: 'bar', ... }] }]
+* 리다이렉션: [{ path: '/foo', redirect: '/bar'}, { path: '*', redirect: '/na' }]
+* 앨리어싱
+    * 주소는 bar, 내용은 foo: [{path: '/foo', component: foo, alias: '/bar'}]
+    * [{path: '/a', component: A, alias: ['/b', 'c'] }]
+* 히스토리: url 해시, history api(옵션 mode 값을 history로)
+
 
 # DATA
 
