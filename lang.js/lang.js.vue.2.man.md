@@ -35,13 +35,28 @@
     * filters: { f1: () => (), f2: () => (), }
         * <div>{{ foo | f1 | f2 }}</div>
 * directive
-    * <p v-if="isFoo">foo</p>: dom 구현
-    * <p v-show="isFoo">foo</p>: display 속성 변경
-    * <p b-bind:class="{foo: isFoo, bar: isBar}"></p>
-    * <p b-bind:class="{error: !(isFoo)}"></p>
-    * <p b-bind:class="{items}"></p>
-        * computed: { items: () => ({}) }
-    * <p b-bind:style=""></p>
+    * 분기
+        * <p v-if="isFoo">foo</p>: dom 구현
+        * <p v-show="isFoo">foo</p>: display 속성 변경
+    * 스타일
+        * <p v-bind:class="{foo: isFoo, bar: isBar}">foo</p>
+        * <p v-bind:class="{foo: !(isBar)}">foo</p>
+        * <p v-bind:class="foo">foo</p>
+            * computed: { foo: function() { return { c1: this.$data.isBar, c2: this.$data.isBar } } }
+        * <p v-bind:style="{color: 'green'}">foo</p>
+        * <p v-bind:style="{border: (isBar ? '1px solid red' : ''), color: 'red'}">foo</p>
+        * <p v-bind:style="foo">foo</p>
+            * computed: { foo: function() { return { border: (this.isBar) ? '1px solid green' : '', color: 'green' } } }
+    * 반복
+        * <ul> <li v-for="(v) in ['foo', 'bar']" v-bind:key="v">{{v}}</li> </ul>
+        * <ul> <li v-for="(v, k) in ['foo', 'bar']" v-bind:key="k">{{k}} | {{v}}</li> </ul>
+        * <ul> <li v-for="(v) in [{'foo': 'foo'}, {'foo': 'bar'}]" v-bind:key="v.foo">{{v.foo}}</li> </ul>
+    * 이벤트: v-on
+        * <input type="number" v-on:input="foo.ctr = $event.target.value" v-bind:value="foo.ctr" /> <span>{{ foo.ctr }}</span>
+        * <input type="number" v-on:change="foo.ctr = $event.target.value" v-bind:value="foo.ctr" /> <span>{{ foo.ctr }}</span>
+        * 생략표기: 'v-on:'을 '@'으로: <button @click="foo.ctr++" :disabled="isBar">foo</button>
+    * 폼 입력 바인딩: v-model: 양방향 데이터 바인딩
+        * 
 
 ## component
 
