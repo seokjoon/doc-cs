@@ -71,9 +71,17 @@
     * beforeDestroy: mounted 에서 등록한 것들 뒷정리
 
 ## component
-
-
-## event
+* event
+    * 부모-자식 간 데이터 전달: props
+        * 부모: <ComponentChild v-bind:foo="foo" v-bind:bar="bar"></ComponentChild>
+            * data: () => ({ foo: 'foo', bar: [ { k: 1 }, { k: 2 } ], })
+        * 자식: props: { foo: { type: String, default: 'foo', required: true, validator: () => true, }, bar: { type: Array, }
+            * <div>{{ foo }}</div> <ul><li v-for="(v) in bar" v-bind:key="v.k">{{v.k}}</li></ul>
+    * 자식-부모 간 데이터 전달: on(리스닝), emit(트리거)
+        * 자식: <input type="text" @input="fooChild = $event.target.value" :value="fooChild" /> | <button v-on:click="setFoo">setFoo</button>
+            * data: () => ({ fooChild: '' }), props: { foo: {} }, methods: { setFoo() { this.$emit('setFoo', this.fooChild); } }
+        * 부모: <ComponentChild v-bind:foo="foo" v-on:setFoo="setFoo"></ComponentChild><div>{{ foo }}</div>
+            * data: () => ({ foo: 'foo', }), methods: { setFoo(v) { this.foo = v; } }
 
 ## route
 
