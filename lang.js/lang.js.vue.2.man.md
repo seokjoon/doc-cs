@@ -11,6 +11,11 @@
 * npm run serve
 * npm run build
 
+## config
+* package.json
+    * console on: "eslintConfig": { ..., "rules": { "no-console": "off" }, ... }
+    * no-unused-vars off: "eslintConfig": { ..., "rules": { "no-unused-vars": "off" }, ... }
+
 ## structure
 
 ## entry point
@@ -84,7 +89,19 @@
             * data: () => ({ foo: 'foo', }), methods: { setFoo(v) { this.foo = v; } }
 
 ## route
-
+* router/index.js, main.js, App.vue
+* <router-link to="/foo">foo</router-link> <router-view>
+* <button @click="foo">foo</button>
+    * methods: { foo() { router.push({ name: 'Foo', params: { bar: 'bar' } }); }, },
+* hook
+    * 전역: router/index.js
+        * router.afterEach((to, from) => {});
+        * router.beforeEach((to, from) => { if(to.path === '/foo') next('/bar'); else next(); });
+    * 라우트단위: const routes = [... { beforeEnter: (to, from, next) => { next(); }, component: Foo, path: '/foo', } ...];
+    * 컴포넌트 내부
+        * beforeRouteEnter: (to, from, next) => { console.log(to, from); next(vm => { vm.foo(); }); }, methods: { foo() {}; }
+        * beforeRouteLeave: (to, from, next) => { next(); }
+        * beforeRouteUpdate: (to, from, next) => { next(); }
 
 # DATA
 
