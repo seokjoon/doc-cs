@@ -143,3 +143,10 @@
         * handle(): 실행 내용 작성
 * php artisan cardCdk:receive
 
+
+## Policy
+* https://laravel.kr/docs/6.x/authorization#creating-policies
+* php artisan make:policy Prod/ProdPolicy --model=Models/Prod/Prod
+* vi app/Providers/AuthServiceProvider.php
+* 컨트롤러에서 $this->authorize()
+* 인증된 사용자(토큰)에게 유효
