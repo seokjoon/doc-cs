@@ -23,6 +23,46 @@
 * App.vue
 
 
+# DISPLAY
+
+## template
+* mustache: {{ foo }}
+* directive: ```<div v-bind:attr></div>```
+
+## filter
+* filters: { f1: () => (), f2: () => (), }
+    * ```<div>{{ foo | f1 | f2 }}</div>```
+
+## directive
+* 분기
+    * ```<p v-if="isFoo">foo</p>```: dom 구현
+    * ```<p v-show="isFoo">foo</p>```: display 속성 변경
+* 스타일
+    * ```<p v-bind:class="{foo: isFoo, bar: isBar}">foo</p>```
+    * ```<p v-bind:class="{foo: !(isBar)}">foo</p>```
+    * ```<p v-bind:class="foo">foo</p>```
+        * computed: { foo: function() { return { c1: this.$data.isBar, c2: this.$data.isBar } } }
+    * ```<p v-bind:style="{color: 'green'}">foo</p>```
+    * ```<p v-bind:style="{border: (isBar ? '1px solid red' : ''), color: 'red'}">foo</p>```
+    * ```<p v-bind:style="foo">foo</p>```
+        * computed: { foo: function() { return { border: (this.isBar) ? '1px solid green' : '', color: 'green' } } }
+    * 생략표기: 'v-bind:' 를 ':'로: ```<button :disabled="isBar">foo</button>```
+* 반복
+    * ```<ul> <li v-for="(v) in ['foo', 'bar']" v-bind:key="v">{{v}}</li> </ul>```
+    * ```<ul> <li v-for="(v, k) in ['foo', 'bar']" v-bind:key="k">{{k}} | {{v}}</li> </ul>```
+    * ```<ul> <li v-for="(v) in [{'foo': 'foo'}, {'foo': 'bar'}]" v-bind:key="v.foo">{{v.foo}}</li> </ul>```
+* 이벤트: v-on
+    * ```<input type="number" v-on:input="foo.ctr = $event.target.value" v-bind:value="foo.ctr" /> <span>{{ foo.ctr }}</span>```
+    * ```<input type="number" v-on:change="foo.ctr = $event.target.value" v-bind:value="foo.ctr" /> <span>{{ foo.ctr }}</span>```
+    * 생략표기: 'v-on:'을 '@'으로: ```<button @click="foo.ctr++">foo</button>```
+* 폼 입력 바인딩: v-model: 양방향 데이터 바인딩
+    * ```<input type="number" v-model="foo.ctr" min="0" />```
+    * ```<ul> <li v-for="(v) in foo.items" v-bind:key="v.k"> <input type="text" v-model="v.k" /> | {{ v.k }} </li> </ul>```
+        * data: () => ({ foo: { items: [{'k':'v1'}, {'k':'v2'}] } });
+
+## slot
+
+
 # COMPONENT
 
 ## data
@@ -41,58 +81,23 @@
     * watch: { '$route': function(next, prev) { console.log(this.$route.path, prev, next); } }
         * ```<router-link to="/component/watch/foo">foo</router-link>```
 
-## display 
-* template
-    * mustache: {{ foo }}
-    * directive: ```<div v-bind:attr></div>```
-* filter
-    * filters: { f1: () => (), f2: () => (), }
-        * ```<div>{{ foo | f1 | f2 }}</div>```
-* directive
-    * 분기
-        * ```<p v-if="isFoo">foo</p>```: dom 구현
-        * ```<p v-show="isFoo">foo</p>```: display 속성 변경
-    * 스타일
-        * ```<p v-bind:class="{foo: isFoo, bar: isBar}">foo</p>```
-        * ```<p v-bind:class="{foo: !(isBar)}">foo</p>```
-        * ```<p v-bind:class="foo">foo</p>```
-            * computed: { foo: function() { return { c1: this.$data.isBar, c2: this.$data.isBar } } }
-        * ```<p v-bind:style="{color: 'green'}">foo</p>```
-        * ```<p v-bind:style="{border: (isBar ? '1px solid red' : ''), color: 'red'}">foo</p>```
-        * ```<p v-bind:style="foo">foo</p>```
-            * computed: { foo: function() { return { border: (this.isBar) ? '1px solid green' : '', color: 'green' } } }
-        * 생략표기: 'v-bind:' 를 ':'로: ```<button :disabled="isBar">foo</button>```
-    * 반복
-        * ```<ul> <li v-for="(v) in ['foo', 'bar']" v-bind:key="v">{{v}}</li> </ul>```
-        * ```<ul> <li v-for="(v, k) in ['foo', 'bar']" v-bind:key="k">{{k}} | {{v}}</li> </ul>```
-        * ```<ul> <li v-for="(v) in [{'foo': 'foo'}, {'foo': 'bar'}]" v-bind:key="v.foo">{{v.foo}}</li> </ul>```
-    * 이벤트: v-on
-        * ```<input type="number" v-on:input="foo.ctr = $event.target.value" v-bind:value="foo.ctr" /> <span>{{ foo.ctr }}</span>```
-        * ```<input type="number" v-on:change="foo.ctr = $event.target.value" v-bind:value="foo.ctr" /> <span>{{ foo.ctr }}</span>```
-        * 생략표기: 'v-on:'을 '@'으로: ```<button @click="foo.ctr++">foo</button>```
-    * 폼 입력 바인딩: v-model: 양방향 데이터 바인딩
-        * ```<input type="number" v-model="foo.ctr" min="0" />```
-        * ```<ul> <li v-for="(v) in foo.items" v-bind:key="v.k"> <input type="text" v-model="v.k" /> | {{ v.k }} </li> </ul>```
-            * data: () => ({ foo: { items: [{'k':'v1'}, {'k':'v2'}] } });
-
 ## hook(lifecycle)
 * beforeCreate() {}, created() {}, beforeMount() {}, mounted() {}, beforeUpdate() {}, updated() {}, beforeDestroy() {}, destroyed() {}
 * created: dom 미연결, vuex 미사용시 api, 타이머 등
 * mounted: dom 조작 및 이벤트 리스너
 * beforeDestroy: mounted 에서 등록한 것들 뒷정리
 
-## component
-* event
-    * 부모-자식 간 데이터 전달: props
-        * 부모: ```<ComponentChild v-bind:foo="foo" v-bind:bar="bar"></ComponentChild>```
-            * data: () => ({ foo: 'foo', bar: [ { k: 1 }, { k: 2 } ], })
-        * 자식: props: { foo: { type: String, default: 'foo', required: true, validator: () => true, }, bar: { type: Array, }
-            * ```<div>{{ foo }}</div> <ul><li v-for="(v) in bar" v-bind:key="v.k">{{v.k}}</li></ul>```
-    * 자식-부모 간 데이터 전달: on(리스닝), emit(트리거)
-        * 자식: ```<input type="text" @input="fooChild = $event.target.value" :value="fooChild" /> | <button v-on:click="setFoo">setFoo</button>```
-            * data: () => ({ fooChild: '' }), props: { foo: {} }, methods: { setFoo() { this.$emit('setFoo', this.fooChild); } }
-        * 부모: ```<ComponentChild v-bind:foo="foo" v-on:setFoo="setFoo"></ComponentChild><div>{{ foo }}</div>```
-            * data: () => ({ foo: 'foo', }), methods: { setFoo(v) { this.foo = v; } }
+## event
+* 부모-자식 간 데이터 전달: props
+    * 부모: ```<ComponentChild v-bind:foo="foo" v-bind:bar="bar"></ComponentChild>```
+        * data: () => ({ foo: 'foo', bar: [ { k: 1 }, { k: 2 } ], })
+    * 자식: props: { foo: { type: String, default: 'foo', required: true, validator: () => true, }, bar: { type: Array, }
+        * ```<div>{{ foo }}</div> <ul><li v-for="(v) in bar" v-bind:key="v.k">{{v.k}}</li></ul>```
+* 자식-부모 간 데이터 전달: on(리스닝), emit(트리거)
+    * 자식: ```<input type="text" @input="fooChild = $event.target.value" :value="fooChild" /> | <button v-on:click="setFoo">setFoo</button>```
+        * data: () => ({ fooChild: '' }), props: { foo: {} }, methods: { setFoo() { this.$emit('setFoo', this.fooChild); } }
+    * 부모: ```<ComponentChild v-bind:foo="foo" v-on:setFoo="setFoo"></ComponentChild><div>{{ foo }}</div>```
+        * data: () => ({ foo: 'foo', }), methods: { setFoo(v) { this.foo = v; } }
 
 ## route
 * router/index.js, main.js, App.vue
