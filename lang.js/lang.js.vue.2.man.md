@@ -61,6 +61,16 @@
         * data: () => ({ foo: { items: [{'k':'v1'}, {'k':'v2'}] } });
 
 ## slot
+* 단일 슬롯
+    * SlotSingle.vue: <template><div><slot>aa</slot></div></template>
+    * SlotV.vue: <template><div><SlotSingle></SlotSingle><SlotSingle>AA</SlotSingle></div></template>
+* 이름 가지는 슬롯
+    * SlotName: <template><div><slot name="aa">aa</slot><slot>bb</slot></div></template>
+    * SlotV.vue: <template><div><SlotName></SlotName><SlotName><div slot="aa"></div><div>BB</div></SlotName></div></template>
+* 슬롯의 범위: 부모 범위에 속하므로 자식 컴포넌트 데이터에 접근하려면 v-bind 로 전달
+    * SlotScope.vue: <template><div><slot v-bind:foo="foo">{{ foo }}</slot></div></template>
+        * props: { foo: { type: String } }
+    * SlotV.vue: <template><div><SlotScope v-bind:foo="foo"></SlotScope></div></template>
 
 
 # COMPONENT
