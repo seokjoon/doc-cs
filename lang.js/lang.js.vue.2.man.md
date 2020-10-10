@@ -23,6 +23,7 @@
 * App.vue
 
 
+
 # DISPLAY
 
 ## template
@@ -71,6 +72,7 @@
     * SlotScope.vue: <template><div><slot v-bind:foo="foo">{{ foo }}</slot></div></template>
         * props: { foo: { type: String } }
     * SlotV.vue: <template><div><SlotScope v-bind:foo="foo"></SlotScope></div></template>
+
 
 
 # COMPONENT
@@ -135,9 +137,21 @@
 * 히스토리: url 해시, history api(옵션 mode 값을 history로)
 
 
+
 # DATA
 
 ## mixin
+* 컴포넌트 범위
+    * FooMixin.js
+        * export const FooMixin = { data: () => ({ foo: 'foo' }), methods: { getFoo: function() { console.log(this.foo) } } }
+            * data, method 등 내부의 네이밍이 믹스인을 호출한 컴포넌트에 공유됨, 중복될 경우 컴포넌트의 속성이 우선
+    * MixinV.vue
+        * <template><div><button @click="getFoo">getFoo</button></div></template>
+        * mixins: [ FooMixin ],
+* 전역 믹스인
+    * src/main.js: Vue.mixin(GlobalMixin);
+
+
 
 ## store
 
