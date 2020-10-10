@@ -147,18 +147,24 @@
 # DATA
 
 ## mixin
-* 컴포넌트 범위
-    * FooMixin.js
-        * export const FooMixin = { data: () => ({ foo: 'foo' }), methods: { getFoo: function() { console.log(this.foo) } } }
+* 컴포넌트 범위 믹스인
+    * mixins/foo.js
+        * export const FooMixin = { data: () => ({ fooMixinFoo: 'fooMixinFoo' }), methods: { getFooMixinFoo: function() { console.log(this.fooMixinFoo) } } }
             * data, method 등 내부의 네이밍이 믹스인을 호출한 컴포넌트에 공유됨, 중복될 경우 컴포넌트의 속성이 우선
     * MixinV.vue
-        * ```<template><div><button @click="getFoo">getFoo</button></div></template>```
+        * ```<template><div><button @click="getFooMixinFoo">getFooMixinFoo</button></div></template>```
         * mixins: [ FooMixin ],
 * 전역 믹스인
-    * src/main.js: Vue.mixin(GlobalMixin);
-
-
+    * mixins/index.js: const mixin = { data: () => {()}, methods: {} }; export default mixin;
+    * src/main.js: Vue.mixin(mixin);
 
 ## store
-
+* const store = new Vuex.Store({ actions: {}, getters: {}, modules: {}, mutations: {}, state: {} });
+    * action => mutation => state => getter
+        * getters: 획득, 캐시: store.getters.foo
+        * mutations: 갱신, 동기 처리: store.commit('foo', 2)
+        * actions: 소통/api, 비동기 처리: store.dispatch('foo')
+* module 단위 분할
+    * const fooStore = {}
+    
 
