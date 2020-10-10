@@ -63,16 +63,22 @@
 
 ## slot
 * 단일 슬롯
-    * SlotSingle.vue: <template><div><slot>aa</slot></div></template>
-    * SlotV.vue: <template><div><SlotSingle></SlotSingle><SlotSingle>AA</SlotSingle></div></template>
+    * SlotSingle.vue: ```<template><div><slot>aa</slot></div></template>```
+    * SlotV.vue: ```<template><div><SlotSingle></SlotSingle><SlotSingle>AA</SlotSingle></div></template>```
 * 이름 가지는 슬롯
-    * SlotName: <template><div><slot name="aa">aa</slot><slot>bb</slot></div></template>
-    * SlotV.vue: <template><div><SlotName></SlotName><SlotName><div slot="aa"></div><div>BB</div></SlotName></div></template>
+    * SlotName: ```<template><div><slot name="aa">aa</slot><slot>bb</slot></div></template>```
+    * SlotV.vue: ```<template><div><SlotName></SlotName><SlotName><div slot="aa"></div><div>BB</div></SlotName></div></template>```
 * 슬롯의 범위: 부모 범위에 속하므로 자식 컴포넌트 데이터에 접근하려면 v-bind 로 전달
-    * SlotScope.vue: <template><div><slot v-bind:foo="foo">{{ foo }}</slot></div></template>
+    * SlotScope.vue: ```<template><div><slot v-bind:foo="foo">{{ foo }}</slot></div></template>```
         * props: { foo: { type: String } }
-    * SlotV.vue: <template><div><SlotScope v-bind:foo="foo"></SlotScope></div></template>
+    * SlotV.vue: ```<template><div><SlotScope v-bind:foo="foo"></SlotScope></div></template>```
 
+## style
+* single file components
+    * ```<template> ... </template><script> ... </script><style> ... </style>```
+* css: ```<style>.foo { ... }</style><template><div class="foo">foo</div></template>```
+* css scope: ```<style scoped>.local { ... }</style><style>.global { ... }</style>```
+* css module: v-bind: ```<style module>.foo { ... }</style><template><div :class="$style.foo">foo</div></template>```
 
 
 # COMPONENT
@@ -146,7 +152,7 @@
         * export const FooMixin = { data: () => ({ foo: 'foo' }), methods: { getFoo: function() { console.log(this.foo) } } }
             * data, method 등 내부의 네이밍이 믹스인을 호출한 컴포넌트에 공유됨, 중복될 경우 컴포넌트의 속성이 우선
     * MixinV.vue
-        * <template><div><button @click="getFoo">getFoo</button></div></template>
+        * ```<template><div><button @click="getFoo">getFoo</button></div></template>```
         * mixins: [ FooMixin ],
 * 전역 믹스인
     * src/main.js: Vue.mixin(GlobalMixin);
