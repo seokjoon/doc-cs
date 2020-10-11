@@ -160,11 +160,23 @@
 
 ## store
 * const store = new Vuex.Store({ actions: {}, getters: {}, modules: {}, mutations: {}, state: {} });
+    * state: { ctr: 0 }
+        * this.$store.state.ctr
+    * getters: { getCtrSquare: (state) => (state.ctr * state.ctr) }
+        * 인자 state, 계산, 캐시
+        * this.$store.getters.getCtrSquare
+    * mutations: { setCtrAdd(state, inc) { state.ctr += inc; } }
+        * 인자 state, 갱신, 동기 처리
+        * this.$store.commit('setCtrAdd', 2)
+    * actions: { setCtrAddAction(ctx) { ... ctx.commit('setCtrAdd') } }
+        * 인자 context, 소통, api, 비동기 처리, 뮤테이션 호출
+        * this.$store.dispatch('setCtrAddAction')
     * action => mutation => state => getter
-        * getters: 획득, 캐시: store.getters.foo
-        * mutations: 갱신, 동기 처리: store.commit('foo', 2)
-        * actions: 소통/api, 비동기 처리: store.dispatch('foo')
 * module 단위 분할
-    * const fooStore = {}
-    
+    * const fooStore = { namespaced: true, actions: {}, modules: {}, mutations: {}, state: {} }
+        * this.$store.state.fooStore.foo
+        * this.$store.getters['fooStore/getFooUpper']
+        * this.$store.commit('fooStore/setFooConcat', 'bar')
+        * this.$store.dispatch('fooStore/setFooAddAction')
+
 
