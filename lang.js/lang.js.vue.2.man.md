@@ -178,5 +178,10 @@
         * this.$store.getters['fooStore/getFooUpper']
         * this.$store.commit('fooStore/setFooConcat', 'bar')
         * this.$store.dispatch('fooStore/setFooAddAction')
-
+* router 연동
+    * 동기화
+        * import { sync } from 'vuex-router-sync'; sync(store, router);
+        * getters: { getId: (state, getters, rootState) => (Number(rootState.route.params.id)), }
+    * 라우터 인스턴스 사용
+        * actions: { redirectId(ctx, id) { ... router.push(`/data/store/${id}`); } }
 
