@@ -1,10 +1,10 @@
 ## init
-git init
-git add .
-git commit -m "init"
-git branch -M main
-git remote add origin https://github.com/seokjoon/foo.git
-git push -u origin main
+* git init
+* git add .
+* git commit -m "init"
+* git branch -M main
+* git remote add origin https://github.com/seokjoon/foo.git
+* git push -u origin main
 
 ## remote
 * git remote add origin https://github.com/seokjoon/foo.git
