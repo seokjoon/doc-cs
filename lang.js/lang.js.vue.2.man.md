@@ -5,7 +5,7 @@
 * init: vue create foo
 * plugin
     * install: vue add foo
-    * router, vuex
+    * vue-router, vuex
 
 ## build
 * npm run serve
