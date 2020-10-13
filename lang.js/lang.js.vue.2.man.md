@@ -1,7 +1,7 @@
 # CONFIG
 
 ## vue-cli
-* install: npm i -g @vue/cli
+* install: npm i -g @vue/cli @vue/cli-service-global
 * init: vue create foo
 * plugin
     * install: vue add foo
