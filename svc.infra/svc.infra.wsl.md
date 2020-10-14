@@ -31,6 +31,10 @@
 * https://docs.docker.com/docker-for-windows/
     * https://hub.docker.com/editions/community/docker-ce-desktop-windows/
         * https://desktop.docker.com/win/stable/Docker%20Desktop%20Installer.exe
+* 설치 후 로그아웃
+* docker desktop 실행(환경설정): 활성화
+    * use the WSL 2 based engine, 
+    * Resources > WSL integration: Ubuntu-20.04
 
 ## 주의사항
 * i/o 성능, hot reload: 작업 대상(코드)가 wsl filesystem 내부에 있어야 함
