@@ -32,7 +32,7 @@
     * rest get, post, put, delete
 * 참고
     * artisan: https://github.com/seokjoon/doc-cs/tree/master/lang.php.laravel/lang.php.laravel.cmd.artisan.md
-    * resource: https://laravel.kr/docs/6.x/eloquent-resources
+    * resource: https://laravel.kr/docs/8.x/eloquent-resources
 
 
 ## DB Factory/Migration/Seeder
