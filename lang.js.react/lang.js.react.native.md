@@ -4,7 +4,7 @@
 * ios
     * cocoapods
         * brew install cocoapods && cd ios && pod install
-* react-native run-ios, react-native run-android
+* npx react-native run-ios, npx react-native run-android
 * npm start
 
 
