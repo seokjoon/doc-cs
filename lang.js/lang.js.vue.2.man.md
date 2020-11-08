@@ -184,4 +184,9 @@
         * getters: { getId: (state, getters, rootState) => (Number(rootState.route.params.id)), }
     * 라우터 인스턴스 사용
         * actions: { redirectId(ctx, id) { ... router.push(`/data/store/${id}`); } }
-
+* helper
+    * import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
+    * mapState
+    * mapGetters
+    * mapMutations
+    * mapActions
