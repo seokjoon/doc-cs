@@ -1,12 +1,23 @@
+# 2 라라벨 개발 환경 구성하기
+
+## 2.4 라라벨 프로젝트 생성하기 
+* composer global require 'laravel/installer'
+    * vi .bashrc
+        * export PATH=${PATH}:$(composer global config bin-dir --absolute --quiet)
+    * laravel new foo 
+    * laravel new bar --jet
+
+
 # 3 라우팅 및 컨트롤러
 
-## 3.1 MVC, HTTP 메서드, REST 훑어보기
-
-## 3.2 라우트 정의하기
-
 ## 3.3 라우트 그룹
+* failback
+    * Route::fallback(function() {});
 
 ## 3.4 서명된 라우트
+* Route::get('invits/{invit}{group}', InvitsController::class)->name('invits');
+    * URL::signedRoute('invits', ['invit' => 1234, 'group' => 5678])->middleware('signed');
+    * URL::temporarySignedRoute('invits', now()->addHours(4), ['invit' => 1234, 'group' => 5678])->middleware('signed');
 
 ## 3.5 뷰
 
