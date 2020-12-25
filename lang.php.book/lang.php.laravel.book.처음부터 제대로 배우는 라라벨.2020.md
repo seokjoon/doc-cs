@@ -1,5 +1,4 @@
 # 2 라라벨 개발 환경 구성하기
-
 ## 2.4 라라벨 프로젝트 생성하기 
 * composer global require 'laravel/installer'
     * vi .bashrc
@@ -9,71 +8,47 @@
 
 
 # 3 라우팅 및 컨트롤러
-
 ## 3.3 라우트 그룹
 * failback
     * Route::fallback(function() {});
-
 ## 3.4 서명된 라우트
 * Route::get('invits/{invit}{group}', InvitsController::class)->name('invits');
     * URL::signedRoute('invits', ['invit' => 1234, 'group' => 5678])->middleware('signed');
     * URL::temporarySignedRoute('invits', now()->addHours(4), ['invit' => 1234, 'group' => 5678])->middleware('signed');
-
-## 3.5 뷰
-
 ## 3.6 컨트롤러
-
+* Route::apiResource(), Route::apiResources([]);
 ## 3.7 라우트 모델 바인딩
-
 ## 3.8 라우트 캐싱
-
 ## 3.9 폼 메서드 스푸핑
-
+* @method('DELETE')
 ## 3.10 CSRF 보호
-
+* @csrf
 ## 3.11 리다이렉트
-
+* redirect(), ->to(), ->route(), ->back(), ->refresh(), ->away(), ->with()
 ## 3.12 요청 중단하기
-
+* abort(), abort_if(), abort_unless(),
 ## 3.13 커스텀 응답
-
+* resonse(), ->make(), ->json(), ->jsonp(), ->download(), ->streamDownload(), ->file(),
 ## 3.14 CORS 처리
-
-## 3.15 테스트
-
-## 3.16 마치며
-
  
 
 # 4 블레이드 템플릿
-
-## 4.1 데이터 출력
-
-## 4.2 제어 구조
-
-## 4.3 템플릿 상속 
-
 ## 4.4 뷰 컴포저와 서비스 주입
-
 ## 4.5 커스텀 블레이드 지시어
 
-## 4.6 테스트
-
-## 4.7 마치며
-
- 
 
 # 5 데이터베이스와 엘로퀀트
-
-## 5.1 설정하기
-
-## 5.2 마이그레이션
-
-## 5.3 시딩
-
-## 5.4 쿼리 빌더
-
 ## 5.5 엘로퀀트 소개
+* 로컬 스코프
+    * public function scopeFoo($query) { return $query->where() }
+* 글로벌 스코프
+* 접근자
+    * public function getFooAttribute($val) {}
+* 변경자
+    * public function setFooAttribute($val) {}
+* 커스텀 형변환
+    * class Foo implements CastsAttribute {}
+    * protected $casts = [ 'bar' => Foo::class, ];
 
 ## 5.6 엘로퀀트 이벤트
 
