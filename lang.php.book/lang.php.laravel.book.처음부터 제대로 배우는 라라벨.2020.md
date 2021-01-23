@@ -49,6 +49,10 @@
 * 커스텀 형변환
     * class Foo implements CastsAttribute {}
     * protected $casts = [ 'bar' => Foo::class, ];
+* 컬렉션
+    * $foo = collect([1,2,3])->filter(function($l) {})->reject(function($m) {})->map(function($n) {})->sum();
+        * max(), whereIn(), flattern(), flip(), ...
+            * https://laravel.kr/docs/8.x/collections
 
 ## 5.6 엘로퀀트 이벤트
 
