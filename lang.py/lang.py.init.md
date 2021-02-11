@@ -11,7 +11,7 @@
 * 패키지 목록: ``` pip list ```
 * 패키지 설치: ``` pip install bar ```
 * 의존성 기록: ``` pip freeze > requirements.txt ```
-* 의존성 설치: ``` pip install -r > requirements.txt ```
+* 의존성 설치: ``` pip install -r requirements.txt ```
 * 모든 (전역) 패키지 삭제: ``` pip freeze > all.txt && pip uninstall -r all.txt -y ```
 * 우분투에서는 다른 패키지 설치 위해 wheel 설치 필요할 수 있음: ``` pip install wheel ```
 
