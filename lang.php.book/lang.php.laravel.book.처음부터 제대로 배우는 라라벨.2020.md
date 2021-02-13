@@ -38,6 +38,10 @@
 
 
 # 5 데이터베이스와 엘로퀀트
+## 5.4
+* 트랜잭션
+    * DB::transaction(function() use() {})
+    * DB::beginTransaction(); DB::commit(); DB::rollback()
 ## 5.5 엘로퀀트 소개
 * 로컬 스코프
     * public function scopeFoo($query) { return $query->where() }
@@ -53,72 +57,40 @@
     * $foo = collect([1,2,3])->filter(function($l) {})->reject(function($m) {})->map(function($n) {})->sum();
         * max(), whereIn(), flattern(), flip(), ...
             * https://laravel.kr/docs/8.x/collections
-
 ## 5.6 엘로퀀트 이벤트
-
-## 5.7 테스트
-
-## 5.8 마치며
-
+* created, creating, deleted, deleting, retrieved, updated, updating, 
+* saved, saving: create + update
+* restored, restoring: 소프트 삭제 복원
  
 
 # 6 프런트엔드 컴포넌트
-
-## 6.1 라라벨 믹스
-
 ## 6.2 프런트엔드 프리셋
-
 ## 6.3 페이지네이션
-
 ## 6.4 메시지 백
-
 ## 6.5 문자열 처리를 위한 Str 클래스, 복수 표기, 다국어 처리
 
-## 6.6 테스트
-
-## 6.7 마치며
-
- 
 
 # 7 사용자 데이터의 조회 및 처리
-
 ## 7.1 Request 객체를 사용한 데이터 조회
-
-## 7.2 라우트 데이터
-
+* $request->has(), $request->json(), $request->input('foo.bar')
 ## 7.3 파일 업로드
-
 ## 7.4 유효성 검증
-
 ## 7.5 폼 요청 객체
-
-## 7.6 엘로퀀트 모델의 대량 할당
-
-## 7.7 {{와 {!!의 차이
-
-## 7.8 테스트
-
-## 7.9 마치며
-
  
 
 # 8 아티즌과 팅커
-
-## 8.1 아티즌 소개
-
 ## 8.2 기본적인 사용법
-
+* clear-compiled, down/up, optimize
+* --no-interaction, --env
 ## 8.3 아티즌 명령어 생성 방법
-
+* 인자/옵션: argument(), arguments(), option(), options()
+* 프롬프트: ask(), secret(), confirm(), anticipate(), choice()
+* 화면출력
+    * info(), comment(), question(), erro(), line()
+    * table(), progressStart(), progressAdvance(), progressFinish()
 ## 8.4 일반 코드에서 아티즌 명령어의 호출
+* Artisan::call('foo:bar', []), Artisan::callSilent('foo:bar', [])
 
-## 8.5 팅커
-
-## 8.6 테스트
-
-## 8.7 마치며
-
- 
 
 # 9 사용자 인증과 인가
 
