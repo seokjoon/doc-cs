@@ -1,8 +1,19 @@
 ## 1장 텍스트
 * 1.1 string: 텍스트 상수와 템플릿
+    * deprecated
 * 1.2 textwrap: 텍스트 문단 포매팅
+    * .shorten(src, length, placeholder)
 * 1.3 re: 정규 표현식
+    * .search(pattern, src)
+        * .start(), .stop()
+    * .compile()
+    * .findall(pattern, src), .finditer(pattern, src)
+    * 패턴: 반복, 문자집합, 이스케이프, 앵커링, 제한, 그룹 매칭 분리, 옵션, 전/후방, ... 
 * 1.4 difflib: 시퀀스 비교
+    * .splitlines()
+    * print('\n'.join(difflib.Differ().compare('foo', 'bar')))
+    * print('\n'.join(difflib.unified_diff('foo', 'bar', lineterm='')))
+    * .get_opcodes()
 
 
 ## 2장 자료 구조
