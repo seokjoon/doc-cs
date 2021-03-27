@@ -18,7 +18,14 @@
 
 ## 2장 자료 구조
 * 2.1 enum: 열거 타입
+    * class Foo(enum.Enum)
 * 2.2 컬렉션: 컨테이너 데이터 타입
+    * .ChainMap(dicA, dicB): 여러 딕셔너리 검색
+    * .Counter(): 동일 값이 몇번 추가됐는지 기록
+    * .defaultdict(0): 없는 키 기본값 반환
+    * .deque(): 양방향 큐, 스레드 세이프, 큐 크기 제한
+    * .nametuple(): tuples 에 이름 할당
+    * .OrderedDict: 키가 딕셔너리에 추가된 순서 저장
 * 2.3 array: 연속된 고정 타입 자료
 * 2.4 heapq: 힙 정렬 알고리즘
 * 2.5 bisect: 리스트를 정렬된 상태로 유지
