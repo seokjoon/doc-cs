@@ -4,7 +4,7 @@
 ### PCG의 적용
 ### 의사 난수
 ### 무작위 대 의사 난수
-* PCG에서의 PRN
+* PCG(procedural content generation)에서의 PRN(pseudo random numbers)
 ### 도전
 
 
