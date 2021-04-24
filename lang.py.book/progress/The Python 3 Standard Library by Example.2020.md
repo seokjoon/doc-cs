@@ -25,9 +25,22 @@
     * .defaultdict(0): 없는 키 기본값 반환
     * .deque(): 양방향 큐, 스레드 세이프, 큐 크기 제한
     * .nametuple(): tuples 에 이름 할당
-    * .OrderedDict: 키가 딕셔너리에 추가된 순서 저장
+    * .OrderedDict: 키가 딕셔너리에 추가된 순서 저장, 재정렬, 
 * 2.3 array: 연속된 고정 타입 자료
+    * fixed-size primitive type
+    * 사용할 타입과 초기 데이터 시퀀스를 인자로 생성
+        * foo = array.array('i', range(3))
+        * int(b, B, i, I), short(h, H), long(l, L, q, Q), float(f, d)
+        * .extend(), foo[2:5], list(enumerate(foo))
+    * 파일
+        * tempfile.NamedTemporaryFile(), .flush()
+        * .tofile(), fromfile(), .read(), .seek()
+    * 바이트 순서 변경
 * 2.4 heapq: 힙 정렬 알고리즘
+    * 생성: .heappush(), .heapify()
+    * 가장 작은 값부터 제거: .heappop()
+    * 변경: .heapreplace()
+    * 최대/최소값: .nlargest(), nsmallest()
 * 2.5 bisect: 리스트를 정렬된 상태로 유지
 * 2.6 queue: 스레드 안전한 FIFO 구현
 * 2.7 struct: 바이너리 자료 구조
