@@ -42,8 +42,16 @@
     * 변경: .heapreplace()
     * 최대/최소값: .nlargest(), nsmallest()
 * 2.5 bisect: 리스트를 정렬된 상태로 유지
+    * 정렬 유지하며 삽입: .bisect(), .insort(), insort_right(), insort_left()
 * 2.6 queue: 스레드 안전한 FIFO 구현
-* 2.7 struct: 바이너리 자료 구조
+    * FIFO: .Queue(), .put(), .get()
+    * LIFO: .LifoQueue()
+    * 우선순위 선택: .PriorityQueue()
+    * 멀티스레드 활용 예제
+* 2.7 struct: 바이너리 문자열을 파이썬 primitive 로 변환
+    * 패킹, 언패킹: .Struct() .pack(), .unpack()
+    * 인코딩: .encode(), 엔디언
+    * 버퍼: ctypes.*, pack_into(), .unpack_from()
 * 2.8 weakref: 객체에 대한 임시 참조
 * 2.9 copy: 객체 복사
 * 2.10 pprint: 자료 구조를 보기 좋게 출력
