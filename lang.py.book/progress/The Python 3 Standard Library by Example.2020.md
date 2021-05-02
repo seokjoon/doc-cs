@@ -60,10 +60,19 @@
             * 추적할 객체, 가비비 컬렉션시 호출될 callable 객체, callable에 전달할 인자
         * 콜백 비활성: .atexit()
         * 참조가 유지되어 가비지 컬렉션 방지
-
-
+    * 프록시
+        * 원본인지 참조인지 여부 숨겨짐
+        * weakref.proxy(foo)
+    * 객체 캐싱
+        * 약한 참조, 비사용시 가비지 컬렉션: WeakValueDictonary, WeakKeyDictionary
 * 2.9 copy: 객체 복사
+    * 얕은 복사(shallow copy), 깊은 복사
+        * copy.copy(foo)
+        * copy.deepcopy(foo)
+    * 복사 동작 커스터마이징
+        * __copy__(), __deepcopy__(), 깊은 복사 재귀
 * 2.10 pprint: 자료 구조를 보기 좋게 출력
+    * pprint(), pformat(), 
 
 
 ## 3장 알고리즘
