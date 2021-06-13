@@ -77,7 +77,12 @@
 
 ## 3장 알고리즘
 * 3.1 functools: 함수를 다루기 위한 도구
+    * functools.partial(foo, p1, p2)
 * 3.2 itertools: 반복자 함수
+    * chain(): 여러 반복자를 단일 반복자로 결합 반환
+        * chain.from_iterable(): 결합 대상을 미리 알수 없을 경우: ex)함수
+    * zip(): 여러 반복자를 단일 튜플 반복자로 결합 반환: 길이는 첫 반복자가 기준
+        * zip_longest(): 누락값을 None으로 대치
 * 3.3 operator: 내장 연산자에 대한 함수형 인터페이스
 * 3.4 contextlib: 콘텍스트 매니저 유틸리티
 
