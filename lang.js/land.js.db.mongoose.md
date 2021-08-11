@@ -38,16 +38,17 @@
 ### Schemas
 * defining schema
 ```
-const fooSchema = new Schema({
-	foo: String,
-	fee: { type: Date, default: Date.now() },
-	bar: [{ bee: Boolean, boo: Number }],
-	coo: { cuu: String, coo: Number },
+const FooSchema = new Schema({
+    date: { default: Date.now(), type: Date }, 
+    power: [{ enable: Boolean, val: Number }], 
+    role: { title: String, val: Number },
+    title: String,
 })
 ```
 * creating
 	* const Foo = mongoose.model('Foo', FooSchema)
-* 
+* _id
+    * 
 
 
 
