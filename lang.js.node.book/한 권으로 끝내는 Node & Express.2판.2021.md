@@ -1,18 +1,16 @@
 ## 1 익스프레스 소개
 
 ## 2 노드 시작하기
-* 2.5 노드로 만드는 단순한 웹 서버
 
 ## 3 익스프레스로 시간 절약
-* 3.1 스캐폴딩
-* 3.2 메도라크 여행사 웹사이트
 * 3.3 초기 단계
 	* npm init
 	* npm install express
 	* npm install --save-dev nodemon
-* 3.4 마치며
 
 ## 4 모범 사례와 버전 관리
+	* npm install -g express-generator
+	* express --view=hbs express-test-e3
 * 4.1 파일과 디렉터리 구조
 * 4.2 모범 사례
 * 4.3 버전 관리
