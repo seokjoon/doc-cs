@@ -6,7 +6,7 @@
 * 3.3 초기 단계
 	* npm init
 	* npm install express
-	* npm install --save-dev nodemon
+	* DEBUG=express-test-e3:* npm start
 
 ## 4 모범 사례와 버전 관리
 	* npm install -g express-generator
