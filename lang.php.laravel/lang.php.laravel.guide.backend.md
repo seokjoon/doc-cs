@@ -20,10 +20,10 @@
 
 ## Controller, Model, Resource
 * 목록과 항목의 CRUD를 위한 컨트롤러/모델
-    * php artisan make:controller Api/v1/Player/PlayersController --api --model=Models/Player/Player
-    * php artisan make:controller Api/v1/Client/ClientsController --api --model=Models/Client/Client
-    * php artisan make:controller Api/v1/Quest/QuestsController --api --model=Models/Quest/Quest
-    * php artisan make:model Models/Client/ClientPlayer
+    * php artisan make:controller Api/v1/Player/PlayersController --api --model=Player/Player
+    * php artisan make:controller Api/v1/Client/ClientsController --api --model=Client/Client
+    * php artisan make:controller Api/v1/Quest/QuestsController --api --model=Quest/Quest
+    * php artisan make:model Client/ClientPlayer
 * 모델 설정: $fillable, $table, $casts
 * api 응답을 위한 항목 Resource, 목록 Collection
     * php artisan make:resource Player/PlayerResource
@@ -44,10 +44,10 @@
     * php artisan migrate 
         * 제거: php artisan migrate:rollback
 * 샘플 테이터 생성
-    * php artisan make:factory PlayerFactory --model=Models/Player/Player
-    * php artisan make:factory ClientFactory --model=Models/Client/Client
-    * php artisan make:factory QuestFactory --model=Models/Quest/Quest
-    * php artisan make:factory ClientPlayerFactory --model=Models/Client/ClientPlayer
+    * php artisan make:factory PlayerFactory --model=Player/Player
+    * php artisan make:factory ClientFactory --model=Client/Client
+    * php artisan make:factory QuestFactory --model=Quest/Quest
+    * php artisan make:factory ClientPlayerFactory --model=Client/ClientPlayer
     * php artisan make:seeder PlayersTableSeeder
     * php artisan make:seeder ClientsTableSeeder
     * php artisan make:seeder QuestsTableSeeder
@@ -107,7 +107,7 @@
 	* public function handle(SubscCreatedEvent $event)
 		* 내부에 subsc 인스턴스를 포함한 이벤트를 수신
 * 옵서버 생성
-    * php artisan make:observer Subsc/SubscObserver --model=Models/Subsc/Subsc
+    * php artisan make:observer Subsc/SubscObserver --model=Subsc/Subsc
     * app/Observers/Subsc/SubscObserver.php
         * public function created(Subsc $subsc)
             * event(new SubscCreatedEvent($subsc));
@@ -146,7 +146,7 @@
 
 ## Policy
 * https://laravel.kr/docs/6.x/authorization#creating-policies
-* php artisan make:policy Prod/ProdPolicy --model=Models/Prod/Prod
+* php artisan make:policy Prod/ProdPolicy --model=Prod/Prod
 * vi app/Providers/AuthServiceProvider.php
 * 컨트롤러에서 $this->authorize()
 * 인증된 사용자(토큰)에게 유효
