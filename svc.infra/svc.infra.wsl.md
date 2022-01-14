@@ -8,14 +8,11 @@
         * dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
         * dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
     * store 에서 Ubuntu 20.04 설치
+* https://docs.microsoft.com/ko-kr/windows/wsl/wsl2-kernel
+    * https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
     * 재부팅 후 시작버튼 앱 목록에서 Ubuntu 20.04 LTS 실행: 사용자 아이디 비번 설정
     * powershell(관리자)
         * wsl -l -v
-        * wsl --set-default-version 2
-        * wsl --set-version Ubuntu-20.04 2
-* https://docs.microsoft.com/ko-kr/windows/wsl/wsl2-kernel
-    * https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
-    * powershell(관리자)
         * wsl --set-default-version 2
         * wsl --set-version Ubuntu-20.04 2
         * wsl -l -v
