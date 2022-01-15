@@ -41,6 +41,7 @@
 * apt install php-cli php-mbstring php-xml php-mysql php-bcmath php-gd php-zip php-redis mysql-client
 * apt install composer
 * apt install npm
+* 2022/01/15: windows 10이 아닌 windows 11의 경우, wsl2에서 phpstorm의 indexing/scanning이 완료되지 않는 오류 있음
 * Increasing the amount of inotify watchers
     * echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
     * echo 999999 | sudo tee -a /proc/sys/fs/inotify/max_user_watches && echo 999999 | sudo tee -a /proc/sys/fs/inotify/max_queued_events && echo 999999 | sudo tee -a /proc/sys/fs/inotify/max_user_instances && sudo sysctl -p
