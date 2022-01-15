@@ -49,17 +49,17 @@
 
 ## win terminal
 ```
-	"defaultProfile": "{2c4de342-38b7-51cf-b940-2309a097f518}",
-	"initialCols" : 162,
-    "initialRows" : 40,
-    ...
-    {
-        "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
-        "hidden": false,
-        "name": "Ubuntu",
-        "source": "Windows.Terminal.Wsl",
-		"fontFace": "D2Coding",
-		"fontSize": 10,
-		"commandline" : "wsl.exe ~"
-    },
+"defaultProfile": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+"initialCols" : 162,
+"initialRows" : 40,
+ ...
+ {
+    "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+    "hidden": false,
+    "name": "Ubuntu",
+    "source": "Windows.Terminal.Wsl",
+    "fontFace": "D2Coding",
+	"fontSize": 10,
+	"commandline" : "wsl.exe ~"
+},
 ```
