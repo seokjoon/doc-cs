@@ -37,9 +37,10 @@
 * i/o 성능, hot reload: 작업 대상(코드)가 wsl filesystem 내부에 있어야 함
 
 ## 웹개발환경 예시
-* apt update
+* apt update && apt install
 * apt install php-cli php-mbstring php-xml php-mysql php-bcmath php-gd php-zip php-redis mysql-client
 * apt install composer
+* apt install npm
 * Increasing the amount of inotify watchers
     * echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
     * echo 999999 | sudo tee -a /proc/sys/fs/inotify/max_user_watches && echo 999999 | sudo tee -a /proc/sys/fs/inotify/max_queued_events && echo 999999 | sudo tee -a /proc/sys/fs/inotify/max_user_instances && sudo sysctl -p
