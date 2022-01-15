@@ -37,11 +37,12 @@
 * i/o 성능, hot reload: 작업 대상(코드)가 wsl filesystem 내부에 있어야 함
 
 ## 웹개발환경 예시
-* www, db, etc: docker 
-* composer, git, npm, php: wsl
-    * Increasing the amount of inotify watchers
-        * echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-        * echo 999999 | sudo tee -a /proc/sys/fs/inotify/max_user_watches && echo 999999 | sudo tee -a /proc/sys/fs/inotify/max_queued_events && echo 999999 | sudo tee -a /proc/sys/fs/inotify/max_user_instances && sudo sysctl -p
+* apt update
+* apt install php-cli php-mbstring php-xml php-mysql php-bcmath php-gd php-zip php-redis mysql-client
+* apt install composer
+* Increasing the amount of inotify watchers
+    * echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+    * echo 999999 | sudo tee -a /proc/sys/fs/inotify/max_user_watches && echo 999999 | sudo tee -a /proc/sys/fs/inotify/max_queued_events && echo 999999 | sudo tee -a /proc/sys/fs/inotify/max_user_instances && sudo sysctl -p
 
 ## phpstorm
 * encoding: utf-8
@@ -51,6 +52,7 @@
 	"defaultProfile": "{2c4de342-38b7-51cf-b940-2309a097f518}",
 	"initialCols" : 162,
     "initialRows" : 40,
+    ...
     {
         "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
         "hidden": false,
