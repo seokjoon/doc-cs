@@ -25,9 +25,9 @@
     * php artisan make:controller Api/v1/Quest/QuestsController --api --model=Quest/Quest
     * php artisan make:model Client/ClientPlayer
 * 모델 설정: $fillable, $table, $casts
-* api 응답을 위한 항목 Resource, 목록 Collection
+* api 응답을 위한 항목 Resource, 목록 ListResource
     * php artisan make:resource Player/PlayerResource
-    * php artisan make:resource Client/ClientCollection 
+    * php artisan make:resource Client/ClientListResource 
 * 메소드 구현: index(), show(), store(), update(), destroy()
     * rest get, post, put, delete
 * 참고
@@ -44,10 +44,11 @@
     * php artisan migrate 
         * 제거: php artisan migrate:rollback
 * 샘플 테이터 생성
-    * php artisan make:factory PlayerFactory --model=Player/Player
-    * php artisan make:factory ClientFactory --model=Client/Client
-    * php artisan make:factory QuestFactory --model=Quest/Quest
-    * php artisan make:factory ClientPlayerFactory --model=Client/ClientPlayer
+    * php artisan make:factory Player/PlayerFactory --model=Player/Player
+    * php artisan make:factory Client/ClientFactory --model=Client/Client
+    * php artisan make:factory Quest/QuestFactory --model=Quest/Quest
+    * php artisan make:factory Client/ClientPlayerFactory --model=Client/ClientPlayer
+    * 팩토리 파일의 model 속성과 definition 메소드 구현
     * php artisan make:seeder PlayersTableSeeder
     * php artisan make:seeder ClientsTableSeeder
     * php artisan make:seeder QuestsTableSeeder
