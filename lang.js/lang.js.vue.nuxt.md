@@ -14,3 +14,7 @@
 * asyncData()
 * fetch()
 * store
+
+
+##
+* https://github.com/seokjoon/vue-test-nuxt1
