@@ -5,12 +5,20 @@
 
 
 ## getting started
+* connecting to a db
+* closing the connection
+* logging
 
 
 
 ## core concepts
 
 ### model basics
+* define
+* init: extending model
+	* Foo.create({})
+* table name
+* model sync
 
 ### model instances
 
