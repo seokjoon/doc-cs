@@ -18,7 +18,10 @@
 * init: extending model
 	* Foo.create({})
 * table name
-* model sync
+* model sync, all models at once
+* dropping table, to drop all tables
+* timestamp
+* data type
 
 ### model instances
 
