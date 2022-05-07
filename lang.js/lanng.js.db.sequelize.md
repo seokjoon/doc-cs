@@ -21,19 +21,37 @@
 * model sync, all models at once
 * dropping table, to drop all tables
 * timestamp
-* data type
+* data type: https://sequelize.org/docs/v6/core-concepts/model-basics/#data-types
+* column: https://sequelize.org/docs/v6/core-concepts/model-basics/#column-options
 
 ### model instances: https://sequelize.org/docs/v6/core-concepts/model-instances/
 * create
 	* foo = Foo.build({}); foo.save()
-	* foo = await Foo.create({})
+	* foo = await Foo.create()
 * update
 	* await foo.update({})
 * delete
 	* await foo.destroy()
-* foo.reload()
+* reload()
+* increment({'foo', { by: 2 }})
 
 ### model querying - basics
+* insert
+	* await Foo.create(reqs, { fields: [] })
+* select
+	* await Foo.findAll()
+	* Foo.findAll({ attributes: ['bar'] })
+	* Foo.findAll({ attributes: { exclude: ['bar'] } })
+* where: https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#applying-where-clauses
+	* Foo.findAll({ where: { bar: 1 } })
+	* Foo.findAll({ where: { bar: [Op.gte]: 1 } })
+* sequelize.fn(), sequelize.col()
+* update query
+	* await Foo.update({ bar: 'bar' }, { where: { bar: null } })
+* delete query
+	* await Info.destroy({ where: { id: ctx.params.id } })
+* 
+
 
 ### model querying - finders
 
