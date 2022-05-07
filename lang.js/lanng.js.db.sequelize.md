@@ -13,7 +13,7 @@
 
 ## core concepts
 
-### model basics
+### model basics: https://sequelize.org/docs/v6/core-concepts/model-basics/
 * define
 * init: extending model
 	* Foo.create({})
@@ -23,7 +23,15 @@
 * timestamp
 * data type
 
-### model instances
+### model instances: https://sequelize.org/docs/v6/core-concepts/model-instances/
+* create
+	* foo = Foo.build({}); foo.save()
+	* foo = await Foo.create({})
+* update
+	* await foo.update({})
+* delete
+	* await foo.destroy()
+* foo.reload()
 
 ### model querying - basics
 
