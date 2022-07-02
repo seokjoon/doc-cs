@@ -16,7 +16,7 @@
 * v-if 우선순위가 v-for 에 우선
 
 
-# https://v3.ko.vuejs.org/
+# https://v3.ko.vuejs.org/guide
 
 
 ##
