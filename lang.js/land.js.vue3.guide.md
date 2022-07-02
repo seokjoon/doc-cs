@@ -19,12 +19,6 @@
 # https://v3.ko.vuejs.org/
 
 
-## 설치
-* npm install vue@next
-* npm install -g @vue/cli
-* vue upgrade --next
-
-
 ##
 * computed
 	* getter, setter
@@ -41,17 +35,18 @@
 			* .lazy: input 이벤트 대신 change 이벤트 이후 동기화
 			* .number: 숫자 형변환
 			* .trim: 앞뒤 공백 제거
-* 컴포넌트
-	* 동적 컴포넌트
-		* <component :is="foo" />
-			* 이미 등록된 컴포넌트 이름
-	* 다중 v-model 바인딩
-		* <foo v-model:bar="bar" v-model:bee="bee" />
-	* provide, inject
-	* 동적 & 비동기 컴포넌트
-		* 캐시, 렌더링되지 않은 경우에도 상태 유지
-			* <keep-alive><component :is="foo" /></keep-alive>
-		* 비동기
-			* import { defineAsyncComponent } from 'vue'
-			* const foo = defineAsyncComponent(() => import('./bar.vue'))
-		* suspense
+
+## 컴포넌트
+* 동적 컴포넌트
+	* <component :is="foo" />
+		* 이미 등록된 컴포넌트 이름
+* 다중 v-model 바인딩
+	* <foo v-model:bar="bar" v-model:bee="bee" />
+* provide, inject
+* 동적 & 비동기 컴포넌트
+	* 캐시, 렌더링되지 않은 경우에도 상태 유지
+		* <keep-alive><component :is="foo" /></keep-alive>
+	* 비동기
+		* import { defineAsyncComponent } from 'vue'
+		* const foo = defineAsyncComponent(() => import('./bar.vue'))
+	* suspense
