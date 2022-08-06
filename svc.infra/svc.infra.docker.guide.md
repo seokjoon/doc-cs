@@ -17,3 +17,8 @@
 	* docker run -d --restart unless-stopped --name mysql57 -v /d1/db/mysql57/data:/var/lib/mysql -v /d1/db/mysql57/log:/var/log/mysql -v /etc/localtime:/etc/localtime:ro -p 3306:3306 mysql:5.7 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 * www80
 	* docker run -d --restart unless-stopped --name www80 -v /d1/app/www/80:/var/www -v /d1/app/www/80/log:/var/log/nginx -v /etc/localtime:/etc/localtime:ro --link mysql57:mysql57 --link redis:redis -p 80:80 seokjoon/all:ec11.1
+
+
+## mysql 8
+* ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'PW';
+* ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'PW';
