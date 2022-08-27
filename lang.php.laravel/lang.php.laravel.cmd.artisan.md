@@ -140,6 +140,9 @@
     
 * php artisan queue:table && php artisan migrate
 	* 드라이버 준비(DB)
+
+* php artisan queue:batches-table && php artisan migrate
+	* job 일괄처리
 	
 * 큐 worker 실행: php artisan queue:work
 	* 단일 job 지정: php artisan queue:work --once
