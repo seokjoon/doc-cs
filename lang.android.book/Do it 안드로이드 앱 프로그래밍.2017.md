@@ -1,3 +1,12 @@
+* 04. P 425: 위젯과 이벤트: 웹뷰
+* 07. P 536: 스레드와 애니메이션: 핸들러, 스레드, looper(핸들러가 처리하는 메시지 큐), asyncTask
+* 08. P 585: 네트워킹: 소켓, http
+* 09.  P 613: 데이터베이스
+* 11.  P 668: 위치기반 서비스와 앱 위젯
+* 12.  P 702: 메시징과 소셜 네트워크 서비스
+
+---
+
 # 첫째 마당: Hello! 안드로이드
 
 ## 03 첫 번째 앱 만들기
@@ -108,7 +117,33 @@
 * 화면에 메뉴 기능 넣기
 * 액션바 좀 더 살펴보기
 * 탭으로 보여주기
-* 웹브라우저 사용하기
+* 웹브라우저 사용하기: P 425
+ - <WebView />, WebView
+ - <uses-permission andoird:name="android.permission.INTERNET" />
+ - WebSettings, getSettings(), setJavaScriptEnabled()
+ - loadUrl()
+```
+public class FooActivity extends ... {
+	private WebView webView
+	...
+	public void onCreate(Bundle icicle) {
+		webView = (WebView) findView...
+		WebSettings webSettings = webView.getSettings()
+		webSettings.setJavaScriptEnabled(true)
+		webView.setWebChromeClient(new WebBrowserClient())
+		webView.addJavascriptInterface(new JavaScriptMethods(), 'foo')
+		webView.loadUrl('foo')
+		final class JavaScriptMethods {
+			JavascriptMethods() {}
+			...
+		}
+		final class WebBrowserClient extends WebChromeClient {
+			...
+		}
+	}
+}
+```
+
 * 키패드 설정하기
 
 ## 05 선택 위젯의 사용과 커스텀뷰 만들기
@@ -139,6 +174,7 @@
 * 일정 시간 후에 실행하기
 * 스레드로 메시지 전송하기
 * AsyncTask 사용하기
+ - doInBackground, onPreExecute, onProgressUpdate, onPostExecute
 * 스레드로 애니메이션 만들기
 * 트윈 애니메이션
 * 위치 이동 액션
