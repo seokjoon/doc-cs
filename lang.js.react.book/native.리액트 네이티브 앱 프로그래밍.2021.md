@@ -14,12 +14,18 @@
 		* pod deintegrate
 * 02-2 JSX 구문 탐구하기
 * 02-3 컴포넌트와 속성 이해하기
-	* npm install faker
+	* faker
+	* type
 * 02-4 컴포넌트의 이벤트 속성 이해하기
+	* Alert
+	* TextInput
+	* onBlur, onChangeText, onEndEditing, onFocus, onPress,
 
 
 ## 03 컴포넌트 스타일링
 * 03-1 style 속성과 StyleSheet API 이해하기
+	* StyleSheet API
+	
 * 03-2 View 컴포넌트와 CSS 박스 모델
 * 03-3 자원과 아이콘 사용하기
 * 03-4 컴포넌트 배치 관련 스타일 속성 탐구하기
