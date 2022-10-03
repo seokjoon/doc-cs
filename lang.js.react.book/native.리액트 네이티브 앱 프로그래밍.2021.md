@@ -25,11 +25,26 @@
 ## 03 컴포넌트 스타일링
 * 03-1 style 속성과 StyleSheet API 이해하기
 	* StyleSheet API
-	
+		* 캐시됨, 인라인 스타일은 속도 지연
+	* react-native-paper
+	* ~~react-native-vector-icons~~
+	* color
 * 03-2 View 컴포넌트와 CSS 박스 모델
+	* Platform.OS
+	* Dimensions.get('window')
+	* flex: 1: 부모와 동일한 크기
+	* margin, padding
+	* border
+	* SafeArea
+	* Platform.select({})
 * 03-3 자원과 아이콘 사용하기
+	* Image, ImageBackground
+	* textAlign
+	* flexDirection, justiryContent, alignItems, flexWrap, overflow
 * 03-4 컴포넌트 배치 관련 스타일 속성 탐구하기
 * 03-5 재사용할 수 있는 컴포넌트 만들기
+	* moment, moment-with-locales-es6
+	* FlatList
 
 
 ## 04 함수 컴포넌트와 리액트 훅
