@@ -49,9 +49,13 @@
 		* props, children, FC, ReactNode
 		* 타입스크립트 교집합 타입 구문
 		* ComponentProps
+	* <Text>
+		* numberOfLines, ellipsizeMode: head, middle, tail, clip
+		* textDecorationLine: underline, textDecorationColor
 
 ## 04 함수 컴포넌트와 리액트 훅
 * 04-1 리액트 훅 맛보기
+	* 비동기 함수는 콜백 함수로 사용 불가
 * 04-2 useMemo와 useCallback 훅 이해하기
 * 04-3 useState 훅 이해하기
 * 04-4 useEffect와 useLayoutEffect 훅 이해하기
