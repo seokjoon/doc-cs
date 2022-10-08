@@ -45,7 +45,10 @@
 * 03-5 재사용할 수 있는 컴포넌트 만들기
 	* moment, moment-with-locales-es6
 	* FlatList
-
+	* 재사용을 위한 컴포넌트
+		* props, children, FC, ReactNode
+		* 타입스크립트 교집합 타입 구문
+		* ComponentProps
 
 ## 04 함수 컴포넌트와 리액트 훅
 * 04-1 리액트 훅 맛보기
