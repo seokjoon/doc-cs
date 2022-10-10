@@ -55,9 +55,23 @@
 
 ## 04 함수 컴포넌트와 리액트 훅
 * 04-1 리액트 훅 맛보기
-	* 비동기 함수는 콜백 함수로 사용 불가
+	* 동일 리액트 혹을 여러번 호출 가능
+	* 함수 컴포넌트 몸통을 제외한 블럭 {} 에서 혹 설정 불가
+	* 비동기(async) 함수는 콜백 함수로 사용 불가
+	* useEffect(콜백, 의존성목록)
+		* 의존성 목록 중 하나라도 충족되면 콜백 실행
+		* 의존성 목록이 빈 배열일 때 콜백 한번만 실행
+		* 함수 반환 가능: useEffect() => { ... return () => {} }
+	* useState
+		* const [valCurrent, setFunc] = useState(valInit)
+		* setFunc = (valNew): void
 * 04-2 useMemo와 useCallback 훅 이해하기
+	* useMemo: 생성한 데이터를 캐시에 저장
+		* const outs = useMemo(() => ([1,2].map(v => v)), [])
+	* useCallback: 생성한 콜백을 캐시에 저장
+		* const cb = useCallback(() => {}, [])
 * 04-3 useState 훅 이해하기
+	* const [val, setVal] = useState(valInit)
 * 04-4 useEffect와 useLayoutEffect 훅 이해하기
 * 04-5 커스텀 훅 이해하기
 
