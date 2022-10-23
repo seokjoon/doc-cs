@@ -31,6 +31,8 @@
 ## build: device: ios
 * https://dev-yakuza.github.io/ko/react-native/ios-test-on-device/
 * https://dev-yakuza.github.io/ko/react-native/ios-running-on-device/
+* For list available AVDs
+    * ~/Library/Android/sdk/tools/emulator -list-avds
 
 
 ## build: release: device: android
