@@ -91,6 +91,7 @@
 	
 * php artisan make:seeder UsersTableSeeder
 	* seeder 생성
+	* php artisan make:seeder Foo/FoosTableSeeder
 	
 * php artisan make:test UserTest
 * php artisan make:test UserTest --unit
@@ -99,10 +100,12 @@
 * php artisan migrate
     * 마이그레이션
    	* php artisan migrate --force
+	* php artisan migrate --path=database/migrations/foo
 * php artisan make:migration create_users_table
 	* 마이그레이션 파일 생성
 	* php artisan make:migration create_users_table --create=users
 	* php artisan make:migration add_votes_to_users_table --table=users
+	* php artisan make:migration --path=database/migrations/foo create_foos_table --create=foos
 * php artisan migrate:fresh
 	* 모든 테이블&마이그레이션 drop
 	* php artisan migrate:fresh --seed
