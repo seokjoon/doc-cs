@@ -29,6 +29,8 @@
         * brew install cocoapods && cd ios && pod install
 * npx react-native run-ios, npx react-native run-android
 * npm start
+* npm start -- --reset-cache
+    * react-native-dotenv 의 .env 변경시
 
 
 ## npm install
