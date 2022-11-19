@@ -73,7 +73,11 @@
 * 04-3 useState 훅 이해하기
 	* const [val, setVal] = useState(valInit)
 * 04-4 useEffect와 useLayoutEffect 훅 이해하기
+	* useLayoutEffect: 동기
+	* useEffect: 비동기, 가급적 useEffect 권고
+	* ActivityIndicator: 화면 기다림 UI
 * 04-5 커스텀 훅 이해하기
+	* BottomNavigation
 
 
 ## 05 콘텍스트와 ref 속성
