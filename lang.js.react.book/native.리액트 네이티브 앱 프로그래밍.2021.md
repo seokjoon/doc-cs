@@ -95,7 +95,16 @@
 
 ## 07 리액트 내비게이션
 * 07-1 리액트 내비게이션 패키지 이해하기
+	* npm install @react-navigation/native 
+	* npm install react-native-screens react-native-safe-area-context
+	* npm install @react-navigation/stack @react-navigation/bottom-tabs @react-navigation/drawer
+	* npm install react-native-reanimated react-native-gesture-handler
+	* cd ios && pod-install
+	* <NavigationContainer>
 * 07-2 스택 내비게이션 이해하기
+	* <Stack.Nvigator>, <Stack.Screen>
+	* useRoute, useNavigation
+	* useIsFocused, useFocusEffect
 * 07-3 탭 내비게이션 이해하기
 * 07-4 드로어 내비게이션 이해하기
 
