@@ -15,6 +15,11 @@
 * 모든 (전역) 패키지 삭제: ``` pip freeze > all.txt && pip uninstall -r all.txt -y ```
 * 우분투에서는 다른 패키지 설치 위해 wheel 설치 필요할 수 있음: ``` pip install wheel ```
 
+## fastapi
+* pip install fastapi
+* pip install "uvicorn[standard]"
+* uvicorn main:app --reload --host 0.0.0.0
+
 ## django 설치
 * 가상환경 내부에서 아래 진행 후 127.0.0.1:8000 에서 확인
 	* 장고 패키지 설치: ``` pip install django ```
