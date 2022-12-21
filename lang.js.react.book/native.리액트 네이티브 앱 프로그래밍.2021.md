@@ -106,6 +106,7 @@
 	* useRoute, useNavigation
 	* useIsFocused, useFocusEffect
 * 07-3 탭 내비게이션 이해하기
+	* <Tab.Navigator>, <Tab.Screen>
 * 07-4 드로어 내비게이션 이해하기
 
 
