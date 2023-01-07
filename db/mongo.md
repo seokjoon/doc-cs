@@ -42,8 +42,10 @@
 
 ## index
 * db.foo.find().explain('executionStats')
-* 인덱스 생성: db.foo.createIndex({foo:1})
-	* 오름차순 1, 내림차순 -1
+* 인덱스 생성
+	* db.foo.createIndex({foo:1})
+		* 오름차순 1, 내림차순 -1
+	* db.foo.createIndex({foo: -1}, {unique: true})
 	* db.foo.getIndexes()
 
 ## 관리
@@ -53,5 +55,14 @@
 * 탭으로 모든 명령의 힌트/자동완성 가능
 
 
-
-
+## 관계
+* 조인을 지원하지 않음: 비정규화
+* 일대다, 다대다
+    * cat_id: ObjectId('111')
+    * cat_ids: [ ObjectId('111'), ObjectId('222') ]
+* 포함: 다대다: $in
+	* prod = db.prod.findOne()
+	* db.cats.find({_id: {$in: prod['cat_ids']}})
+* 일치: 일대다
+	* user = db.user.findOne({_id: pay['user_id']})
+	* db.pay.find({user_id: user['_id']})
