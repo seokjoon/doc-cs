@@ -171,7 +171,31 @@
 		* 셀렉터에 조건 추가가 효율적: foo.find({ date: { $gt: date } }).limit(10)
 
 ## 집계
-* 			
+* 집계 프레임워크
+	* 집계 파이프라인: 단계별 작업
+		* $project: 출력 도큐먼트에 배치할 필드 지정
+		* $match: 처리될 도큐먼트 선택, find() 와 유사
+		* $limit: 다음 단계에 전달될 도큐먼트 수 제한
+		* $skip: 지정된 수 도큐먼트 건너뜀
+		* $unwind: 배열을 확장하여 각 배열 항목당 하나의 출력 도큐먼트 생성
+		* $group: 지정된 키로 도큐먼트 그룹화
+		* $sort: 도큐먼트 정렬
+		* $geoNear: 지리 공간위치 근처의 도큐먼트 선택
+		* $out: 파이프라인 결과를 컬렉션에 씀
+		* $redact: 특정 데이터에 대한 접근 제어
+	* foo.aggregate([ {$match: ...}, {$group: ...}, {$sort: ...} ])
+	* sql 비교
+		* select: $project, $group($sum, $min, $avg, ...)
+		* from: foo.aggregate(...)
+		* join: $unwind
+		* where: $match
+		* group by: $group
+		* having: $match
+* foo.aggregate([{$group: { _id: '$foo', count: { $sum: 1 } }}])
+	* foo 키별 값의 개수를 그룹화
+	* 입력 도큐먼트 필드 앞에 $ 추가
+
+	
 
 
 
