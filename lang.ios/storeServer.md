@@ -1,4 +1,7 @@
 ## 앱스토어 서버 api
+* sendbox
+	* https://developer.apple.com/documentation/appstoreserverapi
+	* 
 
 
 
