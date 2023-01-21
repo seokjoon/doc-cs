@@ -379,16 +379,65 @@
 		* foo.createIndex({ fee: 1 }, { unique: true })
 		* foo.createIndex({ fee: 1 }, { unique: true, dropDups: true })
 			* 이미 존재하는 중복된 키값을 가진 도큐먼트 삭제
-	* 희소 인덱스: dense
+	* 희소 인덱스
+		* 밀집(dense, 임의 도큐먼트에 해당 키가 없어도 인덱스에 null 로 존재)
+			* 삽입 연산 실패 가능성
+		* 희소(spare) 인덱스: 인덱스의 키가 null 이 아닌 값을 가지고 있는 도큐먼트만
+			* foo.createIndex({..}, { unique: true, spare: true })
+		* partial 인덱스: 희소 인덱스의 슈퍼셋(최근 버전)
+	* 해시(hashed) 인덱스
+		* 인덱스 엔티리의 지역성 변경, 샤드된 컬렉션에서 유용
+	* 지리공간적(geospatoal) 인덱스
+* 인덱스 관리
+	* 생성(복합인덱스)
+		* foo.createIndex({ foo: 1, bar: -1 })
+	* 조회
+		* foo.getIndexes()
+	* 삭제 
+		* foo.dropIndex('foo_1')
+	* 인덱스 생성
+		* 백그라운드 인덱싱: foo.createIndex({..}, { background: true })
+		* 오프라인 인덱싱
+	* 백업
+		* mongodump 나 mongorestore 는 컬렉션과 인덱스의 정의만 보관, 재생성
+		* 백업에 인덱스 포함하려면 파일 백업
+	* 파편화
+		* foo.reIndex()
+			* 재구축, 진행중 쓰기 잠금
+* 쿼리 최적화
+	* 프로파일러 
+		* 활성화
+			* use foo; db.setProfilingLevel(2)
+				* 레벨 2: 모두 기록, 레벨 1: 100밀리 이상만 기록
+		* system.profile 에 저장(capped 컬렉션)
+			* db.system.profile.find().sort({ $natural: -1 }).limit(5).pretty()
+	* explain()
+		* foo.find({}).explain()
+		* foo.find({}).explain('executionStats')
+
+
+## 텍스트 검색
+* 단지 패턴 매칭만은 아님
+	* 대소문자 구분하지 않음
+	* 전체 단어 일치 지정: ex) java 와 javascript 구분
+	* stemming: 검색 단어가 줄기(stem) 또는 뿌리(root) 단어로 변환됨
+	* facets: 그룹화, 동의어 라이브러리
+	* 형태소 분석, 불용어
+* mdb 지원
+	* 형태소 분석, 불용어 삭제
+	* 필드 이름 가중치
+	* 다국어 지원
+	* 구문/단어 일치, 구/단어 결과 제외
+* 지원 방법: 인덱스 정의, 텍스트 검색 사용
+	* foo.createIndex({ title: 'text', desc: 'text', tags: 'text' })
+	* foo.find(
+		{ $text: { $search: 'fee' } }, 
+		{ _id: 0, title: 1, desc: 1, tags: 1 }
+	)
 
 
 
 
-
-
-
-
-
-
-
-
+##
+	* mongorestore -d foo -c values path
+	* mongoimport --db foo --collection fee --type json --drop ---file fuu.json
