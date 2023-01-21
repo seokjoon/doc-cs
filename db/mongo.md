@@ -6,10 +6,12 @@
 	* foo = db['foo']
 	* foo = db.foo
 
+
 ### insert
 * foo.insertOne({key:'val'})
 	* insertMany(), insertOne()
 	* for(i=0; i<5; i++) foo.insertOne({foo:i})
+
 
 ## update
 * foo.updateMany({content: 'bar'}, {$set: {state: 100}})
@@ -24,10 +26,12 @@
 		* 파라미터 3: false: upsert(update & insert, 조건 도큐먼트 없을 경우 insert) 허용 여부
 		* 파라미터 4: true: 다중 업데이트 여부
 
+
 ## delete
 * foo.deleteOne({foo: 'foo'})
 	* deleteMany(0), findOneAndDelete()
 * foo.deleteMany({}): 모든 도큐먼트 삭제
+
 
 ## select
 * foo.count()
@@ -41,6 +45,7 @@
 * 조건
 	* $ne
 
+
 ## index
 * foo.find().explain('executionStats')
 * 인덱스 생성
@@ -50,11 +55,13 @@
 	* foo.getIndexes()
 * foo.dropIndex('foo_1')
 
+
 ## 관리
 * show dbs
 * show collections
 * db.stats(), foo.stats()
 * 탭으로 모든 명령의 힌트/자동완성 가능
+
 
 ## 관계
 * 조인을 지원하지 않음
@@ -69,6 +76,7 @@
 	* user = db.user.findOne({_id: pay['user_id']})
 	* db.pay.find({user_id: user['_id']})
 * 도뮤먼트 내 배열의 크기 질의 불가: 개수를 필드로 저장
+
 
 ## 데이터베이스
 * /data/db
@@ -92,6 +100,7 @@
 	* 정수값 저장을 위해서는 NumberLong() 이나 NumberInt() 사용
 		* db.numbers.save({ n: NumberLong(5) })
 	* decimal 미지원
+
 
 ## 쿼리
 * findOne 은 도큐먼트 리턴, find 는 커서 객체 리턴
@@ -170,23 +179,31 @@
 	* 대용량시 $skip 비효율: foo.find({}).skip(500000).limit(10)
 		* 셀렉터에 조건 추가가 효율적: foo.find({ date: { $gt: date } }).limit(10)
 
+
 ## 집계
 * 집계 프레임워크
 	* 집계 파이프라인: 단계별 작업
 		* $project: 출력 도큐먼트에 배치할 필드 지정
+			* foo.aggregate([ {$match: {}}, {$project: {fee:1, bee:1}} ])
 		* $match: 처리될 도큐먼트 선택, find() 와 유사
 		* $limit: 다음 단계에 전달될 도큐먼트 수 제한
 		* $skip: 지정된 수 도큐먼트 건너뜀
 		* $unwind: 배열을 확장하여 각 배열 항목당 하나의 출력 도큐먼트 생성
 		* $group: 지정된 키로 도큐먼트 그룹화
+			* $addToSet: 그룹에 고유 값 배열 생성
+			* $first, $last: 그룹의 첫번째/마지막 값, $sort를 선행해야 의미있음
+			* $mas, $min: 그룹의 필드 최대/최소값
+			* $avg: 그룹 필드 평균값
+			* $push: 그룹의 모든 값의 배열 반환, 중복값 제거하지 않음
+			* $sum: 그룹의 모든 값의 합계
 		* $sort: 도큐먼트 정렬
 		* $geoNear: 지리 공간위치 근처의 도큐먼트 선택
-		* $out: 파이프라인 결과를 컬렉션에 씀
+		* $out: 파이프라인 결과를 컬렉션에 씀, materialiezed view 와 유사
 		* $redact: 특정 데이터에 대한 접근 제어
-	* foo.aggregate([ {$match: ...}, {$group: ...}, {$sort: ...} ])
+	* foo.aggregate([ {$match: ..}, {$group: ..}, {$sort: ..} ])
 	* sql 비교
-		* select: $project, $group($sum, $min, $avg, ...)
-		* from: foo.aggregate(...)
+		* select: $project, $group($sum, $min, $avg, ..)
+		* from: foo.aggregate(..)
 		* join: $unwind
 		* where: $match
 		* group by: $group
@@ -194,8 +211,183 @@
 * foo.aggregate([{$group: { _id: '$foo', count: { $sum: 1 } }}])
 	* foo 키별 값의 개수를 그룹화
 	* 입력 도큐먼트 필드 앞에 $ 추가
+	* findOne 처럼 단일 결과가 아닌 목록 반환
+		* foo.aggregate().next(): 결과의 첫번째 도큐먼트
+	* $group 앞에 $match 위치: 질의 대상 도큐먼트가 대폭 감소
+	* 평균 리뷰: 158p
+		* foo.aggretate([ { $match: { .. } }, { $group: { .., average: { $avg: .., count: { $sum: .. } } }} ]).next()
+			* 단일
+	* 등급별 리뷰
+		* foo.aggregate([ { $match: { .. } }, { $group: { .., count: { $sum: .. } } } ]).toArray()
+			* 배열
+	* join 과 유사한 옵션: 161p
+		* forEach 의사 조인
+		* foo.aggregate([{$group: {..}}]).forEach(function(val) { fee.findOne(); ..; bar.insert(val) })
+			* findOne 과 insert 를 사용하는 pseudo-joing 은 느려질 수 있음 
+	* $out, $project
+		* $out: 파이프라인 출력을 자동으로 컬렉션에 저장
+			* foo.aggregate([ {$group: {}, { $out: 'bar' }} ])
+				* 결과 컬렉션을 생성하거나 대체
+		$project: 다음 단계로 전달할 필드 필터링
+	* $unwind
+		* 배열을 확장하여 모든 입력 도큐먼트 배열 항목에 대해 하나의 출력 도큐먼트 생성
+		* foo.aggregate([ {$project: {}}, {$unwind: ..}, {$group: {..}}, {$out: ..} ])
+	* 연도별, 월별 판매 요약: 165p
+		* foo.aggregate([ {$match: {}}, {$group: { _id: { year: { $year: .. }, month: { $month: .. } }, count: { $sum: .. }, totla: { $sum: .. } }}, {$sort: {}} ])
+	* 맨해튼 최고 고객 찾기: 166p
+		* $match: 검색어 조건검색
+		* $group: 고객별 주문합계
+		* $match: 주문합계 조건검색 
+		* $sort: 금액으로 정렬
+		* foo.aggregate([ {$match: ..}, {$group: ..}, {$match: ..}, {$sort: ..}, {$out: ..} ])
+* 문자열 함수
+	* $concat: 두개 이상의 문자열을 단일 문자열로 연결
+	* $strcasecmp: 대소문자 구분하지 않는 비교, 숫자 반환
+	* $substr: 문자열의 부분문자열 생성
+	* $toLower, $toUpper: 소/대문자 변환
+* 산술함수
+	* $add, $divide, $mod, $multiply, $subtract
+* 날짜/시간함수
+	* $dayOfYear, $dayOfMonth, $dayOfWeek
+	* $year, $month, $week
+	* $hour, $minute, $second, $millisecond
+* 논리함수
+	* $and, $or
+	* $eq, $ne, $not(값의 반대 조건 반환)
+	* $gt, $gte, $lt, $lte
+	* $cmp(비교, 동일하면 0 반환), $cond(조건, if then else), ifNull
+* 집합함수: 178p
+	* $setEquals: 두 집합이 완전히 동일
+	* $setIntersection: 교집합
+	* $setDifference: 차집합(첫 집합 기준)
+	* $setUnion: 합집합
+	* $setIsSubset: 부분집합
+	* $anyElementTrue: 하나라도 true 면 true
+	* $allElementTrue: 모두 true 면 true
+	* $not
+	* $or
+* 기타함수
+	* $meta: 텍스트 검색 관련 정보
+	* $size: 배열 크기
+	* $map: 배열 각 멤버에 expression 적용
+	* let, literal
+* 집계 성능
+	* 인덱스는 $match, $sort 에서만 가능
+	* sharding 사용시 $match, $project 는 개별 샤드에서 실행
+* 집계 옵션
+	* explain, allowDiskUse, cursor
+	* aggregate() 의 두번째 파라미터
+		* foo.aggregate(pipeline, {
+			explain: true, allowDiskUse: true, cursor: { batchSize: n }
+		})
+* 집계 기타
+	* count(), distinct()
+		* foo.distinct('bar')
+	* 맵리듀스
+		* map = function() { ..; emit(foo, { .. }) }
+		* reduce = function(k, v) { ..; return foo }
+		* 유연하지만 집계보다 느림
 
-	
+
+## 업데이트, 원자적 연산, 삭제
+* 업데이트
+	* 항상 업데이트 연산자로 시작
+	* 도큐먼트 전체, 혹은 특정 필드(더 나은 성능)
+	* 대치(도큐먼치 전체)
+		* bar = foo.findOne({ _id: 3 })
+			* bar['bee'] = 123
+			* foo.update({ .. }, bar)
+	* 연산자(특정 필드)
+		* foo.update({ _id: 3 }, { $set: { bar: 123 } })
+	* 컬럼값 증가: foo.update({ .. }, { $inc: { ctr: 1 } })
+	* foo.update({ .. }, { $set: { fee: 12, bee: 34 }, { $inc: { ctr: 1 } } })
+	* 계층: foo.update({ .. },  'fee.fuu': 12, { $set: { 'fee.$.faa': 34 } })
+* 원자적 도큐먼트 프로세싱
+	* 다른 연산이 끼어들 수 없음(대기)
+	* findAndModify
+		* mdb의 모든 업데이트는 원자적이지만 findAndModify 는 도큐먼트를 자동으로 반환
+		* job queue 나 state machine 구축 가능, 트랜잭션
+		* out = foo.findAndModify({ 
+			query: { uid: ObjectId('fee'), state: 10, }, 
+			update: { $set: { state: 20 } } 
+		})
+		* 실패시: nil 반환, InventoryFetchFailure 예외 발생, 롤백
+* foo.update_one({}, { $set: { fee: 12 }, $addToSet: { bee: 34 } })
+* 다중 도큐먼트 업데이트
+	* 다중 업데이트를 명시하지 않으면 selector 와 일치하는 첫번째 도큐먼트만 업데이트
+	* foo.update({}, { $addToSet: { .. } }, { multi: true })
+* 업서트
+	* 도큐먼트가 있으면 업데이트, 없을 경우 새로 추가
+	* foo.update({ .. }, { $addToSet: { .. } }, { upsert: true })
+* 업데이트 연산자
+	* $inc: 증가, 감소
+		* foo.update({ .. }, { $inc: { ct: -1 } })
+		* foo.update({ .. }, { $inc: { ct: 3.45 } })
+	* $set, $unset: 값 설정, 값 삭제
+		* foo.upate({ .. }, { $set: { fee: [1,2,3] } })
+		* foo.upate({ .. }, { $set: { 'fee.fuu': 12 } })
+		* foo.upate({ .. }, { $unset: { fee: 1 } })
+		* foo.upate({ .. }, { $unset: { 'fee.fuu': 1 } })
+		* 배열의 경우 $unset 은 요소를 삭제하지 않고 null 설정, 삭제는 $pop, $pull
+	* $rename: 키 이름 변경
+		* foo.update({ .. }, { $rename: { fee: fuu } })
+		* foo.update({ .. }, { $rename: { 'fee.fuu': 'fee.faa' } })
+	* $setOnInsert: 업데이트가 아닌 삽입시에만 필드 설정
+* 배열 업데이트 연산자
+	* $push: 배열에 단일값 추가
+		* foo.update({..}, { $push: { tags: 'fee' } })
+	* $each: 배열에 다수값 추가
+		* foo.update({..}, { $push: { tags: { $each: [ 'fee', 'fuu' ] } } })
+		* $each 는 $addToSet 과 $push 에서만 사용가능
+	* $slice: 배열 분할
+		* foo.update({..}, { $push: { fee: { $each: [ 2, 3], $slice: -5 } } })
+			* 값을 배열 끝에 추가한 후 처음부터 5개만 남을때까지 요소 제거
+			* $slice 에 양수를 전달하면 배열의 끝에서부터 요소 제거
+	* $sort: 배열 분할 전 정렬
+		* foo.update({..}, { $push: { $each: [..], $slice: -2, $sort: { fee: 1 } } })
+	* $addToSet: 배열에 존재하지 않을 경우에만 값 추가
+		* foo.update({..}, { $addToSet: { tags: 'fee' } })
+		* foo.update({..}, { $addToSet: { tags: { $each: [ 'fee', 'fuu' ] } } })
+			* 다수 값에 대해 수행
+	* $pop: 배열에서 마지막/첫 요소 삭제, 이름과 달리 값을 반환하지 않음
+		* 마지막: foo.update({..}, { $pop: { 'tags': 1 } })
+		* 처음: foo.update({..}, { $pop: { 'tags': -1 } }) 
+	* $bit
+	* $pull: 배열에서 요소 위치 대신 값으로 삭제
+		* foo.update({..}, { $pull: { tags: 'fee' } })
+	* $pullAll: 배열에서 삭제할 값의 목록 지정
+		* foo.update({..}, { $pullAll: { tags: [ 'fee', 'fuu' ] } })
+* 위치 업데이트: $
+	* foo.update({..}, { $set: { 'fee.$.faa': 23 } })
+		* 위치를 알 필요 없이 조건으로 하위 도큐먼트의 속성값 변경
+* 삭제
+	* foo.remove({..})
+	* foo.remove({.., $isolated: true})
+		* 고립되어 수행해서 양보하지 않음(일관성 보장)
+	* foo.remove({.., $isolated: true}, { $set: {..} }, { multi: true })
+
+
+## 인덱싱, 쿼리 최적화
+* 단순/복합 인덱스
+	* 쿼리당 하나의 인덱스: 하나 이상의 필드 질의시(복합키) 그 필드들에 대한 복합 인덱스
+	* 복합 인덱스에서는 키의 순서가 중요
+	* a-b 복합인덱스가 있다면 a 인덱스는 중복(제거 필요), b 인덱스는 중복 아님
+	* 단일키/복합키 인덱스
+	* B-tree
+* 인덱스 타입
+	* 고유 인덱스: unique
+		* foo.createIndex({ fee: 1 }, { unique: true })
+		* foo.createIndex({ fee: 1 }, { unique: true, dropDups: true })
+			* 이미 존재하는 중복된 키값을 가진 도큐먼트 삭제
+	* 희소 인덱스: dense
+
+
+
+
+
+
+
+
 
 
 
