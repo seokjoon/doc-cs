@@ -105,6 +105,7 @@
 ## 쿼리
 * findOne 은 도큐먼트 리턴, find 는 커서 객체 리턴
 	* foo.find().limit(1)
+	* findOne 에 파라미터 없을 경우 무작위 도큐먼트 리턴
 * limit, skip
 	* foo.find().skip(10).limig(10)
 * sort
@@ -434,10 +435,142 @@
 		{ $text: { $search: 'fee' } }, 
 		{ _id: 0, title: 1, desc: 1, tags: 1 }
 	)
+		* '_id:0' 표기: 출력에 _id 제외
+* 텍스트 검색 인덱스 정의
+	* 각 필드의 가중치 정의
+	* foo.createIndex(
+		{ title: 'text', desc: 'text' }, 
+		{ weights: { title: 10, desc: 2 } }
+	)
+	* 텍스트 인덱스 크기: 컬렉션보다 큼, 대부분의 텍스트를 복제
+	* 인덱스 이름의 길이: 필드명의 연결, 인덱스 최대 길이 제한(123바이트) 고려하여 사용자 정의 이름 할당 필요
+	* 인덱스 이름을 사용자 정의
+		* foo.createIndex({..}, { .., name: 'foo_text_index' }) 
+	* 와일드카드 필드명: 모든 필드를 문자열로 인덱싱
+		* foo.createIndex({ '$**': 'text', {..} })
+* find 텍스트 검색
+	* 단순: 문자열을 단어로 파싱 => 불용어 제거 => 어간
+	* 정확한 구문 매칭, 단어가 결과에 포함: 큰따옴표 내부의 단어/구문
+		* foo.find({ $text: { $search: 'foo "fee" fuu' } }, {..})
+	* 특정 단어/구 포함한 도큐먼트를 제외: 단어/구 앞에 빼기 기호
+		* foo.find({ $text: { $search: 'foo -fee fuu' } }, {..})
+		* foo.find({ $text: { $search: 'foo -"fee fuu"' } }, {..})
+	* 제약
+		* 다중 키 복합 인덱스, 지리공간 복합 키 인덱스
+		* $text 쿼리 표현식이 쿼리에 포함되면 hint() 사용불가
+		* 정렬은 텍스트 필드 인덱스에서 정렬 순서를 가져올 수 없음
+* 텍스트 검색 스코어
+	* 도큐먼트의 관련성 평가
+		* 단어가 도큐먼트에 표시된 횟수 기반
+		* 인덱스 생성시 필드에 할당된 가중치도 사용
+	* fs.find(
+		{$text: {$search: 'test'}}, 
+		{_id:0, title:1, desc:1, score: {$meta: 'textScore'}}
+	)
+	* 가중치 기본값 1, 스코어에 영향 미침
+	* 가중치 정렬
+		* fs.find({..}, {..}).sort({ score: { $meta: 'textScore' } })
+* 집계 프레임워크 텍스트 탐색
+	* foo.aggregate([
+		{ $match: { $text: { $search: 'foo in fee' } } },
+		{ $project: { title: 1, score: { $meta: 'textScore' } } },
+		{ $sort: { score: -1 } },
+	])
+	* sort score -1 내림차순, 1 오름차순(낮은 스코어)
+	* 제약
+		* $text 포함한 $match 연산자는 파이프라인 첫 연산자, $text 함수는 파이프라인에 한번만 가능
+		* $text 는 $or 혹은 $not 과 함께 사용 불가
+	* 없는 필드 보정: 325p
+		* foo.aggregate([
+			{ $match: .. },
+			{ $project: { .., multiplier: { $cond [ 'descLong', 1, 3 ] } } },
+			{ $project: { .., multiplier: 1, scoreAdj: { $multiplier: [ '$score', '$multiplier' ] } } },
+			{ $sort: ..}
+		])
+* 텍스트 검색 언어
+	* 언어 설정 시점: 인덱스, 도큐먼트 삽입시, find() 혹은 aggregate() 텍스트 검색시
+	* mdb 는 형태소 분석 등에서 전문 검색 엔진보다 간단하지만 제한적
+	* 인덱스 언어 지정
+		* foo.crateIndex({..}, {.., default_language: 'french'})
+	* 도큐먼트 언어 지정
+		* foo.insert({.., language: 'french'})
+	* 검색 언어 지정
+		* foo.find({ $text: { $search: 'fee', $language: 'french' } })
+	* none 지정시 정확한 단어 일치만 포함
+
+
+## 관리
+* 진단
+	* mongostat: 시스템
+	* mongotop: 연산
+	* mongosniff: 네트워크 트래픽 덤프
+	* bsondump: bson 파일을 json 표시
+* 백업 방식
+	* mongodump, mongorestore
+		* mongodump -h localhost --port 27017
+		* mongorestore -h localhost --port 27017 dump --drop
+		* mongorestore -d foo -c values path
+	* 데이터 파일 복사
+		* db 잠금 필요
+			* use admin
+			* db.fsyncLock()
+			* db.fsyncUnlock(): 해제 요청일 뿐 즉시 완료되지는 않음
+	* MMS 백업
+* 보안
+	* mongod --bind_ip 127.0.0.1,xxx.xxx.xxx.xxx
+	* 암호화: ssl
+		* mongod --sslMode requireSSL --sslPEMKeyFile foo.pem
+	* 인증
+		* 서비스 인증: 인증서 인증
+		* 사용자 인증
+			* mongod --auth
+			* use admin
+				* db.createUser({ user: 'foo', pwd: 'fee', roles: [{ role: 'userAdminAnyDatabase', db: 'admin' }] })
+				* db.auth('foo', 'fee')
+				* db.logout()
+				* db.createUser({ user: 'bar', pwd: 'bee', roles: [{ role: 'readWrite', db: 'fuu' }] })
+				* db.createUser({ user: 'bar', pwd: 'bee', roles: [{ role: 'read', db: 'fuu' }] })
+			* 사용자 삭제
+				* use fuu
+					* db.dropUser('bar')
+			* revokeRolesFromUser, grantRolesToUser
+		* 로컬 호스트 예외
+			* 첫번째 사용자가 추가되면 인증되지 않은 연결에 권한 없음
+			* --setParameter enableLocalhostAuthBypass = 0
+* 들여오기/내보내기
+	* mongoimport, mongoexport
+		* mongoimport -d foo -c fee --type csv --headerline fee.csv
+		* mongoimport --db foo --collection fee --type json --drop ---file fuu.json
+		* mongoexport -d foo -c fee -o fee.csv
+	* 스크립트
+* 압축/복구
+	* 복구: 데이터를 압축하고 인덱스를 재구축
+		* mongod --repair
+		* use foo
+			* db.runCommand({ repairDatabase: 1 })
+	* 인덱스 재구축
+		* use foo
+			* db.fee.reIndex()
+	* 컬렉션 압축
+		* db.runCommand({ compact: 'fee' })
+		* db.runCommand({ compact: 'fee', force: true })
+
+
+## 설계 패턴
+* 임베드 vs 레퍼런스
+* 일대다, 다대다
+* 트리
+* 작업 큐
+* 동적 속성
+* 트랜잭션
+* 지역성 및 선 계산
+* 안티 패턴
+	* 인덱싱 부주의
+	* motley 타입: 컬렉션 내 동일 키는 모두 같은 타입이어야 함
+	* bucket 컬렉션: 컬렉션은 하나의 개체에 대해서만 사용
+	* 깊게 중첩된 대용량 도큐먼트: 도큐먼트는 크기를 작게, 적은 중첩구조
+	* 사용자당 한 컬렉션
+	* 샤드 불가능한 컬렉션
 
 
 
-
-##
-	* mongorestore -d foo -c values path
-	* mongoimport --db foo --collection fee --type json --drop ---file fuu.json
