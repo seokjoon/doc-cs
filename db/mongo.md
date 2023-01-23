@@ -331,8 +331,8 @@
 		* foo.upate({ .. }, { $unset: { 'fee.fuu': 1 } })
 		* 배열의 경우 $unset 은 요소를 삭제하지 않고 null 설정, 삭제는 $pop, $pull
 	* $rename: 키 이름 변경
-		* foo.update({ .. }, { $rename: { fee: fuu } })
-		* foo.update({ .. }, { $rename: { 'fee.fuu': 'fee.faa' } })
+		* foo.updateMany({ .. }, { $rename: { fee: fuu } })
+		* foo.updateMany({ .. }, { $rename: { 'fee.fuu': 'fee.faa' } })
 	* $setOnInsert: 업데이트가 아닌 삽입시에만 필드 설정
 * 배열 업데이트 연산자
 	* $push: 배열에 단일값 추가
@@ -508,6 +508,7 @@
 * 백업 방식
 	* mongodump, mongorestore
 		* mongodump -h localhost --port 27017
+		* mongodump --db foo --collection fee --out fuu
 		* mongorestore -h localhost --port 27017 dump --drop
 		* mongorestore -d foo -c values path
 	* 데이터 파일 복사
