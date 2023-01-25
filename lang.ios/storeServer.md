@@ -18,8 +18,12 @@
 * {testNotificationToken}: 테스트 알림 토큰
 * 구매 내역: Get Transaction History(거래 내역 가져오기)
 	* /inApps/v1/history/{originalTransactionId}
+	* https://developer.apple.com/documentation/appstoreserverapi/get_transaction_history
+	* 응답: https://developer.apple.com/documentation/appstoreserverapi/historyresponse
+		* signedTransactions: JSON 웹 서명 형식으로 Apple 에서 서명한 고객의 인앱 구매 거래 배열
 * 구독 상태
 	* /inApps/v1/subscriptions/{originalTransactionId}
+	* https://developer.apple.com/documentation/appstoreserverapi/get_all_subscription_statuses
 * 소비 정보
 	* /inApps/v1/transactions/consumption/{originalTransactionId}
 * 주문 ID 조회, 영수증
