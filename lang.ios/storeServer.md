@@ -15,7 +15,8 @@
 ##
 * {originalTransactionId}: 구매에 사용된 트랜잭션 아이디, 앱스토어가 서버에 보내는 알림에 포함됨
 * {orderId}: (영수증의)주문 아이디
-* 구매 내역
+* {testNotificationToken}: 테스트 알림 토큰
+* 구매 내역: Get Transaction History(거래 내역 가져오기)
 	* /inApps/v1/history/{originalTransactionId}
 * 구독 상태
 	* /inApps/v1/subscriptions/{originalTransactionId}
