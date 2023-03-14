@@ -33,6 +33,7 @@
 	* 3.2.2 @ComponentScan
 	* 3.2.3 @Import
 * 3.3 스테레오 타입 스프링 빈 사용
+	* @Component, @Controller, @Service, @Repository
 * 3.4 의존성 주입
 	* 3.4.2 애너테이션 기반 설정의 의존성 주입
 	* 3.4.3 자바 설정의 의존성 주입
