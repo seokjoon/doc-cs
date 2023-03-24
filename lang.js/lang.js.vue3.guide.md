@@ -18,7 +18,6 @@
 
 # https://v3.ko.vuejs.org/guide
 
-
 ##
 * computed
 	* getter, setter
@@ -50,3 +49,9 @@
 		* import { defineAsyncComponent } from 'vue'
 		* const foo = defineAsyncComponent(() => import('./bar.vue'))
 	* suspense
+
+
+# https://ko.vuejs.org
+
+##
+* npm init vue@latest
