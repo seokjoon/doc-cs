@@ -1,7 +1,9 @@
 ## mac: 2022/11: env ruby rbenv
 * brew install rbenv ruby-build
-* rbenv install 2.7.5
-* rbenv global 2.7.5
+* ~~rbenv install 2.7.5~~
+* ~~rbenv global 2.7.5~~
+* rbenv install 3.2.2
+* rbenv global 3.2.2
 * vi .profile
     * eval "$(rbenv init - bash)"
 
