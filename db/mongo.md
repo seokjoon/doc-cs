@@ -125,7 +125,7 @@
 		* foo.find({ tags: { $all: [ 'foo', 'bar' ] } })
 	* foo.find({ foo: { $in: [...] } })
 	* $nin, $ne 는 인덱스를 사용할 수 없음
-* 논리: 
+* 논리:
 	* $ne: 인수가 요소와 다르면 리턴, 인덱스 미이용이므로 다른 연산자와 조합해야 효율적
 		* 값은 단일값 혹은 배열 가능
 	* $not: 결과를 반전하여 리턴
@@ -150,7 +150,7 @@
 		* foo.find({foo: { $size: 3 }})
 	* 배열도 단일 값에 대한 질의와 동일한 방식 가능
 		* foo.find({ tags: 'foo' })
-		* 첫번째 태그로 제한: foo.find({ tags.0: 'foo' }): 
+		* 첫번째 태그로 제한: foo.find({ tags.0: 'foo' }):
 * 자바스크립트 쿼리 연산자: $where
 	* 도큐먼트 선택을 위해 js 실행, 인덱스 불가
 	* foo.find({ $where: function() { return this.bar > 2; } })
@@ -224,7 +224,7 @@
 	* join 과 유사한 옵션: 161p
 		* forEach 의사 조인
 		* foo.aggregate([{$group: {..}}]).forEach(function(val) { fee.findOne(); ..; bar.insert(val) })
-			* findOne 과 insert 를 사용하는 pseudo-joing 은 느려질 수 있음 
+			* findOne 과 insert 를 사용하는 pseudo-joing 은 느려질 수 있음
 	* $out, $project
 		* $out: 파이프라인 출력을 자동으로 컬렉션에 저장
 			* foo.aggregate([ {$group: {}, { $out: 'bar' }} ])
@@ -238,7 +238,7 @@
 	* 맨해튼 최고 고객 찾기: 166p
 		* $match: 검색어 조건검색
 		* $group: 고객별 주문합계
-		* $match: 주문합계 조건검색 
+		* $match: 주문합계 조건검색
 		* $sort: 금액으로 정렬
 		* foo.aggregate([ {$match: ..}, {$group: ..}, {$match: ..}, {$sort: ..}, {$out: ..} ])
 * 문자열 함수
@@ -308,9 +308,9 @@
 	* findAndModify
 		* mdb의 모든 업데이트는 원자적이지만 findAndModify 는 도큐먼트를 자동으로 반환
 		* job queue 나 state machine 구축 가능, 트랜잭션
-		* out = foo.findAndModify({ 
-			query: { uid: ObjectId('fee'), state: 10, }, 
-			update: { $set: { state: 20 } } 
+		* out = foo.findAndModify({
+			query: { uid: ObjectId('fee'), state: 10, },
+			update: { $set: { state: 20 } }
 		})
 		* 실패시: nil 반환, InventoryFetchFailure 예외 발생, 롤백
 * foo.update_one({}, { $set: { fee: 12 }, $addToSet: { bee: 34 } })
@@ -352,7 +352,7 @@
 			* 다수 값에 대해 수행
 	* $pop: 배열에서 마지막/첫 요소 삭제, 이름과 달리 값을 반환하지 않음
 		* 마지막: foo.update({..}, { $pop: { 'tags': 1 } })
-		* 처음: foo.update({..}, { $pop: { 'tags': -1 } }) 
+		* 처음: foo.update({..}, { $pop: { 'tags': -1 } })
 	* $bit
 	* $pull: 배열에서 요소 위치 대신 값으로 삭제
 		* foo.update({..}, { $pull: { tags: 'fee' } })
@@ -394,7 +394,7 @@
 		* foo.createIndex({ foo: 1, bar: -1 })
 	* 조회
 		* foo.getIndexes()
-	* 삭제 
+	* 삭제
 		* foo.dropIndex('foo_1')
 	* 인덱스 생성
 		* 백그라운드 인덱싱: foo.createIndex({..}, { background: true })
@@ -402,11 +402,13 @@
 	* 백업
 		* mongodump 나 mongorestore 는 컬렉션과 인덱스의 정의만 보관, 재생성
 		* 백업에 인덱스 포함하려면 파일 백업
+		* mongodump --db foo --out /foo/$(date +%y-%m-%d)'
+		* mongorestore -u testuser -p testpw --authenticationDatabase admin --drop --db foo ./import
 	* 파편화
 		* foo.reIndex()
 			* 재구축, 진행중 쓰기 잠금
 * 쿼리 최적화
-	* 프로파일러 
+	* 프로파일러
 		* 활성화
 			* use foo; db.setProfilingLevel(2)
 				* 레벨 2: 모두 기록, 레벨 1: 100밀리 이상만 기록
@@ -432,20 +434,20 @@
 * 지원 방법: 인덱스 정의, 텍스트 검색 사용
 	* foo.createIndex({ title: 'text', desc: 'text', tags: 'text' })
 	* foo.find(
-		{ $text: { $search: 'fee' } }, 
+		{ $text: { $search: 'fee' } },
 		{ _id: 0, title: 1, desc: 1, tags: 1 }
 	)
 		* '_id:0' 표기: 출력에 _id 제외
 * 텍스트 검색 인덱스 정의
 	* 각 필드의 가중치 정의
 	* foo.createIndex(
-		{ title: 'text', desc: 'text' }, 
+		{ title: 'text', desc: 'text' },
 		{ weights: { title: 10, desc: 2 } }
 	)
 	* 텍스트 인덱스 크기: 컬렉션보다 큼, 대부분의 텍스트를 복제
 	* 인덱스 이름의 길이: 필드명의 연결, 인덱스 최대 길이 제한(123바이트) 고려하여 사용자 정의 이름 할당 필요
 	* 인덱스 이름을 사용자 정의
-		* foo.createIndex({..}, { .., name: 'foo_text_index' }) 
+		* foo.createIndex({..}, { .., name: 'foo_text_index' })
 	* 와일드카드 필드명: 모든 필드를 문자열로 인덱싱
 		* foo.createIndex({ '$**': 'text', {..} })
 * find 텍스트 검색
@@ -464,7 +466,7 @@
 		* 단어가 도큐먼트에 표시된 횟수 기반
 		* 인덱스 생성시 필드에 할당된 가중치도 사용
 	* fs.find(
-		{$text: {$search: 'test'}}, 
+		{$text: {$search: 'test'}},
 		{_id:0, title:1, desc:1, score: {$meta: 'textScore'}}
 	)
 	* 가중치 기본값 1, 스코어에 영향 미침
