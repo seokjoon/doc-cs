@@ -313,6 +313,7 @@
 			update: { $set: { state: 20 } }
 		})
 		* 실패시: nil 반환, InventoryFetchFailure 예외 발생, 롤백
+		* findOneAndUpdate, findOneAndReplace 로 대체됨
 * foo.update_one({}, { $set: { fee: 12 }, $addToSet: { bee: 34 } })
 * 다중 도큐먼트 업데이트
 	* 다중 업데이트를 명시하지 않으면 selector 와 일치하는 첫번째 도큐먼트만 업데이트
