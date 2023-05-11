@@ -1,12 +1,9 @@
 ## PART 1 Next.js의 세계로
 
 ### CHAPTER 1 Next.js 알아보기
-* 1.1 준비하기
-* 1.2 Next.js란?
-* 1.3 Next.js와 비슷한 프레임워크
-* 1.4 왜 Next.js일까?
-* 1.5 리액트에서 Next.js로
 * 1.6 Next.js 시작하기
+  * npx create-next-app foo
+  * npm run dev
 * 프로젝트 기존 구조
 * 타입스크립트 지원
 * 바벨와 웹팩 설정 커스터마이징
