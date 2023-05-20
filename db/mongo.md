@@ -403,7 +403,7 @@
 	* 백업
 		* mongodump 나 mongorestore 는 컬렉션과 인덱스의 정의만 보관, 재생성
 		* 백업에 인덱스 포함하려면 파일 백업
-		* mongodump --db foo --out /foo/$(date +%y-%m-%d)'
+		* mongodump --db foo --out /foo/$(date +%y-%m-%d)
 		* mongorestore -u testuser -p testpw --authenticationDatabase admin --drop --db foo ./import
 	* 파편화
 		* foo.reIndex()
