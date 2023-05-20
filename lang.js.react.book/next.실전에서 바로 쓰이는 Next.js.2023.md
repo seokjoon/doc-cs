@@ -4,13 +4,13 @@
 * 1.6 Next.js 시작하기
   * npx create-next-app foo
   * npm run dev
-* 프로젝트 기존 구조
-* 타입스크립트 지원
-* 바벨와 웹팩 설정 커스터마이징
 
 
 ### CHAPTER 2 렌더링 전략
 * 2.1 서버 사이드 렌더링 (SSR)
+  * export async function getServerSideProps() {}
+    * 빌드시 이 함수를 export 하는 모든 페이지에서 이 함수를 호출
+    * 이 함수는 서버에서만 실행: console.log 도 브라우저에 표시되지 않음
 * 2.2 클라이언트 사이드 렌더링 (CSR)
 * React.useEffect 훅
 * process.browser 변수
