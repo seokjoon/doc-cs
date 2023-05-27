@@ -83,8 +83,8 @@
 * php artisan make:resource User
 	* 리소스 클래스 생성
 	* 리소스 컬렉션 생성
-		* php artisan make:resource Users --collection
-		* php artisan make:resource UserCollection
+		* ~~php artisan make:resource Users --collection~~
+		* ~~php artisan make:resource UserCollection~~
 	
 * php artisan make:rule Foo
 	* 사용자 정의 유효성 검사 규칙

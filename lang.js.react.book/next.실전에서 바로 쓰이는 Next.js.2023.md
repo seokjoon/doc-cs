@@ -19,12 +19,19 @@
   * const Foo = dynamic(() => import('./Foo'), { ssr: false })
 * 2.3 정적 사이트 생성 (SSG)
   * 증분 정적 재생성(ISR)
+  * export async function getStaticProps() {
+    return { props: {}, revalidate: 600 } //요청이 있을 경우 10분 단위로 갱신
+  }
 
 
 ### CHAPTER 3 Next.js 기초와 내장 컴포넌트
 * 3.1 라우팅 시스템
+  * pages/index.js, pages/[id].js
 * 페이지에서 경로 매개변수 사용하기
+  * export async function getServerSideProps(context)
+    * const { query, params } = context
 * 컴포넌트에서 경로 매개변수 사용하기
+  * const { query } = useRouter()
 * 클라이언트에서의 내비게이션
 * 3.2 정적 자원 제공
 * 자동 이미지 최적화
