@@ -14,8 +14,11 @@
 * 2.2 클라이언트 사이드 렌더링 (CSR)
 * React.useEffect 훅
 * process.browser 변수
+  * (typeof window === 'undefined')
 * 동적 컴포넌트 로딩
+  * const Foo = dynamic(() => import('./Foo'), { ssr: false })
 * 2.3 정적 사이트 생성 (SSG)
+  * 증분 정적 재생성(ISR)
 
 
 ### CHAPTER 3 Next.js 기초와 내장 컴포넌트
