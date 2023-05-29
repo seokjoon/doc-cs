@@ -20,8 +20,8 @@
 * 2.3 정적 사이트 생성 (SSG)
   * 증분 정적 재생성(ISR)
   * export async function getStaticProps() {
-    return { props: {}, revalidate: 600 } //요청이 있을 경우 10분 단위로 갱신
-  }
+      return { props: {}, revalidate: 600 } //요청이 있을 경우 10분 단위로 갱신
+    }
 
 
 ### CHAPTER 3 Next.js 기초와 내장 컴포넌트
@@ -32,7 +32,13 @@
     * const { query, params } = context
 * 컴포넌트에서 경로 매개변수 사용하기
   * const { query } = useRouter()
+    * query.foo
 * 클라이언트에서의 내비게이션
+  * <Link href='/foo'>foo</Link>
+    * preload, prefetch
+  * <Link ref={{ pathname: '/foo/[bar]', query: {}, }}>foo</Link>
+  * const r = useRouter(); r.push('/foo')
+
 * 3.2 정적 자원 제공
 * 자동 이미지 최적화
 * 외부 서비스를 통한 자동 이미지 최적화
