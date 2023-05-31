@@ -224,7 +224,7 @@
 	* join 과 유사한 옵션: 161p
 		* forEach 의사 조인
 		* foo.aggregate([{$group: {..}}]).forEach(function(val) { fee.findOne(); ..; bar.insert(val) })
-			* findOne 과 insert 를 사용하는 pseudo-joing 은 느려질 수 있음
+			* findOne 과 insert 를 사용하는 pseudo-join 은 느려질 수 있음
 	* $out, $project
 		* $out: 파이프라인 출력을 자동으로 컬렉션에 저장
 			* foo.aggregate([ {$group: {}, { $out: 'bar' }} ])
