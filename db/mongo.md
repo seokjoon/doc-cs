@@ -44,6 +44,8 @@
 	* foo.find({foo: {$gt: 100, $lt: 200}})
 * 조건
 	* $ne
+* 커서를 배열로
+	* foo.find().toArray()
 
 
 ## index
