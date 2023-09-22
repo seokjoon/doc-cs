@@ -54,4 +54,5 @@
 # https://ko.vuejs.org
 
 ##
-* npm init vue@latest
+* ~~npm init vue@latest~~
+* npm create vue@latest
