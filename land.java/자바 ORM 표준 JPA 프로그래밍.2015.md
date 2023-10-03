@@ -264,7 +264,6 @@
   * 11.3.3 상품 기능
   * 11.3.4 주문 기능
   * 11.3.5 웹 계층 구현
-* 11.4 정리
 
 
 ## 12장. 스프링 데이터 JPA
@@ -273,10 +272,13 @@
 * 12.2 스프링 데이터 JPA 설정
 * 12.3 공통 인터페이스 기능
 * 12.4 쿼리 메소드 기능
-  * 12.4.1 메소드 이름으로 쿼리 생성
+  * 12.4.1 메소드 이름으로 쿼리 생성: 546
+    * And, Or, Is, Equals, Between, LessThan, LessThanEqual, GreaterThen, GreaterThenEqual, After, Before IsNull, IsNotNull, NotNull, Like, NotLike, StartingWith, EndingWith, Containing, OrderBy, Not, In, NotIn, TRUE, FALSE, IgnoreCase
   * 12.4.2 JPA NamedQuery
+    * @NamedQuery()
   * 12.4.3 @Query, 리파지토리 메소드에 쿼리 정의
-  * 12.4.4 파라미터 바인딩
+    * @Query
+  * 12.4.4 파라미터 바인딩: 551
   * 12.4.5 벌크성 수정 쿼리
   * 12.4.6 반환 타입
   * 12.4.7 페이징과 정렬
@@ -288,6 +290,9 @@
   * 12.7.1 설정
   * 12.7.2 도메인 클래스 컨버터 기능
   * 12.7.3 페이징과 정렬 기능
+    * Pageable: List, Page
+    * page, size, sort
+    * @Qualifier
 * 12.8 스프링 데이터 JPA가 사용하는 구현체
 * 12.9 JPA 샵에 적용
   * 12.9.1 환경 설정
@@ -296,7 +301,6 @@
 * 12.10 스프링 데이터 JPA와 QueryDSL 통합
   * 12.10.1 QueryDslPredicateExecutor 사용
   * 12.10.3 QueryDslRepositorySupport 사용
-* 12.11 정리
 
 
 ## 13장. 웹 애플리케이션과 영속성 관리
@@ -313,11 +317,10 @@
   * 13.3.2 스프링 OSIV: 비즈니스 계층 트랜잭션
   * 13.3.3 OSIV 정리
 * 13.4 너무 엄격한 계층
-* 13.5 정리
 
 
 ## 14장. 컬렉션과 부가 기능
-* 14.1 컬렉션
+* 14.1 컬렉션: Collection, List(순서보장, 중복허용), Set, Map: 610
   * 14.1.1 JPA와 컬렉션
   * 14.1.2 Collection, List
   * 14.1.3 Set
@@ -325,9 +328,11 @@
   * 14.1.5 @OrderBy
 * 14.2 @Converter
   * 14.2.1 글로벌 설정
-* 14.3 리스너
+* 14.3 리스너: 623
   * 14.3.1 이벤트 종류
+    * PostLoad, PrePersist, PreUpdate, PreRemove, PostPersist, PostUpdate, PostRemove
   * 14.3.2 이벤트 적용 위치
+    * 엔티티, 리스너, 기본리스너
 * 14.4 엔티티 그래프
   * 14.4.1 Named 엔티티 그래프
   * 14.4.2 em.find( )에서 엔티티 그래프 사용
@@ -335,7 +340,6 @@
   * 14.4.4 JPQL에서 엔티티 그래프 사용
   * 14.4.5 동적 엔티티 그래프
   * 14.4.6 엔티티 그래프 정리
-* 14.5 정리
 
 
 ## 15장. 고급 주제와 성능 최적화
@@ -353,12 +357,13 @@
   * 15.3.3 프록시 동등성 비교
   * 15.3.4 상속관계와 프록시
 * 15.4 성능 최적화
-  * 15.4.1 N+1 문제
+  * 15.4.1 N+1 문제: 675
+    * 즉시/지연 로딩은 JPQL 실행시 N+1 발생가능
+    * join fetch, @BatchSize, @Fetch
   * 15.4.2 읽기 전용 쿼리의 성능 최적화
   * 15.4.3 배치 처리
   * 15.4.4 SQL 쿼리 힌트 사용
   * 15.4.5 트랜잭션을 지원하는 쓰기 지연과 성능 최적화
-* 15.5 정리
 
 
 ## 16장. 트랜잭션과 락, 2차 캐시
@@ -374,4 +379,3 @@
   * 16.2.1 1차 캐시와 2차 캐시
   * 16.2.2 JPA 2차 캐시 기능
   * 16.2.3 하이버네이트와 EHCACHE 적용
-* 16.3 정리
