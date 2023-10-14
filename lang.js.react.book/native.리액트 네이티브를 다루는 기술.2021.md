@@ -325,8 +325,12 @@
 * 13.6 리덕스 정리
 * 13.7 리코일 살펴보기
 	* 13.7.1 atom
+		* useRecoilState(): 읽기/쓰기
+		* useRecoilValue(): 읽기
+		* useSetRecoilState(): 쓰기
 	* 13.7.2 RecoilRoot
 	* 13.7.3 selector
+		* get(({get}) => {}), set(({set}, valNew) => {})
 	* 13.7.4 라이브러리 설치
 * 13.8 AuthApp 리코일로 구현하기
 * 13.9 TodoApp 리코일로 구현하기
