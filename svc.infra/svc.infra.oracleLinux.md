@@ -10,6 +10,8 @@ usermod -aG wheel targetuser
 
 
 ##
+* https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm
+* VM.Standard.A1.Flex
 * cat /etc/oracle-release
 * oracle linux 8.8 arm pakage
 	* https://yum.oracle.com/repo/OracleLinux/OL8/developer/EPEL/aarch64/index.html
