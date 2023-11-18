@@ -1,3 +1,7 @@
+## cron
+* systemctl restart crond.service
+
+
 ##
 * docker-compose
 	* yum install python3-pip
@@ -13,7 +17,7 @@
 	* https://yum.oracle.com/repo/OracleLinux/OL8/developer/EPEL/aarch64/index.html
 
 
-## 
+##
 * sudoer 등록 (주석제거)
 sudo vi /etc/sudoers
 %wheel  ALL=(ALL)   ALL
