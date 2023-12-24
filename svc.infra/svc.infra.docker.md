@@ -5,7 +5,7 @@
 
 
 ##
-* d run -it --rm --name certbot -v "/data/app/info/etc/letsencrypt:/etc/letsencrypt" -v "/data/app/info/var/lib/letsencrypt:/var/lib/letsencrypt" certbot/certbot certonly -d '*.memorobot.com,memorobot.com' --manual --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory
+* d run -it --rm --name certbot -v "/data/app/mr/ivt/etc/letsencrypt:/etc/letsencrypt" -v "/data/app/mr/ivt/var/lib/letsencrypt:/var/lib/letsencrypt" certbot/certbot certonly -d '*.memorobot.com,memorobot.com' --manual --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory
 
 
 ##
