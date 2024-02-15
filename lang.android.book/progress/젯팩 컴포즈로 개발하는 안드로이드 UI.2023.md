@@ -59,6 +59,7 @@
   * 라디오 버튼 그룹 생성
 * 환경설정 변경에도 데이터 유지
   * ViewModel 사용
+    * LiveData, observeAsState()
 
 
 ## 06장. 조립
