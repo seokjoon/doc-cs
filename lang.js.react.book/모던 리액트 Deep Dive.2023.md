@@ -48,6 +48,7 @@
   * 4.2.6 서버 사이드 렌더링 예제 프로젝트
 * 4.3 Next.js 톺아보기
   * 4.3.3 Data Fetching
+  	* getStaticPaths, getStaticProps
   * 4.3.4 스타일 적용하기
   * 4.3.5 _app.tsx 응용하기
   * 4.3.6 next.config.js 살펴보기
