@@ -1,9 +1,7 @@
 ##	CHAPTER 1 Hello NestJS 1
-* 1.1 NestJS의 장점 1
-* 1.2 Express가 좋을까, NestJS가 좋을까 2
 * 1.3 NestJS 설치 6
-  * 1.3.1 Node.js 설치 6 / 1.3.2 NestJS 프로젝트 생성 7
-* 1.4 책에서 만들 애플리케이션: 유저 서비스 9
+	* npm i -g @nestjs/cli
+	* nest new foo
 
 
 ## CHAPTER 2 웹 개발 기초 지식 13
@@ -11,13 +9,30 @@
 * 2.2 Node.js 16
 * 2.3 이벤트 루프 18
 * 2.4 패키지 의존성 관리 21
-  * 2.4.1 package.json 21 / 2.4.2 package-lock.json 23 / 2.4.3 package.json 파일 분석 23
+  * 2.4.1 package.json 21
 * 2.5 타입스크립트 25
   * 2.5.1 변수 선언 26 / 2.5.2 타입스크립트에서 지원하는 타입 27
+  	* 원시 값: boolean, null, undefined, number, bigint, string, symbol
+  	* 객체(Date, Array, Mao, Set, JSON), 함수
+  	* any, unknown, never
   * 2.5.3 타입 정의하기 29 / 2.5.4 타입 구성하기 30
+  	* 유니언(Union) 타입
+  		* function foo(bar: string | string[]) {}
+  		* type foo = 'FOO' | 'FEE'
+  	* 제네릭 타입
+  		* function foo<T>(arg: T): T {}
 * 2.6 데커레이터 32
-  * 2.6.1 데커레이터 합성 34 / 2.6.2 클래스 데커레이터 35 / 2.6.3 메서드 데커레이터 36
-  * 2.6.4 접근자 데커레이터 38 / 2.6.5 속성 데커레이터 39 / 2.6.6 매개변수 데커레이터 40
+  * 2.6.1 데커레이터 합성 34
+  	* @foo @bar fee() {}
+  * 2.6.2 클래스 데커레이터 35
+  * 2.6.3 메서드 데커레이터 36
+  	* function HandleErr() { return function() { ... desc.value = function() { try {} catch(e) {} } } }
+  		* @HandleErr @foo() {}
+  * 2.6.4 접근자 데커레이터 38
+  	* @foo getTitle() {}
+  * 2.6.5 속성 데커레이터 39
+  * 2.6.6 매개변수 데커레이터 40
+  	* foo(@bar fee: string) {}
   * 2.6.7 데커레이터 요약 42
 * 쉬어 가는 페이지 백엔드 로드맵 43
 
