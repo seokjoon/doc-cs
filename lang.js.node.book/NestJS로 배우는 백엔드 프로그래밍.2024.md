@@ -130,7 +130,9 @@ Options:
 ## CHAPTER 6 동적 모듈을 활용한 환경 변수 구성 99
 * 6.1 동적 모듈 99
 * 6.2 dotenv를 이용한 Config 설정 99
+  * process.env.FOO
 * 6.3 Nest에서 제공하는 Config 패키지 102
+  * npm i --save @nestjs/config
 * 6.4 유저 서비스에 환경 변수 구성하기 105
   * 6.4.1 커스텀 Config 파일 작성 105 / 6.4.2 동적 ConfigModule 등록 106
 * 쉬어 가는 페이지 의존성 주입과 제어 반전 110
@@ -138,10 +140,14 @@ Options:
 
 ## CHAPTER 7 파이프와 유효성 검사: 요청이 제대로 전달되었는가 113
 * 7.1 파이프 113
+  * ValidationPipe, ParseIntPipe, ...
 * 7.2 파이프의 내부 구현 이해하기 116
 * 7.3 유효성 검사 파이프 만들기 117
 * 7.4 유저 서비스에 유효성 검사 적용하기 120
-  * 7.4.1 유저 생성 본문의 유효성 검사 120 / 7.4.2 class-transformer 활용 121
+  * 7.4.1 유저 생성 본문의 유효성 검사 120
+    * npm i --save class-validator class-transformer
+  * 7.4.2 class-transformer 활용 121
+    * @Transform
   * 7.4.3 커스텀 유효성 검사기 작성 124
 * 쉬어 가는 페이지 인증 vs 인가 127
 
