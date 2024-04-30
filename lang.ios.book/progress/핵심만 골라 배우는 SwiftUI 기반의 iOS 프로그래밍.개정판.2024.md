@@ -14,15 +14,41 @@
   * if let bar = foo { ... bar ... } else: optional binding
     * if let foo { ... foo ... } else {}
 * 타입 캐스팅, 타입 검사
+  * 업캐스팅: 상위 클래스로 변형: as
+    * let fooBtn: UIButton = UIButton(); let fooCtl = fooBtn as UIControl
+  * 다운캐스팅: 클래스를 다른 (하위)클래스로 변환: as!, as?
+    * let fooView: UIScrollView = UIScrollView(); let fooTextView = fooScrollView as! UITextView
+      * 실제로는 런타임 오류 발생
+    * if let fooTextView = fooScrollView as? UITextView {} else {}
+    * 타입검사: is 키워드: if foo is Foo {}
+    * let foo = bar.object(forKey: "fee") as! String
 
 
 ## CHAPTER 6 스위프트 연산자와 표현식 43
+* 범위연산자
+  * 닫힌: x...y
+  * 반 개방: x..<y
+  * 단방향: x..., ...y
+* 삼항연산자: (cond) ? foo : bar
+* nil 병합연산자
+  * let foo: String? = nil; print(foo ?? "bar")
 
 
 ## CHAPTER 7 스위프트의 제어 흐름 55
+* for foo in foos {}; for idx in 1...5 {}
+* while (cond) {}
+* repeat {} while (cond)
+* break: 반복문 중단
+* continue
+* if {} else {}
+* guard (cond) {}: 조건이 false 일때 중괄호 내부가 실행되며, 중괄호 내부는 반드시 return, break, continue, throw 등이 필요
 
 
 ## CHAPTER 8 스위프트의 switch 구문 64
+* break 없고 결합 가능
+  * switch(cond) { case 0,1,2: print(1); case 3: print(2) }
+* 범위매칭
+  * switch(cond) { case 0...5: print(1); case 6...10: print(2) }
 
 
 ## CHAPTER 9 스위프트의 함수, 메서드, 클로저 70
