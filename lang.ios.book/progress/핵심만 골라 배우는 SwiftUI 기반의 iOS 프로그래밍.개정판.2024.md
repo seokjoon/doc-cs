@@ -79,12 +79,46 @@
 
 
 ## CHAPTER 10 스위프트의 객체지향 프로그래밍 기초 85
+* 선언: class Foo: FooParent {}
+  * 프로퍼티, 인스턴스 메소드, 타입 메소드
+  * 인스턴스 메소드: class 키워드 없음
+  * 타입 메소드: class 키워드 추가
+* 클래스 인스턴스
+  * var foo: Foo = Foo()
+  * 초기화: 생성자: 클래스의 init() 메소드
+  * 소멸자: 클래스의 deinit() 메소드
+* 연산 프로퍼티: getter, setter
+  * var foo: Float { get {}; set() {}; }
+* 저장 프로퍼티
+  * 지연 저장 프로퍼티: 프포퍼티를 최초 접근할 때만 초기화: lazy
+    * lazy var foo: String = {}()
+* self: 기본값을(자동으로) 간주되나
+  * 프로퍼티/메소드를 클로저 표현식 내부에서 참조할때 필요
+  * 함수 매개변수와 클래스 프로퍼티가 동일할 경우 필요
+* 프로토콜: 클래스가 반드시 포함해야 하는 메소드, 프로퍼티 정의
+  * protocol Foo { var fee: String { get }; func fuu() -> String; }
+    * class Bar: Foo {}
+* 불투명 반환 타입: 지정된 프로토콜을 따르는 모든 타입이 반환 가능: 키워드 some 을 프로토콜 이름 앞에 붙여 선언
+  * func foo() -> some Foo {}
 
 
 ## CHAPTER 11 스위프트의 서브클래싱과 익스텐션 개요 100
+* 스위프트는 단일상속
+* 오버라이딩: 부모 클래스 메소드의 매개변수 개수/타입, 반환하는 타입이 정확히 일치해야 함
+  * super.foo()
+  * 하위클래스 초기화(생성자)는 부모클래스의 생성자와 개별적으로 존재 가능
+    * super.init()
+* 클래스 익스텐션: 하위클래스 생성 없이 기능들 추가, 언어와 sdk 프레임워크에 기능 추가시 유용
+  * extension Double {}
 
 
 ## CHAPTER 12 스위프트 구조체와 열거형 107
+* struct Foo { init() {} }
+  * let foo = Foo()
+  * 복사, 전달될 때: 클래스 인스턴스 타입은 참조 타입이나, 구조체 인스턴스 타입은 값 타입(복사)
+  * 구조체는 상속 지원하지 않음, 소멸자 없음
+* enum Foo { case fee; case fuu;  }
+  * func bar(foo: Foo) { switch foo { case .fee: print(1); case .fuu: print(2) } }
 
 
 ## CHAPTER 13 스위프트 프로퍼티 래퍼 115
