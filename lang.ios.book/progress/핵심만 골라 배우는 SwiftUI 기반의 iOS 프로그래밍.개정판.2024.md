@@ -45,13 +45,37 @@
 
 
 ## CHAPTER 8 스위프트의 switch 구문 64
-* break 없고 결합 가능
+* break 없어도 case 중단됨. 결합 가능
   * switch(cond) { case 0,1,2: print(1); case 3: print(2) }
+* fallthrough: 다음 case 로 이어짐
+  * switch(cond) { case 0: print(0); fallthrough; case 1: print(1) }
 * 범위매칭
   * switch(cond) { case 0...5: print(1); case 6...10: print(2) }
+* where
+  * switch(cond) { case 0...5 where cond: print(1) }
 
 
 ## CHAPTER 9 스위프트의 함수, 메서드, 클로저 70
+* 함수: func foo (foo: String, bar: Int, ...) -> String { ... }
+    * 함수 내부에 표현식이 하나일 경우 return 키워드 생략 가능
+* 외부 매개변수명
+  * 외부 매개변수명은 언더스코어 _ 로 제거 가능
+* 여러 결과값 반환: 튜플
+  * func foo() { return (fee, bee, boo) }
+    * let bar = foo(); print(bar.fee)
+* 가변 매개변수: 다수의 매개변수 처리: func() foo(_ fees: String...) {}
+* 매개변수는 상수: 변수로 사용하기 위해서는 shadow copy 필요
+  * 매개변수 변경을 유지하려면: 입출력 매개변수로 선언, 함수호출시 매개변수에 & 추가
+    * func foo(_ fee: inout Int) -> Int { fee += fee; return fee }
+      * foo(&bar)
+* 매개변수인 함수
+* 클로저 표현식: 이름이 없는 함수: 비동기 메소드 호출에 대한 완료 핸들러 선언시 사용
+  * let foo = { print(1) }
+  * let foo = {(_ fee: Int, _ fuu: Int) -> Int in return (fee * fuu) }
+  * 클로저 표현식 시작을 in 키워드로 표시
+* 클로저 단순화: 약식 인수 이름
+  * let foo = { (fee: Int, fuu: Int) -> Int in (fee + fuu) }
+    * let foo: (Int, Int) -> Int = { $0 + $1 }
 
 
 ## CHAPTER 10 스위프트의 객체지향 프로그래밍 기초 85
