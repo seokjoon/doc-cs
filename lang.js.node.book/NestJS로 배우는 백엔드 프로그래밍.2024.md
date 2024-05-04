@@ -70,6 +70,7 @@
   * 4.2.1 프로바이더 등록 67
     * @Injectable
   * 4.2.2 속성 기반 주입 67
+  	* @Inject(ServiceFoo) private readonly serviceFoo: ServiceFoo
 * 4.3 유저 서비스에 회원 가입 로직 구현하기 70
   * 4.3.1 UsersService 프로바이더 생성 70 / 4.3.2 회원 가입 71
   * 4.3.3 회원 가입 이메일 발송 73 / 4.3.4 이메일 인증 77
