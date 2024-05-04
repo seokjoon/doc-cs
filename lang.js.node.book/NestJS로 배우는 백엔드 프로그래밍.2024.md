@@ -155,6 +155,8 @@ Options:
 ## CHAPTER 8 영속화: 데이터를 기록하고 다루기 131
 * 8.1 MySQL 데이터베이스 설정 131
 * 8.2 TypeORM으로 데이터베이스 연결 134
+	* npm i typeorm @nestjs/typeorm mysql2
+	* edit app.module.ts
 * 8.3 회원 가입을 요청한 유저의 정보 저장하기 138
 * 8.4 트랜잭션 적용 141
   * 8.4.1 QueryRunner를 사용하는 방법 142
