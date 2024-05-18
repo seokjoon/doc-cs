@@ -14,7 +14,7 @@
   	* insert/delete 1개를 위해 다른 모든 레코드 삭제, 처리, 재기록
   * @OrderColumn 사용
   * @JoinColumn 사용
-  	* 일반적으로 단방향 @OneToMany 는 양향향 @OneToMany 또는 단방향 @ManyToOne 보다 비효율적
+  	* 일반적으로 단방향 @OneToMany 는 양방향 @OneToMany 또는 단방향 @ManyToOne 보다 비효율적
 * 항목 3: 단방향 @ManyToOne의 효율성
   * 특정 저자에게 새 도서 추가
   * 저자의 모든 도서 가져오기
