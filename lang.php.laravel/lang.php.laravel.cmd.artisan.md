@@ -7,6 +7,8 @@
 * php artisan config:cache
     * 설정내역 로딩 최적화
 * php artisan config:clear
+
+* php artisan config:show cache, database, ...
     
 * php artisan db:seed
     * seeder 실행(composer dump-autoload 이후)
