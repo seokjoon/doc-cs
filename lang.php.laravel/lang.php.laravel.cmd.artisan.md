@@ -1,3 +1,6 @@
+* php artisan about
+	* 환경 표시
+
 * php artisan cache:clear
 	* 캐시 삭제 
     
