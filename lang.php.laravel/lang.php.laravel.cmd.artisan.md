@@ -26,6 +26,11 @@
 * php artisan make:channel FooChannel
 	* 채널 클래스 생성
     
+* php artisan make:class
+	* php artisan make:enum
+	* php artisan make:interface
+	* php artisan make:trait
+
 * php artisan make:command Foo
     * 커맨드 생성
     
