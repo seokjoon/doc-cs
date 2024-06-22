@@ -101,7 +101,58 @@
 * mapWithKeys
 	* $c->mapWithKeys(function(array $v) { return [$v['email'] => $v['name'] })
 * max: 최대값
-	*
+	* $c->max(foo)
+* median: 중앙값
+	* $c->median(foo)
+* merge: 배열이나 컬렉션을 병합
+	* mergeRecursive: 같은 키의 값을 덮어쓰지 않고 배열로
+* min: 최소값
+	* $c->min()
+	* $c->min(foo)
+* mode: (통계)
+* nth: 모든 n번재 요소로 새 컬렉션
+	* $c->nth(4)
+	* $c->nth(4, 1)
+* only: 해당 키만 반환
+	* $c->only('foo', 'bar')
+* pad: 지정 크기까지 지정 값으로 채움
+	* $c->pad(5, foo)
+	* $c->pad(-5, foo): 음수는 왼쪽을 채움
+* partition: 테스트 통과 요소와 비통과 요소를 분리
+	* [$foo, $bar] = $c->partition(function(int $i) { return $i < 3 })
+* percentage: 테스트 통과하는 항목 비율
+	* $c->percentage(fn ($v) => $v == 1)
+	* $c->percentage(fn ($v) => $v == 1, precision: 3): 소수점 자리수
+* pipe: 클로저 실행 결과 반환
+	* $c->pipe(function (Collection $col) { return $col->sum() })
+	* pipeInto: 새 인스턴스 생성하고 컬렉션을 생성자에 전달
+		* $c->pipeInto(FooCollection::class)
+	* pipeThrough
+* pluck
+	* $c->pluck(foo)
+	* $c->pluck(foo, bar): 두번째 인수의 값을 키로
+	* $c->pluck(foo.bar): dot 표기법으로 중첩 값 검색
+	* 중복시 마지막 일치 요소
+* pop: 마지막 항목 반환하고 제거
+	* $c->pop(5): 여러개 항목 반환하고 제거
+* prepend: 시작 부분에 항목 추가
+	* $c->prepend(foo)
+	* $c->prepend(value, key)
+* pull: 키의 항목을 반환하고 제거
+	* $c->pull(foo)
+* push: 끝에 항목 추가
+* put: 키와 값 설정
+	* $c->put(key, value)
+* random: 임의의 항목 반환
+	* $c->random(5): 반환 개수 지정
+	* $c->random(fn (Collection $items) => min(10, count($items))
+* range: 범위 지정
+	* $c->range(3, 6)
+* reduce: 단일 값으로 줄여 각 반복 결과를 후속 반복에 전달
+	* $c->reduce(function (?int $carry, int $item) { return $carry + $item })
+	* $c->reduce(function (?int $carry, int $item) { return $carry + $item }, $init)
+	* reduceSpread: 여러 초기값 허용
+
 
 
 
