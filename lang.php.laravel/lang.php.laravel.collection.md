@@ -152,6 +152,54 @@
 	* $c->reduce(function (?int $carry, int $item) { return $carry + $item })
 	* $c->reduce(function (?int $carry, int $item) { return $carry + $item }, $init)
 	* reduceSpread: 여러 초기값 허용
+* reject: 클로저로 필터링: filter 의 반대
+* replace: merge 와 유사하나 숫자키 일치도 덮어씀
+  * replaceRecursive
+* reverse: 키 유지하면서 순서 반전
+* search: 검색 값이 있으면 키 반환
+  * $c->search(foo)
+  * $c->search(foo, strict: true)
+  * $c->search(function(int $item, int $k) { return $item > 5 })
+* select: SQL select 와 유사
+  * $c->select(['foo', 'bar'])
+* shift: 첫번째 항목 반환하고 제거
+  * $c->shift(3): 여러 항목 반환/제거
+* shuffle: 랜덤
+  * $c->shuffle()
+* skip: 시작부터 지정 수 요소 제거
+  * $c->skip(5)
+* skipUntil: 값 혹은 콜백이 참일때까지 건너뜀
+  * $c->skipUntil(3)
+  * $c->skipUntil(function(int $item) { return $item > 3 })
+* skipWhile: skipUntil 과 유사
+* slice: 조각
+  * $c->slice(4)
+  * $c->slice(5, 3)
+* sliding
+  * collect([1,2,3,4])->sliding(2)
+    * [[1,2], [2,3] [3,4]]
+* sole: 테스트 통과한 첫 요소 반환, 단 정확히 하나의 요소와 일치
+* sort: 정렬
+* sortBy
+  * $c->sortBy(foo)->values(): 정렬됐지만 원래 배열키를 유지하므로 values 로 인덱스 재설정
+  * $c->sortBy(foo, SORT_NATURAL): 두번째 인자로 플래그: https://www.php.net/manual/en/function.sort.php
+  * $c->sortBy(function(array $items) { return count($items[foo]) } )
+  * $c->sortBy([ [foo, 'asc'], [bar, 'desc'] ]): 여러 속성 기준
+  * $c->sortBy([ fn() => (), fn() => () ]): 여러 속성 클로저
+  * sortByDesc
+  * sortDesc
+* sortKeys: 키 기준 정렬
+  * $c->sortKeys()
+  * sortKeysDesc
+  * sortKeysUsing
+* splice:
+
+
+
+
+
+
+
 
 
 
