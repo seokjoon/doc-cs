@@ -171,7 +171,7 @@
 * skipUntil: 값 혹은 콜백이 참일때까지 건너뜀
   * $c->skipUntil(3)
   * $c->skipUntil(function(int $item) { return $item > 3 })
-* skipWhile: skipUntil 과 유사
+* skipWhile: skipUntil 과 유사하나 콜백결과가 false 일때 반환
 * slice: 조각
   * $c->slice(4)
   * $c->slice(5, 3)
@@ -192,10 +192,100 @@
   * $c->sortKeys()
   * sortKeysDesc
   * sortKeysUsing
-* splice:
+* splice: 지정 위치 기준으로 분할
+  * $o = $c->splice(2)
+    * $o: [3,4]
+    * $c: [1,2]
+  * 두번째 인수는 결과 크기 제한
+  * 세번째 인수는 제외를 대체하는 항목
+* split: 지정된 그룹 수로 나눔
+  * $c->split(3): []
+* sum: 합계
+  * $c->sum()
+  * $c->sum(foo)
+  * $c->sum(function (array $items) { return count($items[foo]) })
+* take: 지정 개수만큼 반환
+  * $c->take(3): [0, 1, 2]
+  * $c->take(-2): 뒤에서부터
+  * takeUntil: 지정된 콜백이 반환될때까지의 항목을 반환
+    * $o = $c->takeUntil(function(int $i) { return $i > 3 } )
+    * $o = $c->takeUntil(3)
+  * takeWhile: takeUntil 과 유사하나 콜백결과가 false 일때 반환
+* tap: 컬렉션에 영향을 주지 않고 작업
+  * $c->sort()->tap(function (Collection $col) { ... } )-> ...
+* times: 클로저를 지정 횟수만큼 호출
+  * $c = Collection::times(10, function(int $num) { return $num * 9 })
+* toArray
+  * all
+* toJson
+* transform: 반복, 콜백 반환값 반영
+  * $c->transform(function(int $i) { return $i * 2 })
+* undot: dot 표기법 사용하는 1차원 컬렉션을 다차원 컬렉션으로 변경
+* union: 배열을 컬렉션에 추가, 중복될 경우 원본 우선
+  * collect(1 => ['a'], 2 => ['b'])->union([3 => ['c'], 1 => ['d'])
+* unique: 모든 고유 항목 반환, values 로 인덱스 재설정 필요
+  * $c->unique()->values()
+  * $c->unique(foo)
+  * $c->unique(function (array $item) { return $item[foo] . $item[bar] })
+  * uniqueStrict
+* unless: 첫째인수 조건 실패시 둘째인수 콜백 실행, 첫째인수 조건 성공시 셋째인수 콜백 실행
+  * $c->unless(cond, function(Collection $col) { return $col->push(foo) })
+  * $c->unless(cond, function(Collection $col) { return $col->push(foo) }, function(Collection $col) { return $col->push(bar) })
+  * 반대는 when
+* unlessEmpty: whenNotEmpty 의 alias
+* unlessNotEmpty: whenEmpty 의 alias
+* unwrap: static 메소드: 기본 항목 반환
+  * Collection::unwrap(collect[user1, user2, user3])
+    * [User::class]
+* value: 첫 요소에서 지정값 검색
+  * collect(['a' => 1, 'b' => 2], ['a' => 3, 'b' => 4])->value('a')
+* values: 키인덱스 재설정
+  * collect([2 => 'a', 3 => 'b'])->values()
+    * [0 => 'a', 1 => 'b']
+* when: 첫 인수가 참이면 콜백 실행, 두번째 콜백은 거짓일때 실행
+  * $c->when(cond, function(Collection $col, int $v) { return $col->push(foo) })
+  * $c->when(cond, function(Collection $col, int $v) { return $col->push(foo) }, function(Collection $col, int $v) { return $col->push(bar) })
+* whenEmpty: 컬렉션이 비었을때 콜백 실행, 비어있지 않을때 두번째 콜백 실행
+  * $c->whenEmpty(function() {})
+  * $c->whenEmpty(function() {}, function() {})
+* whenNotEmpty: 컬렉션이 비어있지 않으면 콜백 실행, 비어있으면 두번째 콜백 실행
+* where: 키/값 기준으로 필터링
+  * $c->where('price', 200)
+  * $c->where('price', '>=',200)
+  * whereStrict
+* whereBetween: 범위 필터링
+  * $c->whereBetween('price', [100, 200])
+  * whereNotBetween: 범위 외부 필터링
+* whereIn: 포함 필터링
+  * $c->whereIn('price', [100, 200])
+  * whereInStrict
+  * whereNotIn: 포함 외부 필터링
+    * whereNotInStrict
+* whereInstanceOf: 지정된 클래스 유형 기준으로 필터링
+  * collect([new User, new User])->whereInstanceOf(User::class)
+* whereNull: 키가 null 인 항목 반환
+  * $c->whereNull(foo)
+* whereNotNull: 키가 null 이 아닌 항목 반환
+  * $c->whereNotNull(foo)
+* wrap
+* zip
+  * collect(['a', 'b'])->zip(1, 2)
+    * ['a' => 1, 'b' => 2]
 
 
-
+## lazy collection
+* generator 활용해서 메모리 사용량 낮게 큰 데이터셋 작업: 큰 파일이나 다수의 인스턴스 처리
+* LazyCollection::make(function() {}): 생성
+* takeUntilTimeout: 지정된 시간까지만 열거하고 중지: 주기적으로 실행되는 예약된 작업의 최대 실행시간을 설정 가능
+  * $lc = LazyCollection::times(INF)->takeUntilTimeout(now()->addMinute())
+    * $lc->each(function() {})
+* tapEach
+* throttle: 지정된 시간(초) 후 반환
+  * User::where(foo, 1)->cursor()->throttle(1)->each(function() {})
+* remember: 반환된 값을 다음 반환에서 제외
+  * $users = User::cursor()->remember()
+    * $users->take(5)->all()
+    * $users->take(20)->all()
 
 
 
