@@ -16,23 +16,41 @@
     * quest-player: 다대일
     * client-player: 다대다
 * 개발 방법: 샘플 데이터를 구성하고 코드로 테스트하는 것을 반복
+* https://github.com/seokjoon/laravel-test-rpg3/commits/main/
 
 
 ## Controller, Model, Resource
 * 목록과 항목의 CRUD를 위한 컨트롤러/모델
-    * php artisan make:controller Api/v1/Player/PlayersController --api --model=Player/Player
-    * php artisan make:controller Api/v1/Client/ClientsController --api --model=Client/Client
-    * php artisan make:controller Api/v1/Quest/QuestsController --api --model=Quest/Quest
+    * php artisan make:controller v1/pub/Player/PlayersController --api --model=Player/Player
+    * php artisan make:controller v1/pub/Client/ClientsController --api --model=Client/Client
+    * php artisan make:controller v1/pub/Quest/QuestsController --api --model=Quest/Quest
     * php artisan make:model Client/ClientPlayer
 * 모델 설정: $fillable, $table, $casts
 * api 응답을 위한 항목 Resource, 목록 ListResource
-    * php artisan make:resource Player/PlayerResource
-    * php artisan make:resource Client/ClientListResource
+    * php artisan make:resource v1/pub/Player/PlayerResource
+    * php artisan make:resource v1/pub/Client/ClientListResource
 * 메소드 구현: index(), show(), store(), update(), destroy()
     * rest get, post, put, delete
+* 라우터
+  * vi bootstrap/app.php
+  * vi routes/api.php
+  * php artisan route:list
 * 참고
     * artisan: https://github.com/seokjoon/doc-cs/tree/master/lang.php.laravel/lang.php.laravel.cmd.artisan.md
     * resource: https://laravel.com/docs/11.x/eloquent-resources
+
+
+## docker-compose
+* vi doc/docker/rp.1/*
+* docker build -t test/rp:1 doc/docker/rp.1
+* vi dc.doNotUseDirect.local.yml
+* cd .. && ln -s laravel-test-rpg3/public html && cd laravel-test-rpg3
+* chmod +x *.sh
+* ./dcdown.sh
+* ./dcup.sh
+* docker ps -a
+* docker logs rp
+* curl http://localhost:5005/api/v1/pub/players
 
 
 ## DB Factory/Migration/Seeder
