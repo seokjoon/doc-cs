@@ -2,7 +2,7 @@
 
 ## 목차
 * 개요
-* Controller, Model, Resource  
+* Controller, Model, Resource
 * DB Factory/Migration/Seeder
 * Eloquent ORM/Relationship, Query Builder
 * Event, Listener, Observer, Queue, ~~Notification~~
@@ -27,12 +27,12 @@
 * 모델 설정: $fillable, $table, $casts
 * api 응답을 위한 항목 Resource, 목록 ListResource
     * php artisan make:resource Player/PlayerResource
-    * php artisan make:resource Client/ClientListResource 
+    * php artisan make:resource Client/ClientListResource
 * 메소드 구현: index(), show(), store(), update(), destroy()
     * rest get, post, put, delete
 * 참고
     * artisan: https://github.com/seokjoon/doc-cs/tree/master/lang.php.laravel/lang.php.laravel.cmd.artisan.md
-    * resource: https://laravel.kr/docs/8.x/eloquent-resources
+    * resource: https://laravel.com/docs/11.x/eloquent-resources
 
 
 ## DB Factory/Migration/Seeder
@@ -41,7 +41,7 @@
     * php artisan make:migration create_clients_table --create=clients
     * php artisan make:migration create_quests_table --create=quests
     * php artisan make:migration create_client_player_table --create=client_player
-    * php artisan migrate 
+    * php artisan migrate
         * 제거: php artisan migrate:rollback
 * 샘플 테이터 생성
     * php artisan make:factory Player/PlayerFactory --model=Player/Player
@@ -85,15 +85,15 @@
     * api/v1/players/2
 * 참고
     * create, update: sync()
-    * eloquent relationship: https://laravel.kr/docs/6.x/eloquent-relationships
+    * eloquent relationship: https://laravel.com/docs/11.x/eloquent-relationships
     * 세부 질의: 쿼리 빌더
-        * https://laravel.kr/docs/6.x/queries
+        * https://laravel.com/docs/11.x/queries
         * https://github.com/seokjoon/doc-cs/tree/master/lang.php.laravel/lang.php.laravel.db.queryBuilder.md
 
 ## Event, Listener, Observer, Queue
 * 스캐폴드 생성
     * app/Providers/EventServiceProvider.php
-    	* projected $listen = [ 
+    	* projected $listen = [
             ...,
             'App\Events\Subsc\SubscCreatedEvent' => [ 'App\Listeners\Subsc\SubscCreatedEventListener', ],
             ...
@@ -127,7 +127,7 @@
     * deleting : before a record is deleted or soft-deleted.
     * deleted : after a record has been deleted or soft-deleted.
     * restoring : before a soft-deleted record is going to be restored.
-    * restored : after a soft-deleted record has been restored. 
+    * restored : after a soft-deleted record has been restored.
 * queue(데이터베이스)
     * 설정
         * .env 혹은 config/queue.php 파일 편집
