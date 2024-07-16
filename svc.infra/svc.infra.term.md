@@ -1,5 +1,23 @@
 # 터미널 사용법
 
+
+## alias
+* vi .bashrc
+  ```
+  alias a='apt install'
+  alias audg='apt update & apt install'
+  alias ca='composer dump-autoload'
+  alias d='docker'
+  alias dit='docker exec -it'
+  alias ds='docker ps -a'
+  alias l='ls -al'
+  alias p='ps -ae'
+  alias pa='php artisan'
+  alias pt='php artisan thinker'
+  ```
+* source .bashrc
+
+
 ## 퍼블리셔 레벨
 * 로그아웃: ctrl + d
 * 서버에 접속: ssh 사용자이름@주소(도메인 혹은 아이피): ``` ssh root@foo.bar ```

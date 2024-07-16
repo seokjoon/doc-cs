@@ -1,3 +1,22 @@
+
+## wsl, docker: 20240716
+* win 11
+  * https://learn.microsoft.com/ko-kr/windows/wsl/install
+    * 파워쉘(관리자모드)에서
+      * wsl --list --online
+      * wsl --install Ubuntu-24.04
+      * wsl --set-default Ubuntu-24.04
+      * wsl -l -v
+        * Ubuntu-24.04 Running 2
+      * ubuntu-24.04.exe config --default-user root
+* docker
+  * https://docs.docker.com/desktop/install/windows-install/
+  * setup: resources > WSL integration > enable Ubuntu-24.04
+* 수시로 재부팅
+
+----
+
+
 ## requirement WSL 2
 * win10 20h1, docker stable
 * 필요시 재부팅
@@ -30,7 +49,7 @@
         * https://desktop.docker.com/win/stable/Docker%20Desktop%20Installer.exe
 * 설치 후 로그아웃
 * docker desktop 실행(환경설정): 활성화
-    * use the WSL 2 based engine, 
+    * use the WSL 2 based engine,
     * Resources > WSL integration: Ubuntu-20.04
 
 ## 주의사항

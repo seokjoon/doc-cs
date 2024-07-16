@@ -16,3 +16,12 @@
 	* chown -R www-data:www-data storage bootstrap/cache
 	* chmod -R 775 storage bootstrap/cache
 * git 공유 제외 설정: .gitignore
+
+
+## requirement: wsl ubuntu 22.04
+* apt-get update && apt-get -y install \
+	php8.3-cli \
+	php8.3-mysql mysql-client \
+	php8.3-bcmath php8.3-curl php8.3-gd php8.3-mbstring php8.3-zip php8.3-xml \
+	php8.3-redis
+* curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
