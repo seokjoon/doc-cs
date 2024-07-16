@@ -14,6 +14,9 @@
   * setup: resources > WSL integration > enable Ubuntu-24.04
 * 수시로 재부팅
 
+## phpstorm
+* wsl.exe
+
 ----
 
 

@@ -25,3 +25,4 @@
 	php8.3-bcmath php8.3-curl php8.3-gd php8.3-mbstring php8.3-zip php8.3-xml \
 	php8.3-redis
 * curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
+* apt install unzip
