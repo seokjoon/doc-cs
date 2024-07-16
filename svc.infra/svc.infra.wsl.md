@@ -15,7 +15,9 @@
 * 수시로 재부팅
 
 ## phpstorm
-* wsl.exe
+* 설정에서 terminal 검색
+  * Tools > terminal: C:\Windows\System32\wsl.exe
+* laravel 등 wsl 환경을 사용하는 프로젝트는 위치가 wsl 파일시스템 내부여야 함. 외부일 경우 매우 느려짐
 
 ----
 
