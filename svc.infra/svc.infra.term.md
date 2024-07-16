@@ -13,7 +13,7 @@
   alias l='ls -al'
   alias p='ps -ae'
   alias pa='php artisan'
-  alias pt='php artisan thinker'
+  alias pt='php artisan tinker'
   ```
 * source .bashrc
 
