@@ -51,6 +51,7 @@
 * docker ps -a
 * docker logs rp
 * curl http://localhost:5005/api/v1/pub/players
+* tail -f storage/logs/laravel.log
 
 
 ## DB Factory/Migration/Seeder
