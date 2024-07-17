@@ -42,16 +42,27 @@
 
 ## docker-compose
 * vi doc/docker/rp.1/*
+  * https://github.com/seokjoon/laravel-test-rpg3/tree/main/doc/docker/rp.1
+  * 도커 파일
 * docker build -t test/rp:1 doc/docker/rp.1
+  * 도커이미지 빌드
 * vi dc.doNotUseDirect.local.yml
+  * https://github.com/seokjoon/laravel-test-rpg3/blob/main/dc.doNotUseDirect.local.yml
+  * 도커 컴포즈 구성
 * cd .. && ln -s laravel-test-rpg3/public html && cd laravel-test-rpg3
+  * 웹서버(nginx) html 폴더 링크
 * chmod +x *.sh
 * ./dcdown.sh
 * ./dcup.sh
+  * 도커 인스턴스 시작
 * docker ps -a
+  * 도커 인스턴스 실행 목록
 * docker logs rp
+  * 도커 인스턴스 로그
 * curl http://localhost:5005/api/v1/pub/players
+  * 웹서버 실행여부 확인
 * tail -f storage/logs/laravel.log
+  * 라라벨 (오류 등) 로그 확인
 
 
 ## DB Factory/Migration/Seeder
@@ -97,7 +108,7 @@
         * $q->player->clients
 * 질의, with(eager 로딩), resource
     * $outs = Client::with('players')->get()->all();
-    * $outs = Player::with('clients', 'quests'')->get()->all();
+    * $outs = Player::with('clients', 'quests')->get()->all();
     * 라우터에서 질의 찍어보면 N+1 문제 여부 확인 가능
     * resource, collection 에서 출력 편집
     * api/v1/clients
