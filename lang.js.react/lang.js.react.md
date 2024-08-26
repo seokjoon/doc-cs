@@ -1,5 +1,8 @@
-
 ##
+* npm create vite@latest
+
+
+## https://vitejs.dev/guide/#scaffolding-your-first-vite-project
 * npx create-next-app@latest
 
 
