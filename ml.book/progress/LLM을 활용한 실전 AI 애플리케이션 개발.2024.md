@@ -13,13 +13,19 @@
 			* 언어 모델: 다음에 올 단어가 무엇일지 예측
 		* word2vec(2013), transformer architecture(2017), GTP-1(2018)
   * 1.1.1 데이터의 특징을 스스로 추출하는 딥러닝
+  	* 머신러닝은 데이터의 feature 를 사람이 찾고 모델에 입력, 딥러닝은 모델이 데이터의 특징을 찾고 분류
   * 1.1.2 임베딩: 딥러닝 모델이 데이터를 표현하는 방식
   * 1.1.3 언어 모델링: 딥러닝 모델의 언어 학습법
+  	* 전이 학습, 사전 학습, 미세 조정, 다운스트림
 * 1.2 언어 모델이 챗GPT가 되기까지
   * 1.2.1 RNN에서 트랜스포머 아키텍처로
+  	* attention: RNN 과 달리 맥락 데이터를 모두 활용
   * 1.2.2 GPT 시리즈로 보는 모델 크기와 성능의 관계
   * 1.2.3 챗GPT의 등장
+  	* 지도 미세 조정(supervised fine-tuning), 사람의 피드백을 활용한 강화 학습(RLHF: Reinforcement Learning fro Human Feedback)
+  	* 선호 데이터셋(preference dataset), 리워드 모델(reward model)
 * 1.3 LLM 애플리케이션의 시대가 열리다
+		* sLLM(small Large Language Model), 학습/추론, 검색 증강 생성(RAG: Retrieval Augmented Generation)
   * 1.3.1 지식 사용법을 획기적으로 바꾼 LLM
   * 1.3.2 sLLM: 더 작고 효율적인 모델 만들기
   * 1.3.3 더 효율적인 학습과 추론을 위한 기술
@@ -31,8 +37,14 @@
 
 ## 2장 LLM의 중추, 트랜스포머 아키텍처 살펴보기
 * 2.1 트랜스포머 아키텍처란
+	* 기존 RNN: 토큰별로 이전 출력이 다음 입력, 병렬이 아닌 순차적
+		* 지연, 성능 저하, 그레이디언트 소실(gradient vanishing), 그레이디언트 증폭(gradient exploding)
+		* self-attension: 입력 문장 내 각 단어가 서로 어떤 관련 있는지 계산해서 각 단어의 표현(representation) 조정
+		* embedding, 위치 인코딩(positional encoding), 층 정규화(layer normalization), 멀티 헤드 어텐션(multi-head attention), 피드 포워드(feed forward)
 * 2.2 텍스트를 임베딩으로 변환하기
   * 2.2.1 토큰화
+  	* 텍스트를 적절 단위로 나누고 숫자 아이디 부여
+  	* 사전(vocabulary)
   * 2.2.2 토큰 임베딩으로 변환하기
   * 2.2.3 위치 인코딩
 * 2.3 어텐션 이해하기
