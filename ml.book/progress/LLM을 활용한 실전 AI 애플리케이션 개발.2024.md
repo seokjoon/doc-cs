@@ -46,10 +46,15 @@
   	* 텍스트를 적절 단위로 나누고 숫자 아이디 부여
   	* 사전(vocabulary)
   * 2.2.2 토큰 임베딩으로 변환하기
+  	* 임베딩: 데이터를 의미를 담아 숫자 집합(벡터)로 변환
   * 2.2.3 위치 인코딩
+  	* 트랜스포머는 순차적(RNN)이 아닌 동시 입력(순서 정보 사라짐)이기 때문에 위치 인코딩(텍스트 순서)이 필요
+  	* 절대적 위치 인코딩(absolute position encoding), 상대적 위치 인코딩(relative position encoding)
 * 2.3 어텐션 이해하기
   * 2.3.1 사람이 글을 읽는 방법과 어텐션
   * 2.3.2 쿼리, 키, 값 이해하기
+  	* 쿼리(검색어), 키(딕셔너리의 단어), 값(벡터)
+  	* 가중치
   * 2.3.3 코드로 보는 어텐션
   * 2.3.4 멀티 헤드 어텐션
 * 2.4 정규화와 피드 포워드 층
@@ -58,11 +63,11 @@
 * 2.5 인코더
 * 2.6 디코더
 * 2.7 BERT, GPT, T5 등 트랜스포머를 활용한 아키텍처
-  * 2.7.1 인코더를 활용한 BERT
-  * 2.7.2 디코더를 활용한 GPT
-  * 2.7.3 인코더와 디코더를 모두 사용하는 BART, T5
+  * 2.7.1 인코더를 활용한 BERT(Bidirectional Encoder Representations from Transformers): 구글: 양방향
+  * 2.7.2 디코더를 활용한 GPT(Generative Pre-trained Transformers)
+  * 2.7.3 인코더와 디코더를 모두 사용하는 BART(Bidirectional and Auto-Regressive Transformers), T5(Text-to-Text Transfer Transformers)
 * 2.8 주요 사전 학습 메커니즘
-  * 2.8.1 인과적 언어 모델링
+  * 2.8.1 인과적 언어 모델링(Causal Language Modeling, CLM)
   * 2.8.2 마스크 언어 모델링
 * 2.9 정리
 
@@ -89,18 +94,31 @@
 
 
 ## 4장 말 잘 듣는 모델 만들기
+	* 지시 데이터 셋(instruction dataset), 사용자의 선호(preference) 학습
+	* 지도 미세 조정(supervised fine-tuning), RLHF(Reinforcement Learning from Human Feedback), PPO
+	* 기각 샘플링(rejective sampling)
 * 4.1 코딩 테스트 통과하기: 사전 학습과 지도 미세 조정
   * 4.1.1 코딩 개념 익히기: LLM의 사전 학습
   * 4.1.2 연습문제 풀어보기: 지도 미세 조정
+  	* 텍스트
+	  	* 지시사항(instruction): 사용자의 요구사항을 표현한 문장
+  		* 입력: 답변에 필요한 데이터
+  		* 출력: 지시사항과 입력에 기반한 답변
   * 4.1.3 좋은 지시 데이터셋이 갖춰야 할 조건
 * 4.2 채점 모델로 코드 가독성 높이기
   * 4.2.1 선호 데이터셋을 사용한 채점 모델 만들기
   * 4.2.2 강화 학습: 높은 코드 가독성 점수를 향해
+  	* 사람의 피드백을 활용한 강화 학습(Reinforcement Learning from Human Feedback, RLHF)
+  	* 강화 학습: 에이전트/환경/행동, 상태/보상, 에피소드
   * 4.2.3 PPO: 보상 해킹 피하기
+  	* reward hacking: 보상을 높게 받는 데에만 집중
+  	* 근접 정책 최적화(Proximal Preference Optimization)
   * 4.2.4 RLHF: 멋지지만 피할 수 있다면…
 * 4.3 강화 학습이 꼭 필요할까?
   * 4.3.1 기각 샘플링: 단순히 가장 점수가 높은 데이터를 사용한다면?
+  	* rejection sampling
   * 4.3.2 DPO: 선호 데이터셋을 직접 학습하기
+  	* 직접 선호 최적화(Direct Preference Optimization)
   * 4.3.3 DPO를 사용해 학습한 모델들
 * 4.4 정리
 
@@ -185,7 +203,7 @@
 
 # [3부] LLM을 활용한 실전 애플리케이션 개발
 * 9장 LLM 애플리케이션 개발하기
-* 9.1 검색 증강 생성(RAG)
+* 9.1 검색 증강 생성(RAG): Retrieval Augmented Generation: 환각(hallucination) 감소
   * 9.1.1 데이터 저장
   * 9.1.2 프롬프트에 검색 결과 통합
   * 9.1.3 실습: 라마인덱스로 RAG 구현하기
@@ -202,22 +220,34 @@
 
 
 ## 10장 임베딩 모델로 데이터 의미 압축하기
-* 10.1 텍스트 임베딩 이해하기
+* 10.1 텍스트 임베딩 이해하기: 임베딩: 데이터의 의미를 압축한 숫자 배열(벡터)
   * 10.1.1 문장 임베딩 방식의 장점
-  * 10.1.2 원핫 인코딩
-  * 10.1.3 백오브워즈
-  * 10.1.4 TF-IDF
-  * 10.1.5 워드투벡
+  * 10.1.2 원핫 인코딩(one-hot encoding)
+  * 10.1.3 백오브워즈(Bag of Words): 비슷한 단어가 많이 나오면 비슷한 문장/문서
+  * 10.1.4 TF-IDF(Term Frequency-Inverse Document Frequency): 많은 문서에 등장하는 단어의 중요도를 작게
+  	* 차원 증가, 대부분 0인 벡터, 희소(sparse)
+  		* 워드투벡과 문장 임베딩은 압축된 형태: 밀집 임베딩(dense embedding)
+  * 10.1.5 워드투벡(word2vec): 단어가 '함께 등장하는 빈도'
+  	* 특정 단어 주변에 어떤 단어가 있는지 예측하는 모델
+  		* CBOW(Continuous Bag of Words): 주변 단어로 가운데 단어를 예측
+  		* 스킵그램(skip-gram): 중간 단어로 주변 단어를 예측
 * 10.2 문장 임베딩 방식
   * 10.2.1 문장 사이의 관계를 계산하는 두 가지 방법
+  	* BERT(Bidirectional Encoder Representations from Transformers): 바이 인코더(bi-encoder)
+  	* 교차 인코더(cross-encoder)
   * 10.2.2 바이 인코더 모델 구조
   * 10.2.3 Sentence-Transformers로 텍스트와 이미지 임베딩 생성해 보기
   * 10.2.4 오픈소스와 상업용 임베딩 모델 비교하기
-* 10.3 실습: 의미 검색 구현하기
+  	* 상업용: OpenAI: text-embedding-*, gpt-*: 적은 비용, 높은 성능: 사용자 데이터로 미세조정 지원이 없음
+  	* 오픈소스: Sentence-Transformers 라이브러리로 사전 학습 모델을 로드
+* 10.3 실습: 의미 검색 구현하기: semantic search
   * 10.3.1 의미 검색 구현하기
+  	* Sentence-Transformers, faiss
+  		* faiss: 페이스북이 개발한 벡터 연산 라이브러리: 코사인 유사도, 유클리드 거리 등 기본적 방법 지원, 벡터 검색 속도 향상을 위한 ANN(Approximate nearest Neighbor) 제공,
   * 10.3.2 라마인덱스에서 Sentence-Transformers 모델 사용하기
+  	*
 * 10.4 검색 방식을 조합해 성능 높이기
-  * 10.4.1 키워드 검색 방식: BM25
+  * 10.4.1 키워드 검색 방식: BM25(Best Matching 25, TF-IDF 변형)
   * 10.4.2 상호 순위 조합 이해하기
 * 10.5 실습: 하이브리드 검색 구현하기
   * 10.5.1 BM25 구현하기
