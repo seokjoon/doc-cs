@@ -334,7 +334,7 @@
 
 
 ## 13장 LLM 운영하기
-* 13.1 MLOps
+* 13.1 MLOps: Machine Learning Operations: 모델의 재현성(reproducibility)
   * 13.1.1 데이터 관리
   * 13.1.2 실험 관리
   * 13.1.3 모델 저장소
@@ -345,12 +345,14 @@
   * 13.2.3 LLM 평가의 어려움
 * 13.3 LLM 평가하기
   * 13.3.1 정량적 지표
+  	* BLEU(Bilingual Evaluation Understudy Score), n-gram, ROUGE(Recall-Oriented Understudy for Gisting Evaluation), PPL(perplexity)
   * 13.3.2 벤치마크 데이터셋을 활용한 평가
+  	* ARC(AI2 Reasoning Challenge), HellaSwag, MMLU(Massive Multitask Language Understanding), TruthfulQA
   * 13.3.3 사람이 직접 평가하는 방식
   * 13.3.4 LLM을 통한 평가
   * 13.3.4 RAG 평가
+  	* 신뢰성, 답변 관련성, 맥락 관련성, Ragas(RAG Assessment)
 * 13.4 정리
-
 
 
 # [4부] 멀티 모달, 에이전트 그리고 LLM의 미래
@@ -376,15 +378,21 @@
 
 
 ## 15장 LLM 에이전트
+	* 예시: AutoGPT, MS AutoGen
+	* 에이전트는 LLM과 RAG을 하나의 구성요소로 사용
 * 15.1 에이전트란
   * 15.1.1 에이전트의 구성요소
+  	* 환경, 감각(perception), 두뇌(brain), 행동(action)
   * 15.1.2 에이전트의 두뇌
+  	* symbolic AI(규칙/지식 기반), 강화학습, meta learning, LLM
   * 15.1.3 에이전트의 감각
   * 15.1.4 에이전트의 행동
 * 15.2 에이전트 시스템의 형태
   * 15.2.1 단일 에이전트
+  	* AutoGPT
   * 15.2.2 사용자와 에이전트의 상호작용
   * 15.2.3 멀티 에이전트
+  	* AutoGen, MetaGPT, CrewAI
 * 15.3 에이전트 평가하기
 * 15.4 실습: 에이전트 구현
   * 15.4.1 AutoGen 기본 사용법
@@ -395,7 +403,7 @@
 
 ## 16장 새로운 아키텍처
 * 16.1 기존 아키텍처의 장단점
-* 16.2 SSM
+* 16.2 SSM: State Space Model
   * 16.2.1 S4
 * 16.3 선택 메커니즘
 * 16.4 맘바
