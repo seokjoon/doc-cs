@@ -6,8 +6,6 @@
 
 ## ch 4. tools
 * /file
-  * --write filename
-  * --patch filename
 * /shell 또는 /run
 * /http url
 * /search query
