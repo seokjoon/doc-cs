@@ -1,3 +1,18 @@
+##
+* ch3
+  * 178: 비즈니스 월드 모델
+  * 187: 심볼릭 전통
+    * 판정 가능, 재현 가능, 감사 가능
+  * 뉴럴 전통
+  * 196: MDP: Markov Property: 다음 상태는 오직 현재 상태에 의해서만 결정
+    * POMDP: Partially Observable MDP
+      * Belief State: 추정 상태
+  * 203: SWM(심볼릭 월드 모델)의 최소 구성 요소: ESTC: Entity, State, Transition, Constraint
+  * 214: text2world
+  * 215: agent2world
+  * 
+
+
 Prologue. 왜 우리는 AI '세계'를 이야기하는가
 지능은 샀지만, 세계는 구축하지 않았다
 세계 없는 지능이 만들어내는 구조적 사고
