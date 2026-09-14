@@ -20,10 +20,18 @@
     * belief - constraint
     * dynamics - transition
     * planner - execute, commit
-
-
-
-
+  * 284: 협업: 실행 루프(7단계), 인터페이스 계약
+  * 338: 실패 설계는 뉴로심볼릭의 핵심
+* ch5
+  * NWM의 추론과 확신은 액션이 아니라 제안 상태에 머물러야 한다
+  * 384: 피드백형 실패와 사건형 실패
+  * 402: 로봇은 몸을 입은 에이전트: embodied agent
+  * 424: 피지컬 AI의 유산: 위계(hierarchy), 경계(boundary), 추상화(abstraction)
+* ch6
+  * 465: 지능보다 구조
+  * 478: 에이전틱 워크플로우: 비물리 세계의 몸
+* ch7
+  * 500: 일반성(generality)는 일반화(generalization)이 아니다
 
 
 
