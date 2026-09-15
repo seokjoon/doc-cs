@@ -7,9 +7,28 @@
     * transition: 무엇이 바뀔 수 있는가를 닫음
     * constraint: 언제 허용되는가를 닫음
   * 74: 세 층위: ontology(어휘), world DSL(문법), ESTC(문장)
-
-
-
+  * 122: 월드 모델 캔버스
+    * layer 1: world definition: 세계의 목적/범위, 핵심 엔터티/온톨로지, 공식 기록면
+    * layer 2: world dynamics: 상태 공간, 추정/확정 상태, 허용된 전이, 가드/제약/정책
+    * layer 3: world operation: 관측과 번역, 판정 및 결과 계약, 인간 개입, 감사 로그/학습 훅
+* ch9
+  * 138: S, T, C 는 모두 entity 에 종속
+  * 149: 엔터티 특성: trackable, stateful, actionalble, auditable
+  * 150: 엔터티 유형 셋: core business object, actor, process instance(승인, 심사, 배송, 클레임, ...)
+* ch11
+  * 341: 상태 변경과 전이 이력은 단일 트랜잭션으로, 외부 부작용은 커밋 이후 이벤트로 분리
+  * 326: 가드 판정 조건: 선행 상태 조건, 비즈니스 규칙 조건, 멱등성 조건
+  * 344: 전이 이력
+* ch12
+  * 386: 가드는 특정 전이에 붙지만(지금 이 전이가 가능한가) 제약은 세계에 걸린다(무엇이 항상 불가능한가)
+  * 392: 제약 4개: 불편 제약, 상태 기반 제약, 전이 기반 제약, 관계 제약
+  * 413: 제약은 판정 가능 형식으로 선언: 제약의 주체, 제약의 조건, 판정 결과와 처리 지침
+* ch13
+  * 495: dry run, replay, sandbox, debugging console
+* ch14
+  * 526: 세계 노화의 네 층위: 비즈니스 변화, 규제 변화, 기술 변화, 현장 학습
+* ch15
+  * 
 
   
 
